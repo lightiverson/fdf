@@ -100,21 +100,27 @@ int *calloc_matrix(unsigned int rows, unsigned int columns)
 	return (matrix);
 }
 
-int main(int argc, char const *argv[])
+// int main(int argc, char const *argv[])
+// {
+// 	unsigned int	rows;
+// 	unsigned int	columns;
+// 	int				*matrix;
+
+// 	rows = get_rows("./test_maps/elem-col.fdf");
+// 	printf("rows = %d\n", rows);
+
+// 	columns = get_columns("./test_maps/elem-col.fdf");
+// 	printf("columns = %d\n", columns);
+
+// 	return (0);
+// }
+
+int	main(void)
 {
-	unsigned int	rows;
-	unsigned int	columns;
-	int				*matrix;
+	void	*mlx;
+	void	*mlx_win;
 
-	rows = get_rows("./test_maps/elem-col.fdf");
-	printf("rows = %d\n", rows);
-
-	columns = get_columns("./test_maps/elem-col.fdf");
-	printf("columns = %d\n", columns);
-
-	return (0);
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+	mlx_loop(mlx);
 }
-
-// gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak get_map.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c ./libft/libft.a
-// gcc -Wall -Wextra -g get_map.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c ./libft/libft.a
-// valgrind --leak-check=full ./a.out
