@@ -91,7 +91,7 @@ int *calloc_matrix(unsigned int rows, unsigned int columns)
 {
 	int *matrix;
 
-	matrix = ft_calloc(rows * columns, *matrix);
+	matrix = ft_calloc(rows * columns, sizeof(*matrix));
 	if (matrix == NULL)
 	{
 		perror("malloc");
@@ -111,8 +111,6 @@ int main(int argc, char const *argv[])
 
 	columns = get_columns("./test_maps/elem-col.fdf");
 	printf("columns = %d\n", columns);
-
-	matrix = calloc_matrix(rows, columns);
 
 	return (0);
 }
