@@ -194,30 +194,33 @@ int	main(void)
 
 	int i = 0;
 	int j = 0;
+	
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, 1280, 720, "Hello world!");
+	img.img = mlx_new_image(mlx, 1280, 720);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
+									&img.endian);
+
 	while (i < 9)
 	{
 		while (j < 11)
 		{
-			printf("%d ", matrix[i][j]);
+			// printf("%d ", matrix[i][j]);
+			// printf("(%d, %d) ", i, j);
+			my_mlx_pixel_put(&img, i, j, 0x00FF0000);
 			j++;
 		}
-		printf("\n");
+		// printf("\n");
 		j = 0;
 		i++;
 	}
-	
-
-	// mlx = mlx_init();
-	// mlx_win = mlx_new_window(mlx, 1280, 720, "Hello world!");
-	// img.img = mlx_new_image(mlx, 1280, 720);
-	// img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-	// 								&img.endian);
 	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
 	// my_mlx_pixel_put(&img, 6, 6, 0x00FFFFFF);
 	// my_mlx_pixel_put(&img, 7, 7, 0x00FFFFFF);
 	// my_mlx_pixel_put(&img, 8, 8, 0x00FFFFFF);
 	// my_mlx_pixel_put(&img, 9, 9, 0x00FFFFFF);
 	// my_mlx_pixel_put(&img, 10, 10, 0x00FF0000);
-	// mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	// mlx_loop(mlx);
+	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
+	mlx_loop(mlx);
 }
