@@ -174,6 +174,21 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+void	*init_new_window(int x, int y)
+{
+	void	*mlx;
+	void	*new_window;
+
+	mlx = mlx_init();
+	if (mlx == NULL)
+	{
+		printf("Error: mlx_init failed\n");
+	}
+	
+	new_window = mlx_new_window(mlx, x, y, "Hello, world!");
+	return (new_window);
+}
+
 int	main(void)
 {
 	void	*mlx;
@@ -192,15 +207,14 @@ int	main(void)
 		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}
 	};
 
-	int i = 0;
-	int j = 0;
-	
-
 	mlx = mlx_init();
 	mlx_win = mlx_new_window(mlx, 1280, 720, "Hello world!");
 	img.img = mlx_new_image(mlx, 1280, 720);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 									&img.endian);
+
+	int i = 0;
+	int j = 0;
 
 	while (i < 9)
 	{
