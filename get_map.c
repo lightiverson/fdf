@@ -59,7 +59,7 @@ unsigned int	get_rows(const char *map_name)
 		rows++;
 	}
 	close(map_fd);
-	return (rows);
+	return (rows - 1);
 }
 
 unsigned int	get_columns(const char *map_name)
@@ -87,17 +87,66 @@ unsigned int	get_columns(const char *map_name)
 	return (columns);
 }
 
-int *calloc_matrix(unsigned int rows, unsigned int columns)
+int **calloc_matrix(unsigned int rows, unsigned int columns)
 {
-	int *matrix;
+	int **matrix;
 
-	matrix = ft_calloc(rows * columns, sizeof(*matrix));
+	// matrix = ft_calloc(rows, sizeof(*matrix));
+	matrix = ft_calloc(rows, sizeof(int*));
 	if (matrix == NULL)
 	{
 		perror("malloc");
 		exit(EXIT_FAILURE);
 	}
+
+	unsigned int i = 0;
+	while (i < rows)
+	{
+		matrix[i] = ft_calloc(columns, sizeof(int));
+		if (matrix[i] == NULL)
+		{
+			perror("malloc");
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
 	return (matrix);
+}
+
+int **create_matrix(char *map_name)
+{
+	unsigned int	rows;
+	unsigned int	columns;
+	int				**matrix;
+
+	rows = get_rows(map_name);
+	printf("rows = %d\n", rows);
+
+	columns = get_columns(map_name);
+	printf("columns = %d\n", columns);
+
+	matrix = calloc_matrix(rows, columns);
+	return (matrix);
+}
+
+void print_matrix(int **matrix, unsigned int rows, unsigned int columns)
+{
+	unsigned int i;
+	unsigned int j;
+
+	i = 0;
+	j = 0;
+	while (i < rows)
+	{
+		while (j < columns)
+		{
+			printf("%d ", matrix[i][j]);
+			j++;
+		}
+		printf("\n");
+		j = 0;
+		i++;
+	}
 }
 
 /*
@@ -157,15 +206,6 @@ matrix[10][0] = 9
 // 	return (0);
 // }
 
-
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-} t_data;
-
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -174,23 +214,12 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void	*init_new_window(int x, int y)
-{
-	void	*mlx;
-	void	*new_window;
 
-	mlx = mlx_init();
-	if (mlx == NULL)
-	{
-		printf("Error: mlx_init failed\n");
-	}
-	
-	new_window = mlx_new_window(mlx, x, y, "Hello, world!");
-	return (new_window);
-}
 
 int	main(void)
 {
+	int **m = create_matrix("./test_maps/basictest.fdf");
+	print_matrix(m, 9, 11);
 	void	*mlx;
 	void	*mlx_win;
 	t_data	img;
@@ -208,33 +237,25 @@ int	main(void)
 	};
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1280, 720, "Hello world!");
-	img.img = mlx_new_image(mlx, 1280, 720);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-									&img.endian);
+	mlx_win = mlx_new_window(mlx, WIDTH, HEIGHT, "Hello world!");
+	img.img = mlx_new_image(mlx, WIDTH, HEIGHT);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+
+	int horizontal_line_length_px = (WIDTH - 1) / 10;
+	int vertical_line_lenght_px = (HEIGHT - 1) / 8;
 
 	int i = 0;
 	int j = 0;
-
-	while (i < 9)
+	while (i < 11)
 	{
-		while (j < 11)
+		while (j < 9)
 		{
-			// printf("%d ", matrix[i][j]);
-			// printf("(%d, %d) ", i, j);
-			my_mlx_pixel_put(&img, i, j, 0x00FF0000);
+			my_mlx_pixel_put(&img, i * horizontal_line_length_px, j * vertical_line_lenght_px, 0x00FF0000);
 			j++;
 		}
-		// printf("\n");
 		j = 0;
 		i++;
 	}
-	// my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	// my_mlx_pixel_put(&img, 6, 6, 0x00FFFFFF);
-	// my_mlx_pixel_put(&img, 7, 7, 0x00FFFFFF);
-	// my_mlx_pixel_put(&img, 8, 8, 0x00FFFFFF);
-	// my_mlx_pixel_put(&img, 9, 9, 0x00FFFFFF);
-	// my_mlx_pixel_put(&img, 10, 10, 0x00FF0000);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
