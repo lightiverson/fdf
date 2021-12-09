@@ -6,18 +6,24 @@ CFLAGS := $(CFLAGS) -g -fsanitize=address -fsanitize=leak
 endif
 
 mac_os_api = -Lmlx -framework OpenGL -framework AppKit
-objects	=	get_map.o \
+objects	=	fdf.o \
 			get_next_line.o \
-			get_next_line_utils.o
+			get_next_line_utils.o \
+			matrix.o \
+			gets.o \
+			my_mlx.o
 libft	=	libft/libft.a
 mlx = libmlx.dylib
 
 fdf : $(objects) $(libft) $(mlx)
 	$(CC) $(CFLAGS) $(mac_os_api) -Imlx -o fdf $(objects) $(libft) $(mlx)
 
-get_map.o : get_map.h
-get_next_line.o : get_next_line/get_next_line.h
-get_next_line_utils.o : get_next_line/get_next_line.h
+fdf.o : fdf.h
+get_next_line.o : get_next_line.h
+get_next_line_utils.o : get_next_line.h
+matrix.o : matrix.h
+gets.o : gets.h
+my_mlx.o : my_mlx.h
 
 $(libft) :
 	make -C libft
@@ -40,6 +46,6 @@ re: fclean all
 
 .PHONY: all clean fclean re
 
-# gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak get_map.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c ./libft/libft.a
-# gcc -Wall -Wextra -g get_map.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c ./libft/libft.a
+# gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak fdf.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c ./libft/libft.a
+# gcc -Wall -Wextra -g fdf.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c ./libft/libft.a
 # valgrind --leak-check=full ./a.out
