@@ -25,8 +25,8 @@ static int **calloc_matrix(unsigned int rows, unsigned int columns)
 {
 	int **matrix;
 
-	// matrix = ft_calloc(rows, sizeof(*matrix));
-	matrix = ft_calloc(rows, sizeof(int*));
+	matrix = ft_calloc(rows, sizeof(*matrix));
+	// matrix = ft_calloc(rows, sizeof(int*));
 	if (matrix == NULL)
 	{
 		perror("malloc");
@@ -54,11 +54,7 @@ int **create_matrix(char *map_name)
 	int				**matrix;
 
 	rows = get_rows(map_name);
-	printf("rows = %d\n", rows);
-
 	columns = get_columns(map_name);
-	printf("columns = %d\n", columns);
-
 	matrix = calloc_matrix(rows, columns);
 	return (matrix);
 }

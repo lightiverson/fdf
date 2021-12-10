@@ -13,7 +13,7 @@ void	free_splitted_array(char **splitted_array)
 	free(splitted_array);
 }
 
-static int	get_map_fd(const char *map_name)
+int	get_map_fd(const char *map_name)
 {
 	int	map_fd;
 

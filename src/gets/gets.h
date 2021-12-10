@@ -9,6 +9,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+int	get_map_fd(const char *map_name);
 unsigned int	get_rows(const char *map_name);
 unsigned int	get_columns(const char *map_name);
 
