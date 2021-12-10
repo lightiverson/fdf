@@ -1,6 +1,6 @@
 #include "fdf.h"
-#include "matrix.h"
-#include "my_mlx.h"
+#include "../matrix/matrix.h"
+#include "../my_mlx/my_mlx.h"
 #include <assert.h>
 
 void	is_argc_two(int argc)

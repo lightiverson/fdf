@@ -1,5 +1,5 @@
 #include "matrix.h"
-#include "gets.h"
+#include "../gets/gets.h"
 
 void print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 {
