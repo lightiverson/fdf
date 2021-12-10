@@ -9,6 +9,13 @@
 // columns
 // matrix
 
+typedef struct s_matrix_data
+{
+	unsigned int rows;
+	unsigned int columns;
+	int **matrix;
+}	t_matrix_data;
+
 void handle_str(char *vertex_str, unsigned int row, unsigned int column, int **matrix)
 {
     int base;
@@ -45,7 +52,7 @@ void handle_str(char *vertex_str, unsigned int row, unsigned int column, int **m
 	matrix[row][column] = val;
 }
 
-void handle_line(char *line, unsigned int row, int **matrix)
+void iterate_over_columns(char *line, unsigned int row, int **matrix)
 {
 	char			**vertex;
 	unsigned int	column;
@@ -59,7 +66,7 @@ void handle_line(char *line, unsigned int row, int **matrix)
 	}
 }
 
-void	iterate_over_lines(const char *map_name, int **matrix)
+void	iterate_over_rows(const char *map_name, int **matrix)
 {
 	int				map_fd;
 	int				return_get_next_line;
@@ -78,7 +85,7 @@ void	iterate_over_lines(const char *map_name, int **matrix)
 			printf("Error: get_next_line returned -1\n");
 			exit(EXIT_FAILURE);
 		}
-		handle_line(line, row, matrix);
+		iterate_over_columns(line, row, matrix);
 		row++;
 		free(line);
 	}
@@ -87,25 +94,23 @@ void	iterate_over_lines(const char *map_name, int **matrix)
 
 int main(void)
 {
-	unsigned int	rows;
-	unsigned int	columns;
-	int **matrix;
+	t_matrix_data 	matrix_data;
 
 	char *map_name = "../../test_maps/basictest.fdf";
-	rows = get_rows(map_name);
-	printf("rows = %d\n", rows);
 
-	columns = get_columns(map_name);
-	printf("columns = %d\n", columns);
+	matrix_data.rows = get_rows(map_name);
+	printf("matrix.data.rows = %d\n", matrix_data.rows);
 
-	matrix = create_matrix(map_name);
-	print_matrix(matrix, rows, columns);
+	matrix_data.columns = get_columns(map_name);
+	printf("matrix.data.columns = %d\n", matrix_data.columns);
 
-	iterate_over_lines(map_name, matrix);
+	matrix_data.matrix = create_matrix(map_name);
+	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
+
+	iterate_over_rows(map_name, matrix_data.matrix);
 
 	printf("\n");
-	print_matrix(matrix, rows, columns);
-
+	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
 
 	return (0);
 }
