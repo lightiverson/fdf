@@ -7,63 +7,63 @@
 
 typedef struct s_matrix_data
 {
-	unsigned int rows;
-	unsigned int columns;
-	int **matrix;
+	unsigned int	rows;
+	unsigned int	columns;
+	int				**matrix;
 }	t_matrix_data;
 
-void free_matrix(int **calloced_matrix, unsigned int rows)
+void	free_matrix(int **calloced_matrix, unsigned int rows)
 {
-    unsigned int i;
+	unsigned int	i;
 
-    i = 0;
-    while (i < rows)
-    {
-        free(calloced_matrix[i]);
-        i++;
-    }
-    free(calloced_matrix);
+	i = 0;
+	while (i < rows)
+	{
+		free(calloced_matrix[i]);
+		i++;
+	}
+	free(calloced_matrix);
 }
 
-void handle_str(char *vertex_str, unsigned int row, unsigned int column, int **matrix)
+void	handle_str(char *vertex_str, unsigned int row,
+			unsigned int column, int **matrix)
 {
-    int base;
-    char *endptr;
-	char *str;
-    long val;
+	int		base;
+	char	*endptr;
+	char	*str;
+	long	val;
 
-    str = vertex_str;
-    base = 10;
+	str = vertex_str;
+	base = 10;
+	errno = 0;  /* To distinguish success/failure after call */
+	val = strtol(str, &endptr, base);
 
-    errno = 0;    /* To distinguish success/failure after call */
-    val = strtol(str, &endptr, base);
+	/* Check for various possible errors */
 
-    /* Check for various possible errors */
+	if ((errno == ERANGE && (val == LONG_MAX || val == LONG_MIN))
+			|| (errno != 0 && val == 0)) {
+		perror("strtol");
+		exit(EXIT_FAILURE);
+	}
 
-    if ((errno == ERANGE && (val == LONG_MAX || val == LONG_MIN))
-            || (errno != 0 && val == 0)) {
-        perror("strtol");
-        exit(EXIT_FAILURE);
-    }
+	if (endptr == str) {
+		fprintf(stderr, "No digits were found\n");
+		exit(EXIT_FAILURE);
+	}
 
-    if (endptr == str) {
-        fprintf(stderr, "No digits were found\n");
-        exit(EXIT_FAILURE);
-    }
+	/* If we got here, strtol() successfully parsed a number */
 
-    /* If we got here, strtol() successfully parsed a number */
+	/* printf("strtol() returned %ld\n", val); */
 
-    // printf("strtol() returned %ld\n", val);
-
-    /* Not necessarily an error... */
-    if (*endptr != '\0') {
-        printf("Further characters after number: %s\n", endptr);
-    }
+	/* Not necessarily an error... */
+	if (*endptr != '\0') {
+		printf("Further characters after number: %s\n", endptr);
+	}
 	
 	matrix[row][column] = val;
 }
 
-void iterate_over_columns(char *line, unsigned int row, int **matrix)
+void	iterate_over_columns(char *line, unsigned int row, int **matrix)
 {
 	char			**vertex;
 	unsigned int	column;
@@ -75,7 +75,7 @@ void iterate_over_columns(char *line, unsigned int row, int **matrix)
 		handle_str(vertex[column], row, column, matrix);
 		column++;
 	}
-    free_splitted_array(vertex);
+	free_splitted_array(vertex);
 }
 
 void	iterate_over_rows(const char *map_name, int **matrix)
@@ -124,9 +124,8 @@ int main(void)
 	printf("\n");
 	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
 
-    free_matrix(matrix_data.matrix, matrix_data.rows);
-
-    return (0);
+	free_matrix(matrix_data.matrix, matrix_data.rows);
+	return (0);
 }
 
 // gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak text_matrix.c matrix.c ../../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c

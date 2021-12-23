@@ -1,10 +1,10 @@
 #include "matrix.h"
 #include "../gets/gets.h"
 
-void print_matrix(int **matrix, unsigned int rows, unsigned int columns)
+void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 {
-	unsigned int i;
-	unsigned int j;
+	unsigned int	i;
+	unsigned int	j;
 
 	i = 0;
 	j = 0;
@@ -21,9 +21,10 @@ void print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 	}
 }
 
-static int **calloc_matrix(unsigned int rows, unsigned int columns)
+static int	**calloc_matrix(unsigned int rows, unsigned int columns)
 {
-	int **matrix;
+	unsigned int	i;
+	int				**matrix;
 
 	matrix = ft_calloc(rows, sizeof(*matrix));
 	if (matrix == NULL)
@@ -31,8 +32,7 @@ static int **calloc_matrix(unsigned int rows, unsigned int columns)
 		perror("malloc");
 		exit(EXIT_FAILURE);
 	}
-
-	unsigned int i = 0;
+	i = 0;
 	while (i < rows)
 	{
 		matrix[i] = ft_calloc(columns, sizeof(matrix[i]));
@@ -46,7 +46,7 @@ static int **calloc_matrix(unsigned int rows, unsigned int columns)
 	return (matrix);
 }
 
-int **create_matrix(char *map_name)
+int	**create_matrix(char *map_name)
 {
 	unsigned int	rows;
 	unsigned int	columns;
