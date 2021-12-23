@@ -29,7 +29,6 @@ int main (void)
 
 	printf("matrix.data.rows = %d\n", matrix_data.rows);
 	printf("matrix.data.columns = %d\n", matrix_data.columns);
-	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
 	printf("\n");
 	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
 
@@ -37,6 +36,6 @@ int main (void)
     return (0);
 }
 
-// gcc text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c && ./a.out
-// gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c && ./a.out
-// gcc  -Wall -Wextra -g text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c && valgrind --leak-check=full ./a.out
+// gcc text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c ../free_breezy.c && ./a.out
+// gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c ../free_breezy.c && ./a.out
+// gcc  -Wall -Wextra -g text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c ../free_breezy.c && valgrind --leak-check=full ./a.out

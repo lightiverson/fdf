@@ -26,19 +26,6 @@ int	**calloc_matrix(unsigned int rows, unsigned int columns)
 	return (matrix);
 }
 
-void	free_matrix(int **calloced_matrix, unsigned int rows)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < rows)
-	{
-		free(calloced_matrix[i]);
-		i++;
-	}
-	free(calloced_matrix);
-}
-
 void	handle_str(char *vertex_str, unsigned int row,
 			unsigned int column, int **matrix)
 {
