@@ -5,16 +5,25 @@
 #include <stdio.h>
 #include <errno.h>
 
-// rows
-// columns
-// matrix
-
 typedef struct s_matrix_data
 {
 	unsigned int rows;
 	unsigned int columns;
 	int **matrix;
 }	t_matrix_data;
+
+void free_matrix(int **calloced_matrix, unsigned int rows)
+{
+    unsigned int i;
+
+    i = 0;
+    while (i < rows)
+    {
+        free(calloced_matrix[i]);
+        i++;
+    }
+    free(calloced_matrix);
+}
 
 void handle_str(char *vertex_str, unsigned int row, unsigned int column, int **matrix)
 {
@@ -46,8 +55,10 @@ void handle_str(char *vertex_str, unsigned int row, unsigned int column, int **m
 
     // printf("strtol() returned %ld\n", val);
 
-    if (*endptr != '\0')        /* Not necessarily an error... */
+    /* Not necessarily an error... */
+    if (*endptr != '\0') {
         printf("Further characters after number: %s\n", endptr);
+    }
 	
 	matrix[row][column] = val;
 }
@@ -64,6 +75,7 @@ void iterate_over_columns(char *line, unsigned int row, int **matrix)
 		handle_str(vertex[column], row, column, matrix);
 		column++;
 	}
+    free_splitted_array(vertex);
 }
 
 void	iterate_over_rows(const char *map_name, int **matrix)
@@ -112,7 +124,10 @@ int main(void)
 	printf("\n");
 	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
 
-	return (0);
+    free_matrix(matrix_data.matrix, matrix_data.rows);
+
+    return (0);
 }
 
-// gcc text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c
+// gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak text_matrix.c matrix.c ../../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c
+// gcc  -Wall -Wextra -g text_matrix.c matrix.c ../../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c && valgrind --leak-check=full ./a.out

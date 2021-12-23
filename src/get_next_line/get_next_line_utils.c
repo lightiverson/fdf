@@ -41,7 +41,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	return (dst);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen_dup(const char *s)
 {
 	size_t	len;
 
@@ -59,7 +59,7 @@ char	*c_ft_strdup(const char *s1)
 	char	*res;
 	size_t	i;
 
-	s1_len = ft_strlen(s1) + 1;
+	s1_len = ft_strlen_dup(s1) + 1;
 	res = malloc(s1_len * sizeof(*res));
 	if (!res)
 		return (NULL);
@@ -81,7 +81,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 	if (!src || !dst)
 		return (0);
-	srclen = ft_strlen(src);
+	srclen = ft_strlen_dup(src);
 	i = 0;
 	if (dstsize == 0)
 		return (srclen);
@@ -106,8 +106,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 	size_t	dst_len_o;
 
 	i = 0;
-	dst_len = ft_strlen(dst);
-	dst_len_o = ft_strlen(dst);
+	dst_len = ft_strlen_dup(dst);
+	dst_len_o = ft_strlen_dup(dst);
 	if (dstsize > dst_len)
 	{
 		while (dst_len < dstsize - 1 && src[i])
@@ -117,7 +117,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 			i++;
 		}
 		dst[dst_len] = '\0';
-		return (dst_len_o + ft_strlen(src));
+		return (dst_len_o + ft_strlen_dup(src));
 	}
-	return (dstsize + ft_strlen(src));
+	return (dstsize + ft_strlen_dup(src));
 }

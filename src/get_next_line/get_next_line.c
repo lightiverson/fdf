@@ -60,7 +60,7 @@ static	char	*c_ft_strjoin(char const *s1, char const *s2)
 		free((char *)s1);
 		return (c_ft_strdup(s1));
 	}
-	clen = ft_strlen(s1) + ft_strlen(s2);
+	clen = ft_strlen_dup(s1) + ft_strlen_dup(s2);
 	ret = malloc(clen + 1);
 	if (!ret)
 		return (NULL);
@@ -90,11 +90,11 @@ static	int	helper(int fd, char *buff, char **line)
 			ptr_a = ft_strchr(buff, '\n');
 			*ptr_a++ = '\0';
 			*line = c_ft_strjoin(*line, buff);
-			ft_memmove(buff, ptr_a, (ft_strlen(ptr_a) + 1));
+			ft_memmove(buff, ptr_a, (ft_strlen_dup(ptr_a) + 1));
 			return (1);
 		}
 		*line = c_ft_strjoin(*line, buff);
-		ft_memset(buff, '\0', ft_strlen(buff) + 1);
+		ft_memset(buff, '\0', ft_strlen_dup(buff) + 1);
 	}
 	return (0);
 }

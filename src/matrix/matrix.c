@@ -26,7 +26,6 @@ static int **calloc_matrix(unsigned int rows, unsigned int columns)
 	int **matrix;
 
 	matrix = ft_calloc(rows, sizeof(*matrix));
-	// matrix = ft_calloc(rows, sizeof(int*));
 	if (matrix == NULL)
 	{
 		perror("malloc");
@@ -36,7 +35,7 @@ static int **calloc_matrix(unsigned int rows, unsigned int columns)
 	unsigned int i = 0;
 	while (i < rows)
 	{
-		matrix[i] = ft_calloc(columns, sizeof(int));
+		matrix[i] = ft_calloc(columns, sizeof(matrix[i]));
 		if (matrix[i] == NULL)
 		{
 			perror("malloc");

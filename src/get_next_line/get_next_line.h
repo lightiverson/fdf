@@ -21,7 +21,7 @@
 # include <stdlib.h>
 
 void			*ft_memmove(void *dst, const void *src, size_t len);
-size_t			ft_strlen(const char *s);
+size_t			ft_strlen_dup(const char *s);
 char			*c_ft_strdup(const char *s1);
 size_t			ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t			ft_strlcat(char *dst, const char *src, size_t dstsize);
