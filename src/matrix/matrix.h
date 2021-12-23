@@ -16,7 +16,6 @@ typedef struct s_matrix_data
 	int				**matrix;
 }	t_matrix_data;
 
-int     parser(t_matrix_data *matrix_data, char *map_name);
-void	free_matrix(int **calloced_matrix, unsigned int rows);
+int	parser(t_matrix_data *matrix_data, const char *map_name);
 
 #endif /* MATRIX_H */

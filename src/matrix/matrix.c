@@ -1,7 +1,7 @@
 #include "matrix.h"
 #include "../gets/gets.h"
 
-int	**calloc_matrix(unsigned int rows, unsigned int columns)
+static int	**calloc_matrix(unsigned int rows, unsigned int columns)
 {
 	unsigned int	i;
 	int				**matrix;
@@ -26,7 +26,7 @@ int	**calloc_matrix(unsigned int rows, unsigned int columns)
 	return (matrix);
 }
 
-void	handle_str(char *vertex_str, unsigned int row,
+static void	handle_str(char *vertex_str, unsigned int row,
 			unsigned int column, int **matrix)
 {
 	int		base;
@@ -64,7 +64,7 @@ void	handle_str(char *vertex_str, unsigned int row,
 	matrix[row][column] = val;
 }
 
-void	iterate_over_columns(char *line, unsigned int row, int **matrix)
+static void	iterate_over_columns(const char *line, unsigned int row, int **matrix)
 {
 	char			**vertex;
 	unsigned int	column;
@@ -79,7 +79,7 @@ void	iterate_over_columns(char *line, unsigned int row, int **matrix)
 	free_splitted_array(vertex);
 }
 
-void	populate_matrix(const char *map_name, int **matrix)
+static void	populate_matrix(const char *map_name, int **matrix)
 {
 	int				map_fd;
 	int				return_get_next_line;
@@ -105,7 +105,7 @@ void	populate_matrix(const char *map_name, int **matrix)
 	close(map_fd);
 }
 
-int	parser(t_matrix_data *matrix_data, char *map_name)
+int	parser(t_matrix_data *matrix_data, const char *map_name)
 {
 	matrix_data->rows = get_rows(map_name);
 	matrix_data->columns = get_columns(map_name);
