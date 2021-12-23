@@ -70,11 +70,11 @@ unsigned int	get_columns(const char *map_name)
 		exit(EXIT_FAILURE);
 	}
 	vertex = ft_split(line, ' ');
-    free(line);
-    while (vertex[columns] != NULL)
-    {
-        columns++;
-    }
+	free(line);
+	while (vertex[columns] != NULL)
+	{
+		columns++;
+	}
 	free_splitted_array(vertex);
 	close(map_fd);
 	return (columns);
