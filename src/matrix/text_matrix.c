@@ -128,5 +128,5 @@ int main(void)
 	return (0);
 }
 
-// gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak text_matrix.c matrix.c ../../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c
-// gcc  -Wall -Wextra -g text_matrix.c matrix.c ../../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c && valgrind --leak-check=full ./a.out
+// gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c && ./a.out
+// gcc  -Wall -Wextra -g text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c && valgrind --leak-check=full ./a.out
