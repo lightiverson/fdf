@@ -21,7 +21,7 @@ void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 	}
 }
 
-static int	**calloc_matrix(unsigned int rows, unsigned int columns)
+int	**calloc_matrix(unsigned int rows, unsigned int columns)
 {
 	unsigned int	i;
 	int				**matrix;
@@ -43,17 +43,5 @@ static int	**calloc_matrix(unsigned int rows, unsigned int columns)
 		}
 		i++;
 	}
-	return (matrix);
-}
-
-int	**create_matrix(char *map_name)
-{
-	unsigned int	rows;
-	unsigned int	columns;
-	int				**matrix;
-
-	rows = get_rows(map_name);
-	columns = get_columns(map_name);
-	matrix = calloc_matrix(rows, columns);
 	return (matrix);
 }

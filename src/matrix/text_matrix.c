@@ -78,7 +78,7 @@ void	iterate_over_columns(char *line, unsigned int row, int **matrix)
 	free_splitted_array(vertex);
 }
 
-void	iterate_over_rows(const char *map_name, int **matrix)
+void	populate_matrix(const char *map_name, int **matrix)
 {
 	int				map_fd;
 	int				return_get_next_line;
@@ -104,29 +104,32 @@ void	iterate_over_rows(const char *map_name, int **matrix)
 	close(map_fd);
 }
 
-int main(void)
+int parser(t_matrix_data *matrix_data, char *map_name)
 {
-	t_matrix_data 	matrix_data;
+	matrix_data->rows = get_rows(map_name);
+	matrix_data->columns = get_columns(map_name);
+	matrix_data->matrix = calloc_matrix(matrix_data->rows, matrix_data->columns);
+	populate_matrix(map_name, matrix_data->matrix);
+	return (0);
+}
 
-	char *map_name = "../../test_maps/basictest.fdf";
+int main (void)
+{
+	char *map_name = "../../test_maps/pentenegpos.fdf";
+    t_matrix_data matrix_data;
 
-	matrix_data.rows = get_rows(map_name);
+    parser(&matrix_data, map_name);
+
 	printf("matrix.data.rows = %d\n", matrix_data.rows);
-
-	matrix_data.columns = get_columns(map_name);
 	printf("matrix.data.columns = %d\n", matrix_data.columns);
-
-	matrix_data.matrix = create_matrix(map_name);
 	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
-
-	iterate_over_rows(map_name, matrix_data.matrix);
-
 	printf("\n");
 	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
 
 	free_matrix(matrix_data.matrix, matrix_data.rows);
-	return (0);
+    return (0);
 }
 
+// gcc text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c && ./a.out
 // gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c && ./a.out
 // gcc  -Wall -Wextra -g text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c && valgrind --leak-check=full ./a.out
