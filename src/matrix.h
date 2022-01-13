@@ -1,9 +1,9 @@
 #ifndef MATRIX_H
 # define MATRIX_H
 
-# include "../libft/libft.h"
-# include "../gets/gets.h"
-# include "../free_breezy.h"
+# include "libft/libft.h"
+# include "gets.h"
+# include "free_breezy.h"
 # include <stdlib.h>
 # include <limits.h>
 # include <errno.h>

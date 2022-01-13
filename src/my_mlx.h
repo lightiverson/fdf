@@ -1,7 +1,7 @@
 #ifndef MY_MLX_H
 #define MY_MLX_H
 
-#include "../mlx/mlx.h"
+#include "./mlx/mlx.h"
 
 #define WIDTH 1280
 #define HEIGHT 720

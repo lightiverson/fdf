@@ -1,4 +1,4 @@
-#include "matrix.h"
+#include "../matrix.h"
 
 void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 {
@@ -36,6 +36,26 @@ int main (void)
     return (0);
 }
 
-// gcc text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c ../free_breezy.c && ./a.out
-// gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c ../free_breezy.c && ./a.out
-// gcc  -Wall -Wextra -g text_matrix.c matrix.c ../libft/libft.a ../gets/gets.c ../get_next_line/get_next_line.c ../get_next_line/get_next_line_utils.c ../free_breezy.c && valgrind --leak-check=full ./a.out
+/*
+gcc \
+text_matrix.c \
+../matrix.c \
+../gets.c \
+../free_breezy.c \
+../libft/libft.a \
+../get_next_line/get_next_line.c \
+../get_next_line/get_next_line_utils.c \
+&& ./a.out
+*/
+
+/*
+gcc -Wall -Wextra -g \
+text_matrix.c \
+../matrix.c \
+../gets.c \
+../free_breezy.c \
+../libft/libft.a \
+../get_next_line/get_next_line.c \
+../get_next_line/get_next_line_utils.c \
+&& valgrind --leak-check=full ./a.out
+*/

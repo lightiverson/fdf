@@ -1,5 +1,5 @@
 #include "matrix.h"
-#include "../gets/gets.h"
+#include "gets.h"
 
 static int	**calloc_matrix(unsigned int rows, unsigned int columns)
 {

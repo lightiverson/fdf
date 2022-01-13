@@ -51,7 +51,3 @@ fclean : clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
-# gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak fdf.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c ./libft/libft.a
-# gcc -Wall -Wextra -g fdf.c ./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c ./libft/libft.a
-# valgrind --leak-check=full ./a.out
