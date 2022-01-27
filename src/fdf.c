@@ -31,15 +31,34 @@ void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 
 int main(void)
 {
-	const char *map_name = "./test_maps/42.fdf";
+	const char *map_name = "./test_maps/basictest.fdf";
     t_matrix_data matrix_data;
 
     parser(&matrix_data, map_name);
 
-	printf("matrix.data.rows = %d\n", matrix_data.rows);
-	printf("matrix.data.columns = %d\n", matrix_data.columns);
-	printf("\n");
-	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
+	// printf("matrix.data.rows = %d\n", matrix_data.rows);
+	// printf("matrix.data.columns = %d\n", matrix_data.columns);
+	// printf("\n");
+	// print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
+
+	t_data	img;
+	create_mlx_image(&img);
+	int horizontal_line_length_px = (WIDTH - 1) / 10;
+	int vertical_line_lenght_px = (HEIGHT - 1) / 8;
+	int i = 0;
+	int j = 0;
+	while (i < 11)
+	{
+		while (j < 9)
+		{
+			my_mlx_pixel_put(&img, i * horizontal_line_length_px, j * vertical_line_lenght_px, 0x00FF0000);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
+	mlx_loop(img.mlx);
 
 	free_matrix(matrix_data.matrix, matrix_data.rows);
     return (0);
