@@ -36,20 +36,20 @@ int main(void)
 
     parser(&matrix_data, map_name);
 
-	// printf("matrix.data.rows = %d\n", matrix_data.rows);
-	// printf("matrix.data.columns = %d\n", matrix_data.columns);
-	// printf("\n");
-	// print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
+	printf("matrix.data.rows = %d\n", matrix_data.rows);
+	printf("matrix.data.columns = %d\n", matrix_data.columns);
+	printf("\n");
+	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
 
 	t_data	img;
 	create_mlx_image(&img);
-	int horizontal_line_length_px = (WIDTH - 1) / 10;
-	int vertical_line_lenght_px = (HEIGHT - 1) / 8;
-	int i = 0;
-	int j = 0;
-	while (i < 11)
+	unsigned int horizontal_line_length_px = (WIDTH - 1) / (matrix_data.columns - 1);
+	unsigned int vertical_line_lenght_px = (HEIGHT - 1) / (matrix_data.rows - 1);
+	unsigned int i = 0;
+	unsigned int j = 0;
+	while (i < matrix_data.columns)
 	{
-		while (j < 9)
+		while (j < matrix_data.rows)
 		{
 			my_mlx_pixel_put(&img, i * horizontal_line_length_px, j * vertical_line_lenght_px, 0x00FF0000);
 			j++;
