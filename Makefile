@@ -13,11 +13,12 @@ endif
 
 mac_os_api = -L./src/mlx -framework OpenGL -framework AppKit
 objects	=	fdf.o \
-			get_next_line.o \
-			get_next_line_utils.o \
-			matrix.o \
+			free_breezy.o \
 			gets.o \
-			my_mlx.o
+			matrix.o \
+			my_mlx.o \
+			get_next_line.o \
+			get_next_line_utils.o
 libft	=	src/libft/libft.a
 mlx = libmlx.dylib
 
@@ -25,11 +26,12 @@ fdf : $(objects) $(libft) $(mlx)
 	$(CC) $(CFLAGS) $(mac_os_api) -Imlx -o fdf $(objects) $(libft) $(mlx)
 
 fdf.o : fdf.h
+free_breezy.o: free_breezy.h
+gets.o : gets.h
+matrix.o : matrix.h
+my_mlx.o : my_mlx.h
 get_next_line.o : get_next_line.h
 get_next_line_utils.o : get_next_line.h
-matrix.o : matrix.h
-gets.o : gets.h
-my_mlx.o : my_mlx.h
 
 $(libft) :
 	make -C ./src/libft

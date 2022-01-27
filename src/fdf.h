@@ -8,5 +8,9 @@
 # include <stdio.h>
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
+#include "matrix.h"
+#include "my_mlx.h"
+#include <assert.h>
+#include "free_breezy.h"
 
 #endif /* FDF_H */

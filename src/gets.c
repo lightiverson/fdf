@@ -7,7 +7,7 @@ int	get_map_fd(const char *map_name)
 	map_fd = open(map_name, O_RDONLY);
 	if (map_fd == -1)
 	{
-		perror("open");
+		perror("Error: open()");
 		exit(EXIT_FAILURE);
 	}
 	return (map_fd);

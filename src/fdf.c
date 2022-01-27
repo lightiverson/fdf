@@ -1,7 +1,4 @@
 #include "fdf.h"
-#include "matrix.h"
-#include "my_mlx.h"
-#include <assert.h>
 
 void	is_argc_two(int argc)
 {
@@ -34,7 +31,7 @@ void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 
 int main(void)
 {
-	const char *map_name = "../../test_maps/pentenegpos.fdf";
+	const char *map_name = "./test_maps/42.fdf";
     t_matrix_data matrix_data;
 
     parser(&matrix_data, map_name);
