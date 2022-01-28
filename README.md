@@ -1,6 +1,7 @@
 # fdf
 
 ## Todo
+3. Fix segfault op pyramide map
 1. Refactor mlx functies (misschien moet dit later)
 2. Maak fill matrix functie
 
