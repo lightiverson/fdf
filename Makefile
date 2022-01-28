@@ -1,10 +1,7 @@
 UNAME := $(shell uname)
 VPATH =	./:\
 		src:\
-		src/fdf:\
 		src/get_next_line:\
-		src/gets:\
-		src/matrix:\
 		src/my_mlx
 CFLAGS = -Wall -Wextra
 ifeq ($(UNAME), Linux)
@@ -17,6 +14,7 @@ objects	=	fdf.o \
 			gets.o \
 			matrix.o \
 			my_mlx.o \
+			nodes.o \
 			get_next_line.o \
 			get_next_line_utils.o
 libft	=	src/libft/libft.a
@@ -30,6 +28,7 @@ free_breezy.o: free_breezy.h
 gets.o : gets.h
 matrix.o : matrix.h
 my_mlx.o : my_mlx.h
+nodes.o : nodes.h
 get_next_line.o : get_next_line.h
 get_next_line_utils.o : get_next_line.h
 

@@ -12,5 +12,6 @@
 #include "my_mlx.h"
 #include <assert.h>
 #include "free_breezy.h"
+#include "nodes.h"
 
 #endif /* FDF_H */
