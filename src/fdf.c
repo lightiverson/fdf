@@ -36,12 +36,6 @@ int main(void)
 
     parser(&matrix_data, map_name);
 
-	printf("matrix.data.rows = %d\n", matrix_data.rows);
-	printf("matrix.data.columns = %d\n", matrix_data.columns);
-	printf("\n");
-	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
-	printf("\n");
-
 	t_data	img;
 	create_mlx_image(&img);
 	unsigned int horizontal_line_length_px = (WIDTH - 1) / (matrix_data.columns - 1);

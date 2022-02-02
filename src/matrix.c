@@ -111,7 +111,6 @@ int	parser(t_matrix_data *matrix_data, const char *map_name)
 	matrix_data->columns = get_columns(map_name);
 	matrix_data->matrix = calloc_matrix(
 			matrix_data->rows, matrix_data->columns);
-	printf("marker\n");
 	populate_matrix(map_name, matrix_data->matrix);
 	return (0);
 }

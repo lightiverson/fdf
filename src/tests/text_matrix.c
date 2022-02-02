@@ -22,7 +22,7 @@ void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 
 int main (void)
 {
-	const char *map_name = "../../test_maps/pentenegpos.fdf";
+	const char *map_name = "../../test_maps/pyramide.fdf";
     t_matrix_data matrix_data;
 
     parser(&matrix_data, map_name);
@@ -38,6 +38,18 @@ int main (void)
 
 /*
 gcc \
+text_matrix.c \
+../matrix.c \
+../gets.c \
+../free_breezy.c \
+../libft/libft.a \
+../get_next_line/get_next_line.c \
+../get_next_line/get_next_line_utils.c \
+&& ./a.out
+*/
+
+/*
+gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak \
 text_matrix.c \
 ../matrix.c \
 ../gets.c \

@@ -36,7 +36,7 @@ unsigned int	get_rows(const char *map_name)
 		rows++;
 	}
 	close(map_fd);
-	return (rows - 1);
+	return (rows);
 }
 
 unsigned int	get_columns(const char *map_name)
