@@ -3,8 +3,10 @@
 
 #include "./mlx/mlx.h"
 
-#define WIDTH 1280
-#define HEIGHT 720
+#define WINDOW_WIDTH 1000
+#define WINDOW_HEIGHT 1000
+#define MAP_WIDTH WINDOW_WIDTH * 0.8 
+#define MAP_HEIGHT WINDOW_HEIGHT * 0.8
 
 typedef struct	s_data {
 	void	*img;

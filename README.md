@@ -1,9 +1,12 @@
 # fdf
 
+schrijf een bash script dat over elke map in de directory maps looped
+-> voor elke map opent die een terminal window en voert ./fdf uit met de naam van de map als argument
+
 ## Todo
-3. Fix segfault op pyramide map
-1. Refactor mlx functies (misschien moet dit later)
-2. Maak fill matrix functie
+3. ~~Fix segfault op pyramide map~~
+1. ~~Refactor mlx functies (misschien moet dit later)~~
+2. ~~Maak fill matrix functie~~
 
 
 ## Terms

@@ -38,7 +38,7 @@ int main (void)
 
 /*
 gcc \
-text_matrix.c \
+test_matrix.c \
 ../matrix.c \
 ../gets.c \
 ../free_breezy.c \
@@ -50,7 +50,7 @@ text_matrix.c \
 
 /*
 gcc -Wall -Wextra -g -fsanitize=address -fsanitize=leak \
-text_matrix.c \
+test_matrix.c \
 ../matrix.c \
 ../gets.c \
 ../free_breezy.c \
@@ -62,7 +62,7 @@ text_matrix.c \
 
 /*
 gcc -Wall -Wextra -g \
-text_matrix.c \
+test_matrix.c \
 ../matrix.c \
 ../gets.c \
 ../free_breezy.c \
