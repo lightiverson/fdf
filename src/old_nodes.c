@@ -1,16 +1,28 @@
 #include "nodes.h"
 
-t_node *calloc_nodes(unsigned int number_of_nodes)
+int **calloc_nodes(unsigned int number_of_nodes)
 {
-	t_node *nodes;
-
+	unsigned int i;
+	int **nodes;
+	
 	nodes = calloc(number_of_nodes, sizeof(*nodes));
 	if (nodes == NULL)
 	{
 		perror("Error: malloc() ");
 		exit(EXIT_FAILURE);
 	}
-	return (nodes);
+	i = 0;
+	while (i < number_of_nodes)
+	{
+		nodes[i] = calloc(3, sizeof(nodes[i]));
+		if (nodes[i] == NULL)
+		{
+			perror("Error: malloc() ");
+			exit(EXIT_FAILURE);
+		}
+		i++;
+	}
+	return(nodes);
 }
 
 unsigned int get_distance_between_nodes_in_px(unsigned int columns)
@@ -26,7 +38,7 @@ unsigned int get_distance_between_nodes_in_px(unsigned int columns)
 	return (distance_between_nodes_in_px);
 }
 
-void populate_nodes(t_node *nodes, int**matrix, unsigned int rows, unsigned int columns)
+void populate_nodes(int **nodes, int**matrix, unsigned int rows, unsigned int columns)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -39,12 +51,11 @@ void populate_nodes(t_node *nodes, int**matrix, unsigned int rows, unsigned int 
 	{
 		while (j < columns)
 		{
-			nodes[k].x = j * (MAP_WIDTH / (columns - 1)) + 100;
-			nodes[k].y = i * (MAP_HEIGHT / (rows - 1)) + 100;
-			// nodes[k].x = j;
-			// nodes[k].y = i;
-
-			nodes[k].z = matrix[i][j];
+			// nodes[k][0] = j * (MAP_WIDTH / (columns - 1)) + 100;
+			// nodes[k][1] = i * (MAP_HEIGHT / (rows - 1)) + 100;
+			nodes[k][0] = j;
+			nodes[k][1] = i;
+			nodes[k][2] = matrix[i][j];
 			k++;
 			j++;
 		}

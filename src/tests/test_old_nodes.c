@@ -1,4 +1,4 @@
-#include "../alpha.h"
+#include "../old_nodes.h"
 #include "../matrix.h"
 
 void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
@@ -21,18 +21,12 @@ void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 	}
 }
 
-void print_nodes(t_node *nodes, unsigned int rows, unsigned int columns)
+void print_node(int *node, int i)
 {
-	unsigned int i;
-
-	i = 0;
-	while (i < rows * columns)
-	{
-		printf("nodes[%u]	= {x: %f		y: %f	z: %f}\n", i, nodes[i].x, nodes[i].y, nodes[i].z);
-		i++;
-	}
+	printf("node[%d] = {%d, %d, %d}\n",i, node[0], node[1], node[2]);
 }
 
+// Code om nodes functies te testen
 int main(void)
 {
 	const char *map_name = "../../test_maps/basictest.fdf";
@@ -46,17 +40,22 @@ int main(void)
 	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
 	printf("\n");
 
-	t_node *nodes;
+	int** nodes;
 	nodes = calloc_nodes(matrix_data.rows * matrix_data.columns);
 	populate_nodes(nodes, matrix_data.matrix, matrix_data.rows, matrix_data.columns);
 
-	print_nodes(nodes, matrix_data.rows, matrix_data.columns);
+	int i = 0;
+	while (i < matrix_data.rows * matrix_data.columns)
+	{
+		print_node(nodes[i], i);
+		i++;
+	}
 }
 
 /*
 gcc \
-test_alpha.c \
-../alpha.c \
+test_old_nodes.c \
+../old_nodes.c \
 ../matrix.c \
 ../gets.c \
 ../free_breezy.c \
