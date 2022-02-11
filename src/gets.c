@@ -32,8 +32,10 @@ unsigned int	get_rows(const char *map_name)
 			printf("Error: get_next_line returned -1\n");
 			exit(EXIT_FAILURE);
 		}
-		free(line);
+		if (line[0] == '\0')
+			continue ;
 		rows++;
+		free(line);
 	}
 	close(map_fd);
 	return (rows);

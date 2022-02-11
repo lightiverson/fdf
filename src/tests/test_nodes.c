@@ -1,5 +1,4 @@
 #include "../nodes.h"
-#include "../matrix.h"
 
 void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 {
@@ -35,29 +34,24 @@ void print_nodes(t_node *nodes, unsigned int rows, unsigned int columns)
 
 int main(void)
 {
-	const char *map_name = "../../test_maps/basictest.fdf";
-    t_matrix_data matrix_data;
+	const char *map_name = "../../test_maps/10-70.fdf";
 
-    parser(&matrix_data, map_name);
+	t_fdf_data fdf_data;
 
-	printf("matrix.data.rows = %d\n", matrix_data.rows);
-	printf("matrix.data.columns = %d\n", matrix_data.columns);
+	parser(&fdf_data, map_name);
+
+	printf("fdf_data.rows = %d\n", fdf_data.rows);
+	printf("fdf_data.columns = %d\n", fdf_data.columns);
+	printf("fdf_data.number_of_nodes = %d\n", fdf_data.number_of_nodes);
 	printf("\n");
-	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
-	printf("\n");
 
-	t_node *nodes;
-	nodes = calloc_nodes(matrix_data.rows * matrix_data.columns);
-	populate_nodes(nodes, matrix_data.matrix, matrix_data.rows, matrix_data.columns);
-
-	print_nodes(nodes, matrix_data.rows, matrix_data.columns);
+	print_nodes(fdf_data.nodes, fdf_data.rows, fdf_data.columns);
 }
 
 /*
 gcc \
 test_nodes.c \
 ../nodes.c \
-../matrix.c \
 ../gets.c \
 ../free_breezy.c \
 ../libft/libft.a \

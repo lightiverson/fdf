@@ -27,7 +27,7 @@ static int	**calloc_matrix(unsigned int rows, unsigned int columns)
 }
 
 static void	handle_str(char *vertex_str, unsigned int row,
-			unsigned int column, int **matrix)
+			unsigned int column, int **matrix, unsigned int *x)
 {
 	int		base;
 	char	*endptr;
@@ -62,9 +62,12 @@ static void	handle_str(char *vertex_str, unsigned int row,
 	}
 	
 	matrix[row][column] = val;
+
+	printf("x = %u\n", *x);
+	(*x)++;
 }
 
-static void	iterate_over_columns(const char *line, unsigned int row, int **matrix)
+static void	iterate_over_columns(const char *line, unsigned int row, int **matrix, unsigned int *x)
 {
 	char			**vertex;
 	unsigned int	column;
@@ -73,7 +76,7 @@ static void	iterate_over_columns(const char *line, unsigned int row, int **matri
 	column = 0;
 	while (vertex[column] != NULL)
 	{
-		handle_str(vertex[column], row, column, matrix);
+		handle_str(vertex[column], row, column, matrix, x);
 		column++;
 	}
 	free_splitted_array(vertex);
@@ -89,6 +92,7 @@ static void	populate_matrix(const char *map_name, int **matrix)
 	map_fd = get_map_fd(map_name);
 	return_get_next_line = 1;
 	row = 0;
+	unsigned int x = 0;
 	while (return_get_next_line)
 	{
 		return_get_next_line = get_next_line(map_fd, &line);
@@ -98,7 +102,9 @@ static void	populate_matrix(const char *map_name, int **matrix)
 			printf("Error: get_next_line returned -1\n");
 			exit(EXIT_FAILURE);
 		}
-		iterate_over_columns(line, row, matrix);
+		iterate_over_columns(line, row, matrix, &x);
+		if (line[0] == '\0')
+			continue ;
 		row++;
 		free(line);
 	}
