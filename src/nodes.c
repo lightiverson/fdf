@@ -25,6 +25,19 @@ int **calloc_nodes(unsigned int number_of_nodes)
 	return(nodes);
 }
 
+unsigned int get_distance_between_nodes_in_px(unsigned int columns)
+{
+	unsigned int max_distance;
+	unsigned int distance_between_nodes_in_px;
+
+	max_distance = 20;
+	distance_between_nodes_in_px = MAP_WIDTH / columns;
+	if (distance_between_nodes_in_px > max_distance)
+		distance_between_nodes_in_px = max_distance;
+
+	return (distance_between_nodes_in_px);
+}
+
 void populate_nodes(int **nodes, int**matrix, unsigned int rows, unsigned int columns)
 {
 	unsigned int	i;
