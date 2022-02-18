@@ -12,7 +12,7 @@
 
 void			free_splitted_array(char **splitted_array);
 int				get_map_fd(const char *map_name);
-unsigned int	get_rows(const char *map_name);
 unsigned int	get_columns(const char *map_name);
+unsigned int count_rows(const char *map_name);
 
 #endif /* GETS_H */

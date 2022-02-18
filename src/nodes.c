@@ -114,7 +114,7 @@ void	populate_nodes(const char *map_name, t_node *nodes)
 
 void parser(t_fdf_data *fdf_data, const char *map_name)
 {
-	fdf_data->rows = get_rows(map_name);
+	fdf_data->rows = count_rows(map_name);
 	fdf_data->columns = get_columns(map_name);
 	fdf_data->number_of_nodes = fdf_data->rows * fdf_data->columns;
 	fdf_data->nodes = calloc_nodes(fdf_data->number_of_nodes);
