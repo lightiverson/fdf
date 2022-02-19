@@ -1,9 +1,22 @@
 #include "nodes.h"
 #include "gets.h"
 
-t_node *calloc_nodes(unsigned int number_of_nodes)
+void	print_nodes(t_node *nodes, unsigned int rows, unsigned int columns)
 {
-	t_node *nodes;
+	unsigned int	i;
+
+	i = 0;
+	while (i < rows * columns)
+	{
+		printf("nodes[%u]	= {x: %f		y: %f	z: %f}\n",
+			i, nodes[i].x, nodes[i].y, nodes[i].z);
+		i++;
+	}
+}
+
+t_node	*calloc_nodes(unsigned int number_of_nodes)
+{
+	t_node	*nodes;
 
 	nodes = calloc(number_of_nodes, sizeof(*nodes));
 	if (nodes == NULL)
@@ -14,16 +27,15 @@ t_node *calloc_nodes(unsigned int number_of_nodes)
 	return (nodes);
 }
 
-unsigned int get_distance_between_nodes_in_px(unsigned int columns)
+unsigned int	get_distance_between_nodes_in_px(unsigned int columns)
 {
-	unsigned int max_distance;
-	unsigned int distance_between_nodes_in_px;
+	unsigned int	max_distance;
+	unsigned int	distance_between_nodes_in_px;
 
 	max_distance = 20;
 	distance_between_nodes_in_px = MAP_WIDTH / columns;
 	if (distance_between_nodes_in_px > max_distance)
 		distance_between_nodes_in_px = max_distance;
-
 	return (distance_between_nodes_in_px);
 }
 
@@ -37,13 +49,12 @@ static void	handle_str(char *vertex_str, unsigned int row,
 
 	str = vertex_str;
 	base = 10;
-	errno = 0;  /* To distinguish success/failure after call */
+	errno = 0; /* To distinguish success/failure after call */
 	val = strtol(str, &endptr, base);
 
 	/* Check for various possible errors */
 
-	if ((errno == ERANGE && (val == LONG_MAX || val == LONG_MIN))
-			|| (errno != 0 && val == 0)) {
+	if ((errno == ERANGE && (val == LONG_MAX || val == LONG_MIN)) || (errno != 0 && val == 0)) {
 		perror("strtol");
 		exit(EXIT_FAILURE);
 	}
@@ -68,7 +79,8 @@ static void	handle_str(char *vertex_str, unsigned int row,
 	(*i)++;
 }
 
-static void	iterate_over_columns(const char *line, unsigned int row, t_node *nodes, unsigned int *i)
+static void	iterate_over_columns(const char *line, unsigned int row,
+	t_node *nodes, unsigned int *i)
 {
 	char			**vertex;
 	unsigned int	column;
@@ -89,11 +101,12 @@ void	populate_nodes(const char *map_name, t_node *nodes)
 	int				return_get_next_line;
 	char			*line;
 	unsigned int	row;
+	unsigned int	i;
 
 	map_fd = get_map_fd(map_name);
 	return_get_next_line = 1;
 	row = 0;
-	unsigned int i = 0;
+	i = 0;
 	while (return_get_next_line)
 	{
 		return_get_next_line = get_next_line(map_fd, &line);
@@ -112,8 +125,12 @@ void	populate_nodes(const char *map_name, t_node *nodes)
 	close(map_fd);
 }
 
-void parser(t_fdf_data *fdf_data, const char *map_name)
+void	parser(t_fdf_data *fdf_data, const char *map_name)
 {
+	/*
+	In plaats van dat je overal map_name meegeeft en in de functies opened en closed,
+	kan je ook in parser() als eerste de map openen en de fd meegeven!
+	*/
 	fdf_data->rows = count_rows(map_name);
 	fdf_data->columns = get_columns(map_name);
 	fdf_data->number_of_nodes = fdf_data->rows * fdf_data->columns;

@@ -12,7 +12,6 @@ mac_os_api = -L./src/mlx -framework OpenGL -framework AppKit
 objects	=	fdf.o \
 			free_breezy.o \
 			gets.o \
-			matrix.o \
 			my_mlx.o \
 			nodes.o \
 			get_next_line.o \
@@ -26,7 +25,6 @@ fdf : $(objects) $(libft) $(mlx)
 fdf.o : fdf.h
 free_breezy.o: free_breezy.h
 gets.o : gets.h
-matrix.o : matrix.h
 my_mlx.o : my_mlx.h
 nodes.o : nodes.h
 get_next_line.o : get_next_line.h

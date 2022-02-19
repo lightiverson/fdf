@@ -1,6 +1,26 @@
 #include "matrix.h"
 #include "gets.h"
 
+void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
+{
+	unsigned int	i;
+	unsigned int	j;
+
+	i = 0;
+	j = 0;
+	while (i < rows)
+	{
+		while (j < columns)
+		{
+			printf("%d ", matrix[i][j]);
+			j++;
+		}
+		printf("\n");
+		j = 0;
+		i++;
+	}
+}
+
 static int	**calloc_matrix(unsigned int rows, unsigned int columns)
 {
 	unsigned int	i;

@@ -31,41 +31,57 @@ void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 
 int main(int argc, char *argv[])
 {
-    t_matrix_data matrix_data;
+    t_fdf_data fdf_data;
 
-	is_argc_two(argc);
-    parser(&matrix_data, argv[1]);
+    is_argc_two(argc);
+	parser(&fdf_data, argv[1]);
 
-	printf("matrix.data.rows = %d\n", matrix_data.rows);
-	printf("matrix.data.columns = %d\n", matrix_data.columns);
+	printf("fdf_data.rows = %d\n", fdf_data.rows);
+	printf("fdf_data.columns = %d\n", fdf_data.columns);
+	printf("fdf_data.number_of_nodes = %d\n", fdf_data.number_of_nodes);
 	printf("\n");
-	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
-	printf("\n");
 
-	t_node *nodes;
-	nodes = calloc_nodes(matrix_data.rows * matrix_data.columns);
-	populate_nodes(nodes, matrix_data.matrix, matrix_data.rows, matrix_data.columns);
-
-	// int** nodes;
-	// nodes = calloc_nodes(matrix_data.rows * matrix_data.columns);
-	// populate_nodes(nodes, matrix_data.matrix, matrix_data.rows, matrix_data.columns);
-
-	t_data	img;
-	create_mlx_image(&img);
-
-	unsigned int i = 0;
-	while (i < matrix_data.rows * matrix_data.columns)
-	{
-		my_mlx_pixel_put(&img, nodes[i].x, nodes[i].y, 0x00FF0000);
-		i++;
-	}
-
-	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
-	mlx_loop(img.mlx);
-
-	free_matrix(matrix_data.matrix, matrix_data.rows);
+	print_nodes(fdf_data.nodes, fdf_data.rows, fdf_data.columns);
     return (0);
 }
+
+// int main(int argc, char *argv[])
+// {
+//     t_matrix_data matrix_data;
+
+// 	is_argc_two(argc);
+//     parser(&matrix_data, argv[1]);
+
+// 	printf("matrix.data.rows = %d\n", matrix_data.rows);
+// 	printf("matrix.data.columns = %d\n", matrix_data.columns);
+// 	printf("\n");
+// 	print_matrix(matrix_data.matrix, matrix_data.rows, matrix_data.columns);
+// 	printf("\n");
+
+// 	t_node *nodes;
+// 	nodes = calloc_nodes(matrix_data.rows * matrix_data.columns);
+// 	populate_nodes(nodes, matrix_data.matrix, matrix_data.rows, matrix_data.columns);
+
+// 	// int** nodes;
+// 	// nodes = calloc_nodes(matrix_data.rows * matrix_data.columns);
+// 	// populate_nodes(nodes, matrix_data.matrix, matrix_data.rows, matrix_data.columns);
+
+// 	t_data	img;
+// 	create_mlx_image(&img);
+
+// 	unsigned int i = 0;
+// 	while (i < matrix_data.rows * matrix_data.columns)
+// 	{
+// 		my_mlx_pixel_put(&img, nodes[i].x, nodes[i].y, 0x00FF0000);
+// 		i++;
+// 	}
+
+// 	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
+// 	mlx_loop(img.mlx);
+
+// 	free_matrix(matrix_data.matrix, matrix_data.rows);
+//     return (0);
+// }
 
 // int main(int argc, char *argv[])
 // {
