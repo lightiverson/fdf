@@ -95,15 +95,13 @@ static void	iterate_over_columns(const char *line, unsigned int row,
 	free_splitted_array(vertex);
 }
 
-void	populate_nodes(const char *map_name, t_node *nodes)
+void	populate_nodes(int map_fd, t_node *nodes)
 {
-	int				map_fd;
 	int				return_get_next_line;
 	char			*line;
 	unsigned int	row;
 	unsigned int	i;
 
-	map_fd = get_map_fd(map_name);
 	return_get_next_line = 1;
 	row = 0;
 	i = 0;
@@ -122,18 +120,17 @@ void	populate_nodes(const char *map_name, t_node *nodes)
 		row++;
 		free(line);
 	}
-	close(map_fd);
 }
 
 void	parser(t_fdf_data *fdf_data, const char *map_name)
 {
-	/*
-	In plaats van dat je overal map_name meegeeft en in de functies opened en closed,
-	kan je ook in parser() als eerste de map openen en de fd meegeven!
-	*/
-	fdf_data->rows = count_rows(map_name);
+	int	map_fd;
+
+	map_fd = get_map_fd(map_name);
+	fdf_data->rows = count_rows(map_fd);
 	fdf_data->columns = get_columns(map_name);
 	fdf_data->number_of_nodes = fdf_data->rows * fdf_data->columns;
 	fdf_data->nodes = calloc_nodes(fdf_data->number_of_nodes);
 	populate_nodes(map_name, fdf_data->nodes);
+	close(map_fd);
 }
