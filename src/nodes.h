@@ -21,6 +21,12 @@ typedef struct s_fdf_data {
 	t_node			*nodes;
 }	t_fdf_data;
 
+typedef struct s_iterators {
+	unsigned int row;
+	unsigned int column;
+	unsigned int i;
+} t_iterators;
+		
 t_node		*calloc_nodes(unsigned int number_of_nodes);
 void		populate_nodes(int map_fd, t_node *nodes);
 void		parser(t_fdf_data *fdf_data, const char *map_name);

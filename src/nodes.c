@@ -79,48 +79,87 @@ static void	handle_str(char *vertex_str, unsigned int row,
 	(*i)++;
 }
 
-static void	iterate_over_columns(const char *line, unsigned int row,
-	t_node *nodes, unsigned int *i)
+void iterate_over_columns(const char *line, t_node *nodes, t_iterators *iterators)
 {
-	char			**vertex;
-	unsigned int	column;
+	char **words;
 
-	vertex = ft_split(line, ' ');
-	column = 0;
-	while (vertex[column] != NULL)
+	words = ft_split(line, ' ');
+	iterators->column = 0;
+	while (words[iterators->column] != NULL)
 	{
-		handle_str(vertex[column], row, column, nodes, i);
-		column++;
+		handle_str(words[iterators->column], iterators, nodes);
+		iterators->column++;
 	}
-	free_splitted_array(vertex);
+	free_splitted_array(words);
 }
 
-void	populate_nodes(int map_fd, t_node *nodes)
-{
-	int				return_get_next_line;
-	char			*line;
-	unsigned int	row;
-	unsigned int	i;
+// static void	iterate_over_columns(const char *line, unsigned int row,
+// 	t_node *nodes, unsigned int *i)
+// {
+// 	char			**vertex;
+// 	unsigned int	column;
 
-	return_get_next_line = 1;
-	row = 0;
-	i = 0;
-	while (return_get_next_line)
+// 	vertex = ft_split(line, ' ');
+// 	column = 0;
+// 	while (vertex[column] != NULL)
+// 	{
+// 		handle_str(vertex[column], row, column, nodes, i);
+// 		column++;
+// 	}
+// 	free_splitted_array(vertex);
+// }
+
+void populate_nodes(int map_fd, t_node *nodes)
+{
+	int bytes_read;
+	char *line;
+	t_iterators iterators;
+
+	bytes_read = 1;
+	iterators.row = 0;
+	iterators.i = 0;
+	while (bytes_read > 0)
 	{
-		return_get_next_line = get_next_line(map_fd, &line);
-		if (return_get_next_line == -1)
-		{
-			free(line);
-			printf("Error: get_next_line returned -1\n");
-			exit(EXIT_FAILURE);
-		}
-		iterate_over_columns(line, row, nodes, &i);
+		bytes_read = get_next_line(map_fd, &line);
+		iterate_over_columns(line, nodes, &iterators);
 		if (line[0] == '\0')
 			continue ;
-		row++;
+		iterators.row++;
 		free(line);
 	}
+	if (bytes_read == -1)
+	{
+		printf("Error: get_next_line returned -1\n");
+		exit(EXIT_FAILURE);
+	}
 }
+
+// void	populate_nodes(int map_fd, t_node *nodes)
+// {
+// 	int				return_get_next_line;
+// 	char			*line;
+// 	unsigned int	row;
+// 	unsigned int	i;
+
+// 	return_get_next_line = 1;
+// 	row = 0;
+// 	i = 0;
+// 	while (return_get_next_line)
+// 	{
+// 		return_get_next_line = get_next_line(map_fd, &line);
+// 		if (return_get_next_line == -1)
+// 		{
+// 			free(line);
+// 			printf("Error: get_next_line returned -1\n");
+// 			exit(EXIT_FAILURE);
+// 		}
+// 		iterate_over_columns(line, row, nodes, &i);
+// 		if (line[0] == '\0')
+// 			continue ;
+// 		row++;
+// 		free(line);
+// 	}
+// }
 
 void	parser(t_fdf_data *fdf_data, const char *map_name)
 {
