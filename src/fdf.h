@@ -13,4 +13,6 @@
 #include "free_breezy.h"
 #include "nodes.h"
 
+unsigned int	get_distance_between_columns(unsigned int columns);
+
 #endif /* FDF_H */

@@ -9,9 +9,9 @@
 # include <limits.h>
 
 typedef struct s_node {
-	float	x;
-	float	y;
-	float	z;
+	int		x;
+	int		y;
+	int		z;
 }	t_node;
 
 typedef struct s_fdf_data {
