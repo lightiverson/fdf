@@ -134,7 +134,7 @@ static void	populate_matrix(const char *map_name, int **matrix)
 int	parser(t_matrix_data *matrix_data, const char *map_name)
 {
 	matrix_data->rows = count_rows(map_name);
-	matrix_data->columns = get_columns(map_name);
+	matrix_data->columns = count_columns(map_name);
 	matrix_data->matrix = calloc_matrix(
 			matrix_data->rows, matrix_data->columns);
 	populate_matrix(map_name, matrix_data->matrix);

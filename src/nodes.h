@@ -28,7 +28,7 @@ typedef struct s_iterators {
 } t_iterators;
 		
 t_node		*calloc_nodes(unsigned int number_of_nodes);
-void		populate_nodes(int map_fd, t_node *nodes);
+void		populate_nodes(const char *map_name, t_node *nodes);
 void		parser(t_fdf_data *fdf_data, const char *map_name);
 void		print_nodes(t_node *nodes, unsigned int rows, unsigned int columns);
 

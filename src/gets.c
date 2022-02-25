@@ -13,12 +13,14 @@ int	get_map_fd(const char *map_name)
 	return (map_fd);
 }
 
-unsigned int	count_rows(int map_fd)
+unsigned int	count_rows(const char *map_name)
 {
+	int				map_fd;
 	unsigned int	number_of_rows;
 	int				n;
 	char			c;
 
+	map_fd = get_map_fd(map_name);
 	number_of_rows = 1;
 	n = read(map_fd, &c, 1);
 	while (n > 0)
@@ -34,16 +36,19 @@ unsigned int	count_rows(int map_fd)
 	}
 	if (n == 0 && c == '\n')
 		number_of_rows--;
+	close(map_fd);
 	return (number_of_rows);
 }
 
-unsigned int	get_columns(int map_fd)
+unsigned int	count_columns(const char *map_name)
 {
+	int				map_fd;
 	int				return_get_next_line;
 	char			*line;
 	unsigned int	columns;
 	char			**vertex;
 
+	map_fd = get_map_fd(map_name);
 	columns = 0;
 	return_get_next_line = get_next_line(map_fd, &line);
 	if (return_get_next_line == -1)
@@ -55,9 +60,8 @@ unsigned int	get_columns(int map_fd)
 	vertex = ft_split(line, ' ');
 	free(line);
 	while (vertex[columns] != NULL)
-	{
 		columns++;
-	}
 	free_splitted_array(vertex);
+	close(map_fd);
 	return (columns);
 }

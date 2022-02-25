@@ -1,14 +1,5 @@
 #include "fdf.h"
 
-void	is_argc_two(int argc)
-{
-	if (argc != 2)
-	{
-		printf("Error: Incorrect amount of arguments\n");
-		exit(EXIT_FAILURE);
-	}
-}
-
 void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 {
 	unsigned int	i;
@@ -29,6 +20,67 @@ void	print_matrix(int **matrix, unsigned int rows, unsigned int columns)
 	}
 }
 
+void	print_nodes(t_node *nodes, unsigned int rows, unsigned int columns)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < rows * columns)
+	{
+		printf("nodes[%u]	= {x: %f		y: %f	z: %f}\n",
+			i, nodes[i].x, nodes[i].y, nodes[i].z);
+		i++;
+	}
+}
+
+void	is_argc_two(int argc)
+{
+	if (argc != 2)
+	{
+		printf("Error: Incorrect amount of arguments\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
+unsigned int	get_distance_between_columns(unsigned int columns)
+{
+	unsigned int	max_distance;
+	unsigned int	distance_between_columns;
+
+	max_distance = 20;
+	distance_between_columns = MAP_WIDTH / columns;
+	if (distance_between_columns > max_distance)
+		distance_between_columns = max_distance;
+	return (distance_between_columns);
+}
+
+unsigned int get_distance_between_rows(unsigned int rows)
+{
+	unsigned int max_distance;
+	unsigned int distance_between_rows;
+
+	max_distance = 20;
+	distance_between_rows = MAP_HEIGHT / rows;
+	if (distance_between_rows > max_distance)
+		distance_between_rows = max_distance;
+	return (distance_between_rows);
+}
+
+void transform_nodes(t_fdf_data *fdf_data)
+{
+	unsigned int i;
+	unsigned int distance_between_columns;
+
+	distance_between_columns = get_distance_between_columns(fdf_data->columns);
+	i = 0;
+	while (i < fdf_data->number_of_nodes)
+	{
+		fdf_data->nodes[i].x = fdf_data->nodes[i].x * distance_between_columns;
+		fdf_data->nodes[i].y = fdf_data->nodes[i].y * 20;
+		i++;
+	}
+}
+
 int main(int argc, char *argv[])
 {
     t_fdf_data fdf_data;
@@ -41,7 +93,9 @@ int main(int argc, char *argv[])
 	printf("fdf_data.number_of_nodes = %d\n", fdf_data.number_of_nodes);
 	printf("\n");
 
-	print_nodes(fdf_data.nodes, fdf_data.rows, fdf_data.columns);
+	// transform_nodes(&fdf_data);
+	// print_nodes(fdf_data.nodes, fdf_data.rows, fdf_data.columns);
+
     return (0);
 }
 

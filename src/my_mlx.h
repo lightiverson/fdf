@@ -5,8 +5,8 @@
 
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
-# define MAP_WIDTH WINDOW_WIDTH * 0.8 
-# define MAP_HEIGHT WINDOW_HEIGHT * 0.8
+# define MAP_WIDTH 800
+# define MAP_HEIGHT 800
 
 typedef struct s_data {
 	void	*img;
