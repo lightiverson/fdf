@@ -22,47 +22,6 @@ void	is_argc_two(int argc)
 	}
 }
 
-unsigned int	get_distance_between_columns(unsigned int columns)
-{
-	unsigned int	max_distance;
-	unsigned int	distance_between_columns;
-
-	max_distance = 20;
-	distance_between_columns = MAP_WIDTH / columns;
-	if (distance_between_columns > max_distance)
-		distance_between_columns = max_distance;
-	return (distance_between_columns);
-}
-
-unsigned int get_distance_between_rows(unsigned int rows)
-{
-	unsigned int max_distance;
-	unsigned int distance_between_rows;
-
-	max_distance = 20;
-	distance_between_rows = MAP_HEIGHT / rows;
-	if (distance_between_rows > max_distance)
-		distance_between_rows = max_distance;
-	return (distance_between_rows);
-}
-
-void transform_nodes(t_fdf_data *fdf_data)
-{
-	unsigned int i;
-	unsigned int distance_between_columns;
-	unsigned int distance_between_rows;
-
-	distance_between_columns = get_distance_between_columns(fdf_data->columns);
-	distance_between_rows = get_distance_between_rows(fdf_data->rows);
-	i = 0;
-	while (i < fdf_data->number_of_nodes)
-	{
-		fdf_data->nodes[i].x = fdf_data->nodes[i].x * distance_between_columns;
-		fdf_data->nodes[i].y = fdf_data->nodes[i].y * distance_between_rows;
-		i++;
-	}
-}
-
 void paint_nodes(t_fdf_data *fdf_data)
 {
 	unsigned int i;
@@ -78,10 +37,6 @@ void paint_nodes(t_fdf_data *fdf_data)
 	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
 	mlx_loop(img.mlx);
 }
-
-/*
-paint_edges
-*/
 
 int main(int argc, char *argv[])
 {

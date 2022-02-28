@@ -96,6 +96,23 @@ void	populate_nodes(const char *map_name, t_node *nodes)
 	close(map_fd);
 }
 
+void transform_nodes(t_fdf_data *fdf_data)
+{
+	unsigned int i;
+	unsigned int distance_between_columns;
+	unsigned int distance_between_rows;
+
+	distance_between_columns = get_distance_between_columns(fdf_data->columns);
+	distance_between_rows = get_distance_between_rows(fdf_data->rows);
+	i = 0;
+	while (i < fdf_data->number_of_nodes)
+	{
+		fdf_data->nodes[i].x = fdf_data->nodes[i].x * distance_between_columns;
+		fdf_data->nodes[i].y = fdf_data->nodes[i].y * distance_between_rows;
+		i++;
+	}
+}
+
 void	parser(t_fdf_data *fdf_data, const char *map_name)
 {
 	fdf_data->rows = count_rows(map_name);

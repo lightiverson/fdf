@@ -65,3 +65,27 @@ unsigned int	count_columns(const char *map_name)
 	close(map_fd);
 	return (columns);
 }
+
+unsigned int	get_distance_between_columns(unsigned int columns)
+{
+	unsigned int	max_distance;
+	unsigned int	distance_between_columns;
+
+	max_distance = 20;
+	distance_between_columns = MAP_WIDTH / columns;
+	if (distance_between_columns > max_distance)
+		distance_between_columns = max_distance;
+	return (distance_between_columns);
+}
+
+unsigned int get_distance_between_rows(unsigned int rows)
+{
+	unsigned int max_distance;
+	unsigned int distance_between_rows;
+
+	max_distance = 20;
+	distance_between_rows = MAP_HEIGHT / rows;
+	if (distance_between_rows > max_distance)
+		distance_between_rows = max_distance;
+	return (distance_between_rows);
+}
