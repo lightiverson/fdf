@@ -4,11 +4,6 @@
 #include "nodes.h"
 #include "fdf.h"
 
-typedef struct s_edge {
-    t_node start_node;
-    t_node end_node;
-} t_edge;
-
-void generate_edges(void);
+void generate_edges(t_fdf_data *fdf_data);
 
 #endif /* EDGES_H */

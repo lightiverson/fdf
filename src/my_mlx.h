@@ -11,9 +11,9 @@
 typedef struct s_data {
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	int	bits_per_pixel;
+	int	line_length;
+	int	endian;
 	void	*mlx;
 	void	*mlx_win;
 }	t_data;

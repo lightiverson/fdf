@@ -11,11 +11,10 @@
 # include <fcntl.h>
 # include "my_mlx.h"
 
-void			free_splitted_array(char **splitted_array);
-int				get_map_fd(const char *map_name);
+int		get_map_fd(const char *map_name);
 unsigned int	count_columns(const char *map_name);
 unsigned int	count_rows(const char *map_name);
-unsigned int get_distance_between_columns(unsigned int columns);
-unsigned int get_distance_between_rows(unsigned int rows);
+unsigned int	get_distance_between_columns(unsigned int columns);
+unsigned int	get_distance_between_rows(unsigned int rows);
 
 #endif /* GETS_H */

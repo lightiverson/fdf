@@ -1,4 +1,4 @@
-#include "edges.h"
+// #include "edges.h"
 
 // nu wil ik een array van edges creeren op basis van de array van nodes
 void generate_edges(void)

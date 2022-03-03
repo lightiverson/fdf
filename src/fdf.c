@@ -40,9 +40,9 @@ void paint_nodes(t_fdf_data *fdf_data)
 
 int main(int argc, char *argv[])
 {
-    t_fdf_data fdf_data;
+	t_fdf_data fdf_data;
 
-    is_argc_two(argc);
+	is_argc_two(argc);
 	parser(&fdf_data, argv[1]);
 
 	printf("fdf_data.rows = %d\n", fdf_data.rows);
@@ -55,5 +55,5 @@ int main(int argc, char *argv[])
 
 	paint_nodes(&fdf_data);
 
-    return (0);
+	return (0);
 }
