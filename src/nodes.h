@@ -22,9 +22,9 @@ typedef struct s_fdf_data {
 	unsigned int	rows;
 	unsigned int	columns;
 	unsigned int	number_of_nodes;
-	t_node		*nodes;
+	t_node			*nodes;
 	unsigned int	number_of_edges;
-	t_edge		*edges;
+	t_edge			*edges;
 }	t_fdf_data;
 
 # include "libft/libft.h"

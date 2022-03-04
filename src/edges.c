@@ -13,27 +13,7 @@ t_edge *calloc_edges(unsigned int number_of_edges)
     return (edges);
 }
 
-// void generate_edges(t_fdf_data *fdf_data)
-// {
-//     unsigned int i;
-//     unsigned int k;
-//     unsigned int l;
-
-//     i = 0;
-//     k = 0;
-//     l = 1;
-//     fdf_data->edges = calloc_edges(fdf_data->number_of_nodes - 1);
-//     while (i < fdf_data->number_of_nodes - 1)
-//     {
-//         fdf_data->edges[i].start_node = fdf_data->nodes + k;
-//         fdf_data->edges[i].end_node = fdf_data->nodes + l;
-//         k++;
-//         l++;
-//         i++;
-//     }
-// }
-
-void generate_edges(t_fdf_data *fdf_data)
+void populate_edges(t_fdf_data *fdf_data)
 {
     unsigned int i;
 
