@@ -12,16 +12,3 @@ void	free_splitted_array(char **splitted_array)
 	}
 	free(splitted_array);
 }
-
-void	free_matrix(int **calloced_matrix, unsigned int rows)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < rows)
-	{
-		free(calloced_matrix[i]);
-		i++;
-	}
-	free(calloced_matrix);
-}

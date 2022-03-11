@@ -66,8 +66,7 @@ unsigned int	count_columns(const char *map_name)
 	return (columns);
 }
 
-// calculate_distance_between_columns
-unsigned int	get_distance_between_columns(unsigned int columns)
+unsigned int	calc_distance_columns(unsigned int columns)
 {
 	unsigned int	max_distance;
 	unsigned int	distance_between_columns;
@@ -79,8 +78,7 @@ unsigned int	get_distance_between_columns(unsigned int columns)
 	return (distance_between_columns);
 }
 
-// calculate_distance_between_rows
-unsigned int get_distance_between_rows(unsigned int rows)
+unsigned int calc_distance_rows(unsigned int rows)
 {
 	unsigned int max_distance;
 	unsigned int distance_between_rows;

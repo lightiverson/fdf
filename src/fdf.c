@@ -50,10 +50,31 @@ int main(int argc, char *argv[])
 	printf("fdf_data.number_of_nodes = %d\n", fdf_data.number_of_nodes);
 	printf("\n");
 
-	transform_nodes(&fdf_data);
-	print_nodes(fdf_data.nodes, fdf_data.rows, fdf_data.columns);
+	populate_edges(&fdf_data);
 
-	paint_nodes(&fdf_data);
+	t_data img;
+	create_mlx_image(&img);
 
+	plot_lines(&fdf_data, &img);
+	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
+	mlx_loop(img.mlx);
 	return (0);
 }
+
+// int main(int argc, char *argv[])
+// {
+	// t_fdf_data fdf_data;
+// 
+	// is_argc_two(argc);
+	// parser(&fdf_data, argv[1]);
+// 
+	// printf("fdf_data.rows = %d\n", fdf_data.rows);
+	// printf("fdf_data.columns = %d\n", fdf_data.columns);
+	// printf("fdf_data.number_of_nodes = %d\n", fdf_data.number_of_nodes);
+	// printf("\n");
+	// print_nodes(fdf_data.nodes, fdf_data.rows, fdf_data.columns);
+// 
+	// paint_nodes(&fdf_data);
+// 
+	// return (0);
+// }

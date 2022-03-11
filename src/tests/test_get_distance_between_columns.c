@@ -14,7 +14,7 @@ void test_get_distance_between_columns_10_2(void)
 {
     const char *map_name = "../../test_maps/10-2.fdf";
     unsigned int columns = count_columns(map_name);
-    unsigned int distance_between_columns = get_distance_between_columns(columns);
+    unsigned int distance_between_columns = calc_distance_columns(columns);
     TEST_ASSERT_EQUAL_UINT(20, distance_between_columns);
 }
 
@@ -22,7 +22,7 @@ void test_get_distance_between_columns_50_4(void)
 {
     const char *map_name = "../../test_maps/50-4.fdf";
     unsigned int columns = count_columns(map_name);
-    unsigned int distance_between_columns = get_distance_between_columns(columns);
+    unsigned int distance_between_columns = calc_distance_columns(columns);
     TEST_ASSERT_EQUAL_UINT(16, distance_between_columns);
 }
 
@@ -30,7 +30,7 @@ void test_get_distance_between_columns_100_6(void)
 {
     const char *map_name = "../../test_maps/100-6.fdf";
     unsigned int columns = count_columns(map_name);
-    unsigned int distance_between_columns = get_distance_between_columns(columns);
+    unsigned int distance_between_columns = calc_distance_columns(columns);
     TEST_ASSERT_EQUAL_UINT(8, distance_between_columns);
 }
 
@@ -38,7 +38,7 @@ void test_get_distance_between_columns_julia(void)
 {
     const char *map_name = "../../test_maps/julia.fdf";
     unsigned int columns = count_columns(map_name);
-    unsigned int distance_between_columns = get_distance_between_columns(columns);
+    unsigned int distance_between_columns = calc_distance_columns(columns);
     TEST_ASSERT_EQUAL_UINT(1, distance_between_columns);
 }
 

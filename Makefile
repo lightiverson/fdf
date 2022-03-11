@@ -15,7 +15,9 @@ objects	=	fdf.o \
 			my_mlx.o \
 			nodes.o \
 			get_next_line.o \
-			get_next_line_utils.o
+			get_next_line_utils.o \
+			edges.o \
+			plot_line_low.o
 libft	=	src/libft/libft.a
 mlx = libmlx.dylib
 
@@ -29,6 +31,8 @@ my_mlx.o : my_mlx.h
 nodes.o : nodes.h
 get_next_line.o : get_next_line.h
 get_next_line_utils.o : get_next_line.h
+edges.o : edges.h
+plot_line_low.o : plot_line_low.h
 
 $(libft) :
 	make -C ./src/libft

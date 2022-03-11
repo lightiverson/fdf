@@ -1,6 +1,6 @@
 #include "plot_line_low.h"
 
-void	plot_line_low(int x0, int y0, int x1, int y1, void *img)
+void	plot_line_low(int x0, int y0, int x1, int y1, t_data *img)
 {
 	t_low_data	low_data;
 
@@ -17,7 +17,7 @@ void	plot_line_low(int x0, int y0, int x1, int y1, void *img)
 	low_data.x0_dup = x0;
 	while (low_data.x0_dup < x1)
 	{
-		my_mlx_pixel_put(&img, low_data.x0_dup, low_data.y, 0x00FF0000);
+		my_mlx_pixel_put(img, low_data.x0_dup, low_data.y, 0x00FF0000);
 		// printf("(%i, %i)\n", low_data.x0_dup, low_data.y);
 		if (low_data.D > 0)
 		{
@@ -30,14 +30,14 @@ void	plot_line_low(int x0, int y0, int x1, int y1, void *img)
 	}
 }
 
-void	iterate_over_edges(t_fdf_data *fdf_data)
+void	plot_lines(t_fdf_data *fdf_data, t_data *img)
 {
 	unsigned int	i;
 
 	i = 0;
 	while (i < fdf_data->number_of_edges)
 	{
-		plot_line_low(fdf_data->edges[i].start_node->x, fdf_data->edges[i].start_node->y, fdf_data->edges[i].end_node->x, fdf_data->edges[i].end_node.y);
+		plot_line_low(fdf_data->edges[i].start_node->x, fdf_data->edges[i].start_node->y, fdf_data->edges[i].end_node->x, fdf_data->edges[i].end_node->y, img);
 		i++;
 	}
 }
