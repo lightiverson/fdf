@@ -3,6 +3,7 @@
 
 # include "my_mlx.h"
 # include <stdio.h>
+# include "nodes.h"
 
 typedef struct s_low_data
 {
