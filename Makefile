@@ -17,7 +17,8 @@ objects	=	fdf.o \
 			get_next_line.o \
 			get_next_line_utils.o \
 			edges.o \
-			plot_line_low.o
+			plot_line_low.o \
+			parser.o
 libft	=	src/libft/libft.a
 mlx = libmlx.dylib
 
@@ -33,6 +34,7 @@ get_next_line.o : get_next_line.h
 get_next_line_utils.o : get_next_line.h
 edges.o : edges.h
 plot_line_low.o : plot_line_low.h
+parser.o: parser.h
 
 $(libft) :
 	make -C ./src/libft

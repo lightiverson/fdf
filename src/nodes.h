@@ -12,6 +12,7 @@
 # include "libft/libft.h"
 # include "my_mlx.h"
 
+t_node	*calloc_nodes(unsigned int number_of_nodes);
 void	populate_nodes(const char *map_name, t_node *nodes);
 void	transform_nodes(t_fdf_data *fdf_data);
 

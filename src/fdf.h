@@ -18,5 +18,6 @@
 # include "nodes.h"
 # include "edges.h"
 # include "plot_line_low.h"
+# include "parser.h"
 
 #endif /* FDF_H */
