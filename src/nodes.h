@@ -11,6 +11,7 @@
 # include "structs.h"
 # include "libft/libft.h"
 # include "my_mlx.h"
+# include "gets.h"
 
 t_node	*calloc_nodes(unsigned int number_of_nodes);
 void	populate_nodes(const char *map_name, t_node *nodes);

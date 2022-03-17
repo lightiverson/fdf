@@ -1,5 +1,4 @@
 #include "nodes.h"
-#include "gets.h"
 
 t_node	*calloc_nodes(unsigned int number_of_nodes)
 {
@@ -96,11 +95,11 @@ void	populate_nodes(const char *map_name, t_node *nodes)
 	close(map_fd);
 }
 
-void transform_nodes(t_fdf_data *fdf_data)
+void	transform_nodes(t_fdf_data *fdf_data)
 {
-	unsigned int i;
-	unsigned int distance_between_columns;
-	unsigned int distance_between_rows;
+	unsigned int	i;
+	unsigned int	distance_between_columns;
+	unsigned int	distance_between_rows;
 
 	distance_between_columns = calc_distance_columns(fdf_data->columns);
 	distance_between_rows = calc_distance_rows(fdf_data->rows);
