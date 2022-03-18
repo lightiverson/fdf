@@ -1,24 +1,11 @@
 #include "fdf.h"
 
-void	test_bresenham(t_fdf_data *fdf_data, t_data *img)
+void	print_nodes(t_node *nodes, unsigned int number_of_nodes)
 {
 	unsigned int	i;
 
 	i = 0;
-	while (i < fdf_data->number_of_edges)
-	{
-		plot_line(fdf_data->edges[i].origin,
-			fdf_data->edges[i].destination, img);
-		i++;
-	}
-}
-
-void	print_nodes(t_node *nodes, unsigned int rows, unsigned int columns)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < rows * columns)
+	while (i < number_of_nodes)
 	{
 		printf("nodes[%u] = {x: %i, y: %i, z: %i}\n",
 			i, nodes[i].x, nodes[i].y, nodes[i].z);
@@ -35,10 +22,10 @@ void	is_argc_two(int argc)
 	}
 }
 
-void paint_nodes(t_fdf_data *fdf_data)
+void	paint_nodes(t_fdf_data *fdf_data)
 {
-	unsigned int i;
-	t_data img;
+	unsigned int	i;
+	t_data			img;
 	
 	create_mlx_image(&img);
 	i = 0;
@@ -51,9 +38,9 @@ void paint_nodes(t_fdf_data *fdf_data)
 	mlx_loop(img.mlx);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	t_fdf_data fdf_data;
+	t_fdf_data	fdf_data;
 
 	is_argc_two(argc);
 	parser(&fdf_data, argv[1]);
@@ -61,7 +48,6 @@ int main(int argc, char *argv[])
 	printf("fdf_data.rows = %d\n", fdf_data.rows);
 	printf("fdf_data.columns = %d\n", fdf_data.columns);
 	printf("fdf_data.number_of_nodes = %d\n", fdf_data.number_of_nodes);
-	printf("fdf_data.number_of_edges = %d\n", fdf_data.number_of_edges);
 	printf("\n");
 
 	t_data img;
@@ -74,52 +60,3 @@ int main(int argc, char *argv[])
 
 	return (0);
 }
-
-// int main(int argc, char *argv[])
-// {
-// 	t_fdf_data fdf_data;
-
-// 	is_argc_two(argc);
-// 	parser(&fdf_data, argv[1]);
-
-// 	printf("fdf_data.rows = %d\n", fdf_data.rows);
-// 	printf("fdf_data.columns = %d\n", fdf_data.columns);
-// 	printf("fdf_data.number_of_nodes = %d\n", fdf_data.number_of_nodes);
-// 	printf("fdf_data.number_of_edges = %d\n", fdf_data.number_of_edges);
-// 	printf("\n");
-
-// 	populate_edges(&fdf_data);
-
-// 	// unsigned int i = 0;
-// 	// while (i < fdf_data.number_of_nodes - fdf_data.columns)
-// 	// {
-// 	// 	printf("node[%i] --> node[%i]\n", i, i + fdf_data.columns);
-// 	// 	i++;
-// 	// }
-	
-// 	t_data img;
-// 	create_mlx_image(&img);
-
-// 	test_bresenham(&fdf_data, &img);
-// 	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
-// 	mlx_loop(img.mlx);
-// 	return (0);
-// }
-
-// int main(int argc, char *argv[])
-// {
-	// t_fdf_data fdf_data;
-// 
-	// is_argc_two(argc);
-	// parser(&fdf_data, argv[1]);
-// 
-	// printf("fdf_data.rows = %d\n", fdf_data.rows);
-	// printf("fdf_data.columns = %d\n", fdf_data.columns);
-	// printf("fdf_data.number_of_nodes = %d\n", fdf_data.number_of_nodes);
-	// printf("\n");
-	// print_nodes(fdf_data.nodes, fdf_data.rows, fdf_data.columns);
-// 
-	// paint_nodes(&fdf_data);
-// 
-	// return (0);
-// }

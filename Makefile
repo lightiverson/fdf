@@ -16,7 +16,6 @@ objects	=	fdf.o \
 			nodes.o \
 			get_next_line.o \
 			get_next_line_utils.o \
-			edges.o \
 			parser.o \
 			plot_lines.o
 libft	=	src/libft/libft.a
@@ -32,7 +31,6 @@ my_mlx.o : my_mlx.h
 nodes.o : nodes.h
 get_next_line.o : get_next_line.h
 get_next_line_utils.o : get_next_line.h
-edges.o : edges.h
 parser.o: parser.h
 plot_lines.o: plot_lines.h
 

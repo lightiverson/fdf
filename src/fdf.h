@@ -16,7 +16,6 @@
 # include "my_mlx.h"
 # include "free_breezy.h"
 # include "nodes.h"
-# include "edges.h"
 # include "plot_lines.h"
 # include "parser.h"
 

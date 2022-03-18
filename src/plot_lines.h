@@ -9,6 +9,26 @@
 # include "structs.h"
 # include "my_mlx.h"
 
+typedef struct s_high_data
+{
+	int	dx;
+	int	dy;
+	int	xi;
+	int	D;
+	int	x;
+	int	y0_dup;
+}	t_high_data;
+
+typedef struct s_low_data
+{
+	int	dx;
+	int	dy;
+	int	yi;
+	int	D;
+	int	y;
+	int	x0_dup;
+}	t_low_data;
+
 void	plot_line_low(t_node *origin, t_node *destination, t_data *img);
 void	plot_line_high(t_node *origin, t_node *destination, t_data *img);
 void	plot_line(t_node *origin, t_node *destination, t_data *img);
