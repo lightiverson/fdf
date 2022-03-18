@@ -31,7 +31,7 @@ void	plot_line_low(t_node *origin, t_node *destination, t_data *img)
 
 void	plot_line_high(t_node *origin, t_node *destination, t_data *img)
 {
-	t_high_data high_data;
+	t_high_data	high_data;
 
 	high_data.dx = destination->x - origin->x;
 	high_data.dy = destination->y - origin->y;
@@ -76,15 +76,47 @@ void	plot_line(t_node *origin, t_node *destination, t_data *img)
 	}
 }
 
-void	plot_lines(t_fdf_data *fdf_data, t_data *img)
+void	plot_lines_horizontally(t_fdf_data *fdf_data, t_data *img)
 {
 	unsigned int	i;
+	unsigned int	j;
 
 	i = 0;
-	while (i < fdf_data->number_of_edges)
+	j = 1;
+	while (j < fdf_data->number_of_nodes)
 	{
-		plot_line(fdf_data->edges[i].origin,
-			fdf_data->edges[i].destination, img);
+		if (j % fdf_data->columns == 0)
+		{
+			i++;
+			j++;
+		}
+		plot_line(fdf_data->nodes + i, fdf_data->nodes + j, img);
 		i++;
+		j++;
+	}
+}
+
+// doel: verbind alle nodes verticaal met elkaar
+// loop over alle nodes
+// index 0 moet verbonden worden met index 11
+// index 1 moet verbonden worden met index 12
+// index 2 moet verbonden worden met index 13
+
+// index 11 moet verbonden worden met index 22
+// index 12 moet verbonden worden met index 23
+// index 13 moet verbonden worden met index 24
+void	plot_lines_vertically(t_fdf_data *fdf_data, t_data *img)
+{
+	unsigned int	i;
+	unsigned int	k;
+
+	i = 0;
+	k = fdf_data->columns;
+	while (k < fdf_data->number_of_nodes)
+	{
+		// printf("nodes[%i] --> nodes[%i]\n", i, k);
+		plot_line(fdf_data->nodes + i, fdf_data->nodes + k, img);
+		i++;
+		k++;
 	}
 }

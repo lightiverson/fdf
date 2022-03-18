@@ -1,5 +1,18 @@
 #include "fdf.h"
 
+void	test_bresenham(t_fdf_data *fdf_data, t_data *img)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < fdf_data->number_of_edges)
+	{
+		plot_line(fdf_data->edges[i].origin,
+			fdf_data->edges[i].destination, img);
+		i++;
+	}
+}
+
 void	print_nodes(t_node *nodes, unsigned int rows, unsigned int columns)
 {
 	unsigned int	i;
@@ -51,23 +64,47 @@ int main(int argc, char *argv[])
 	printf("fdf_data.number_of_edges = %d\n", fdf_data.number_of_edges);
 	printf("\n");
 
-	populate_edges(&fdf_data);
-
-	// unsigned int i = 0;
-	// while (i < fdf_data.number_of_nodes - fdf_data.columns)
-	// {
-	// 	printf("node[%i] --> node[%i]\n", i, i + fdf_data.columns);
-	// 	i++;
-	// }
-	
 	t_data img;
 	create_mlx_image(&img);
 
-	plot_lines(&fdf_data, &img);
+	plot_lines_horizontally(&fdf_data, &img);
+	plot_lines_vertically(&fdf_data, &img);
 	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
 	mlx_loop(img.mlx);
+
 	return (0);
 }
+
+// int main(int argc, char *argv[])
+// {
+// 	t_fdf_data fdf_data;
+
+// 	is_argc_two(argc);
+// 	parser(&fdf_data, argv[1]);
+
+// 	printf("fdf_data.rows = %d\n", fdf_data.rows);
+// 	printf("fdf_data.columns = %d\n", fdf_data.columns);
+// 	printf("fdf_data.number_of_nodes = %d\n", fdf_data.number_of_nodes);
+// 	printf("fdf_data.number_of_edges = %d\n", fdf_data.number_of_edges);
+// 	printf("\n");
+
+// 	populate_edges(&fdf_data);
+
+// 	// unsigned int i = 0;
+// 	// while (i < fdf_data.number_of_nodes - fdf_data.columns)
+// 	// {
+// 	// 	printf("node[%i] --> node[%i]\n", i, i + fdf_data.columns);
+// 	// 	i++;
+// 	// }
+	
+// 	t_data img;
+// 	create_mlx_image(&img);
+
+// 	test_bresenham(&fdf_data, &img);
+// 	mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, 0, 0);
+// 	mlx_loop(img.mlx);
+// 	return (0);
+// }
 
 // int main(int argc, char *argv[])
 // {

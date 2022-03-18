@@ -12,6 +12,8 @@
 void	plot_line_low(t_node *origin, t_node *destination, t_data *img);
 void	plot_line_high(t_node *origin, t_node *destination, t_data *img);
 void	plot_line(t_node *origin, t_node *destination, t_data *img);
-void	plot_lines(t_fdf_data *fdf_data, t_data *img);
+void	test_bresenham(t_fdf_data *fdf_data, t_data *img);
+void	plot_lines_horizontally(t_fdf_data *fdf_data, t_data *img);
+void	plot_lines_vertically(t_fdf_data *fdf_data, t_data *img);
 
 #endif /* PLOT_LINES_H */
