@@ -48,10 +48,18 @@ int main(int argc, char *argv[])
 	printf("fdf_data.rows = %d\n", fdf_data.rows);
 	printf("fdf_data.columns = %d\n", fdf_data.columns);
 	printf("fdf_data.number_of_nodes = %d\n", fdf_data.number_of_nodes);
+	printf("fdf_data.number_of_edges = %d\n", fdf_data.number_of_edges);
 	printf("\n");
 
 	populate_edges(&fdf_data);
 
+	// unsigned int i = 0;
+	// while (i < fdf_data.number_of_nodes - fdf_data.columns)
+	// {
+	// 	printf("node[%i] --> node[%i]\n", i, i + fdf_data.columns);
+	// 	i++;
+	// }
+	
 	t_data img;
 	create_mlx_image(&img);
 

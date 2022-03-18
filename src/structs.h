@@ -1,6 +1,16 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+typedef struct s_high_data
+{
+	int	dx;
+	int	dy;
+	int	xi;
+	int	D;
+	int	x;
+	int	y0_dup;
+}	t_high_data;
+
 typedef struct s_low_data
 {
 	int	dx;
@@ -18,8 +28,8 @@ typedef struct s_node {
 }	t_node;
 
 typedef struct s_edge {
-	t_node *start_node;
-	t_node *end_node;
+	t_node *origin;
+	t_node *destination;
 }	t_edge;
 
 typedef struct s_iterators {

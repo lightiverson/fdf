@@ -21,8 +21,8 @@ void	populate_edges(t_fdf_data *fdf_data)
 	fdf_data->edges = calloc_edges(fdf_data->number_of_edges);
 	while (i < fdf_data->number_of_edges)
 	{
-		fdf_data->edges[i].start_node = fdf_data->nodes + i;
-		fdf_data->edges[i].end_node = fdf_data->nodes + i + 1;
+		fdf_data->edges[i].origin = fdf_data->nodes + i;
+		fdf_data->edges[i].destination = fdf_data->nodes + i + 1;
 		i++;
 	}
 }

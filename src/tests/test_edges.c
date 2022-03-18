@@ -17,8 +17,8 @@ void test_first_edge_10_70(void)
 	parser(&fdf_data, "../../test_maps/10-70.fdf");
 
     populate_edges(&fdf_data);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes, fdf_data.edges[0].start_node);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + 1, fdf_data.edges[0].end_node);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes, fdf_data.edges[0].origin);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + 1, fdf_data.edges[0].destination);
 }
 
 void test_last_edge_10_70(void)
@@ -31,8 +31,8 @@ void test_last_edge_10_70(void)
     // TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + 98, fdf_data.edges[98].start_node);
     // TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + 99, fdf_data.edges[98].end_node);
 
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 2), fdf_data.edges[fdf_data.number_of_edges - 1].start_node);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 1), fdf_data.edges[fdf_data.number_of_edges - 1].end_node);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 2), fdf_data.edges[fdf_data.number_of_edges - 1].origin);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 1), fdf_data.edges[fdf_data.number_of_edges - 1].destination);
 }
 
 void test_first_edge_10_2(void)
@@ -42,8 +42,8 @@ void test_first_edge_10_2(void)
 	parser(&fdf_data, "../../test_maps/10-2.fdf");
 
     populate_edges(&fdf_data);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes, fdf_data.edges[0].start_node);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + 1, fdf_data.edges[0].end_node);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes, fdf_data.edges[0].origin);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + 1, fdf_data.edges[0].destination);
 }
 
 void test_last_edge_10_2(void)
@@ -53,8 +53,8 @@ void test_last_edge_10_2(void)
 	parser(&fdf_data, "../../test_maps/10-2.fdf");
 
     populate_edges(&fdf_data);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 2), fdf_data.edges[fdf_data.number_of_edges - 1].start_node);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 1), fdf_data.edges[fdf_data.number_of_edges - 1].end_node);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 2), fdf_data.edges[fdf_data.number_of_edges - 1].origin);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 1), fdf_data.edges[fdf_data.number_of_edges - 1].destination);
 }
 
 void test_first_edge_50_4(void)
@@ -64,8 +64,8 @@ void test_first_edge_50_4(void)
 	parser(&fdf_data, "../../test_maps/50-4.fdf");
 
     populate_edges(&fdf_data);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes, fdf_data.edges[0].start_node);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + 1, fdf_data.edges[0].end_node);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes, fdf_data.edges[0].origin);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + 1, fdf_data.edges[0].destination);
 }
 
 void test_last_edge_50_4(void)
@@ -75,8 +75,8 @@ void test_last_edge_50_4(void)
 	parser(&fdf_data, "../../test_maps/50-4.fdf");
 
     populate_edges(&fdf_data);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 2), fdf_data.edges[fdf_data.number_of_edges - 1].start_node);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 1), fdf_data.edges[fdf_data.number_of_edges - 1].end_node);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 2), fdf_data.edges[fdf_data.number_of_edges - 1].origin);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 1), fdf_data.edges[fdf_data.number_of_edges - 1].destination);
 }
 
 void test_first_edge_100_6(void)
@@ -86,8 +86,8 @@ void test_first_edge_100_6(void)
 	parser(&fdf_data, "../../test_maps/100-6.fdf");
 
     populate_edges(&fdf_data);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes, fdf_data.edges[0].start_node);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + 1, fdf_data.edges[0].end_node);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes, fdf_data.edges[0].origin);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + 1, fdf_data.edges[0].destination);
 }
 
 void test_last_edge_100_6(void)
@@ -97,8 +97,8 @@ void test_last_edge_100_6(void)
 	parser(&fdf_data, "../../test_maps/100-6.fdf");
 
     populate_edges(&fdf_data);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 2), fdf_data.edges[fdf_data.number_of_edges - 1].start_node);
-    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 1), fdf_data.edges[fdf_data.number_of_edges - 1].end_node);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 2), fdf_data.edges[fdf_data.number_of_edges - 1].origin);
+    TEST_ASSERT_EQUAL_PTR(fdf_data.nodes + (fdf_data.number_of_nodes - 1), fdf_data.edges[fdf_data.number_of_edges - 1].destination);
 }
 
 int main(void)
