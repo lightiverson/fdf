@@ -17,7 +17,7 @@
 # include "free_breezy.h"
 # include "nodes.h"
 # include "edges.h"
-# include "plot_line_low.h"
+# include "plot_lines.h"
 # include "parser.h"
 
 #endif /* FDF_H */
