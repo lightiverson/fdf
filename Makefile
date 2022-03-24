@@ -1,56 +1,51 @@
-UNAME := $(shell uname)
+# Variables
+
+NAME = fdf
 VPATH =	./:\
 		src:\
 		src/get_next_line:\
 		src/my_mlx
-CFLAGS = -Wall -Wextra
-ifeq ($(UNAME), Linux)
-CFLAGS := $(CFLAGS) -g -fsanitize=address -fsanitize=leak
-endif
+CFLAGS = -Wall -Wextra # -Werror
+LIBMLX = src/MLX42
+LIBFT = src/libft
 
-mac_os_api = -L./src/mlx -framework OpenGL -framework AppKit
-objects	=	fdf.o \
-			free_breezy.o \
-			gets.o \
-			my_mlx.o \
-			nodes.o \
-			get_next_line.o \
-			get_next_line_utils.o \
-			parser.o \
-			plot_lines.o
-libft	=	src/libft/libft.a
-mlx = libmlx.dylib
+HEADERS = -I ./src -I $(LIBMLX)/include -I $(LIBFT)
+LIBS = -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/ $(LIBMLX)/libmlx42.a $(LIBFT)/libft.a
+OBJS =	fdf.o \
+		free_breezy.o \
+		gets.o \
+		nodes.o \
+		get_next_line.o \
+		get_next_line_utils.o \
+		parser.o \
+		plot_lines.o
 
-fdf : $(objects) $(libft) $(mlx)
-	$(CC) $(CFLAGS) $(mac_os_api) -Imlx -o fdf $(objects) $(libft) $(mlx)
+#  Recipes
 
-fdf.o : fdf.h
-free_breezy.o: free_breezy.h
-gets.o : gets.h
-my_mlx.o : my_mlx.h
-nodes.o : nodes.h
-get_next_line.o : get_next_line.h
-get_next_line_utils.o : get_next_line.h
-parser.o: parser.h
-plot_lines.o: plot_lines.h
+all: libft libmlx $(NAME)
 
-$(libft) :
-	make -C ./src/libft
+libft:
+	@$(MAKE) -C $(LIBFT)
 
-$(mlx):
-	make -C ./src/mlx
-	mv ./src/mlx/$(mlx) .
+libmlx:
+	@$(MAKE) -C $(LIBMLX)
 
-clean :
-	rm -f $(objects)
-	make clean -C ./src/libft
-	make clean -C ./src/mlx
+%.o : %.c
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
-fclean : clean
-	rm -f fdf
-	make fclean -C ./src/libft
-	rm -f $(mlx)
+$(NAME): $(OBJS)
+	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
-re: fclean all
+clean:
+	@rm -f $(OBJS)
+	@$(MAKE) -C $(LIBFT) clean
+	@$(MAKE) -C $(LIBMLX) clean
 
-.PHONY: all clean fclean re
+fclean: clean
+	@rm -f $(NAME)
+	@$(MAKE) -C $(LIBFT) fclean
+	@$(MAKE) -C $(LIBMLX) fclean
+
+re: clean all
+
+.PHONY: all, clean, fclean, re, libmlx, libft

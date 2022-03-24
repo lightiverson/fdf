@@ -1,4 +1,6 @@
 #include "gets.h"
+#define MAP_WIDTH 800
+#define MAP_HEIGHT 800
 
 int	get_map_fd(const char *map_name)
 {

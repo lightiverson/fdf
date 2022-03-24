@@ -10,7 +10,6 @@
 /* Private libraries */
 # include "structs.h"
 # include "libft/libft.h"
-# include "my_mlx.h"
 # include "gets.h"
 
 typedef struct s_iterators {

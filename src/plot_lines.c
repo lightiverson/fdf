@@ -1,6 +1,6 @@
 #include "plot_lines.h"
 
-void	plot_line_low(t_node *origin, t_node *destination, t_data *img)
+void	plot_line_low(t_node *origin, t_node *destination, mlx_image_t *g_img)
 {
 	t_low_data	low_data;
 
@@ -17,7 +17,8 @@ void	plot_line_low(t_node *origin, t_node *destination, t_data *img)
 	low_data.x0_dup = origin->x;
 	while (low_data.x0_dup < destination->x)
 	{
-		my_mlx_pixel_put(img, low_data.x0_dup, low_data.y, 0x00FF0000);
+		// my_mlx_pixel_put(img, low_data.x0_dup, low_data.y, 0x00FF0000);
+		mlx_put_pixel(g_img, low_data.x0_dup, low_data.y, 0xFFFFFFFF);
 		if (low_data.D > 0)
 		{
 			low_data.y = low_data.y + low_data.yi;
@@ -29,7 +30,7 @@ void	plot_line_low(t_node *origin, t_node *destination, t_data *img)
 	}
 }
 
-void	plot_line_high(t_node *origin, t_node *destination, t_data *img)
+void	plot_line_high(t_node *origin, t_node *destination, mlx_image_t *g_img)
 {
 	t_high_data	high_data;
 
@@ -46,7 +47,8 @@ void	plot_line_high(t_node *origin, t_node *destination, t_data *img)
 	high_data.y0_dup = origin->y;
 	while (high_data.y0_dup < destination->y)
 	{
-		my_mlx_pixel_put(img, high_data.x, high_data.y0_dup, 0x00FF0000);
+		// my_mlx_pixel_put(img, high_data.x, high_data.y0_dup, 0x00FF0000);
+		mlx_put_pixel(g_img, high_data.x, high_data.y0_dup, 0xFFFFFFFF);
 		if (high_data.D > 0)
 		{
 			high_data.x = high_data.x + high_data.xi;
@@ -58,25 +60,25 @@ void	plot_line_high(t_node *origin, t_node *destination, t_data *img)
 	}
 }
 
-void	plot_line(t_node *origin, t_node *destination, t_data *img)
+void	plot_line(t_node *origin, t_node *destination, mlx_image_t *g_img)
 {
 	if (abs(destination->y - origin->y) < abs(destination->x - origin->x))
 	{
 		if (origin->x > destination->x)
-			plot_line_low(destination, origin, img);
+			plot_line_low(destination, origin, g_img);
 		else
-			plot_line_low(origin, destination, img);
+			plot_line_low(origin, destination, g_img);
 	}
 	else
 	{
 		if (origin->y > destination->y)
-			plot_line_high(destination, origin, img);
+			plot_line_high(destination, origin, g_img);
 		else
-			plot_line_high(origin, destination, img);
+			plot_line_high(origin, destination, g_img);
 	}
 }
 
-void	plot_lines_horizontally(t_fdf_data *fdf_data, t_data *img)
+void	plot_lines_horizontally(t_fdf_data *fdf_data, mlx_image_t *g_img)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -90,13 +92,13 @@ void	plot_lines_horizontally(t_fdf_data *fdf_data, t_data *img)
 			i++;
 			j++;
 		}
-		plot_line(fdf_data->nodes + i, fdf_data->nodes + j, img);
+		plot_line(fdf_data->nodes + i, fdf_data->nodes + j, g_img);
 		i++;
 		j++;
 	}
 }
 
-void	plot_lines_vertically(t_fdf_data *fdf_data, t_data *img)
+void	plot_lines_vertically(t_fdf_data *fdf_data, mlx_image_t *g_img)
 {
 	unsigned int	i;
 	unsigned int	k;
@@ -105,7 +107,7 @@ void	plot_lines_vertically(t_fdf_data *fdf_data, t_data *img)
 	k = fdf_data->columns;
 	while (k < fdf_data->number_of_nodes)
 	{
-		plot_line(fdf_data->nodes + i, fdf_data->nodes + k, img);
+		plot_line(fdf_data->nodes + i, fdf_data->nodes + k, g_img);
 		i++;
 		k++;
 	}

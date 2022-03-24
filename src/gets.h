@@ -12,7 +12,6 @@
 /* Private libraries */
 # include "get_next_line/get_next_line.h"
 # include "free_breezy.h"
-# include "my_mlx.h"
 
 int				get_map_fd(const char *map_name);
 unsigned int	count_columns(const char *map_name);
