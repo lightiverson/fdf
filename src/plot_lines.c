@@ -17,7 +17,6 @@ void	plot_line_low(t_node *origin, t_node *destination, mlx_image_t *g_img)
 	low_data.x0_dup = origin->x;
 	while (low_data.x0_dup < destination->x)
 	{
-		// my_mlx_pixel_put(img, low_data.x0_dup, low_data.y, 0x00FF0000);
 		mlx_put_pixel(g_img, low_data.x0_dup, low_data.y, 0xFFFFFFFF);
 		if (low_data.D > 0)
 		{
@@ -47,7 +46,6 @@ void	plot_line_high(t_node *origin, t_node *destination, mlx_image_t *g_img)
 	high_data.y0_dup = origin->y;
 	while (high_data.y0_dup < destination->y)
 	{
-		// my_mlx_pixel_put(img, high_data.x, high_data.y0_dup, 0x00FF0000);
 		mlx_put_pixel(g_img, high_data.x, high_data.y0_dup, 0xFFFFFFFF);
 		if (high_data.D > 0)
 		{
