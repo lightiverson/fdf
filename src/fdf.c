@@ -31,7 +31,11 @@ void	plot_nodes(t_fdf_data *fdf_data, mlx_image_t *g_img)
 	i = 0;
 	while (i < fdf_data->number_of_nodes)
 	{
-		mlx_put_pixel(g_img, fdf_data->nodes[i].x, fdf_data->nodes[i].y, 0xFF0000FF);
+		mlx_put_pixel(
+			g_img,
+			fdf_data->nodes[i].x + (1000 - (20 * 18)) / 2,
+			fdf_data->nodes[i].y + (1000 - (20 * 10)) / 2,
+			0xFF0000FF);
 		i++;
 	}
 }
@@ -47,6 +51,7 @@ int main(int argc, char *argv[])
 	printf("fdf_data.rows = %d\n", fdf_data.rows);
 	printf("fdf_data.columns = %d\n", fdf_data.columns);
 	printf("fdf_data.number_of_nodes = %d\n\n", fdf_data.number_of_nodes);
+	print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
 
 	// Setup MLX42
 	mlx_t	*mlx;
@@ -54,7 +59,7 @@ int main(int argc, char *argv[])
 	mlx = mlx_init(1000, 1000, "FDF", false);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, 800, 800); // Creates a new image.
+	g_img = mlx_new_image(mlx, 1000, 1000); // Creates a new image.
 	mlx_image_to_window(mlx, g_img, 0, 0); // Adds an image to the render queue.
 
 	plot_lines_horizontally(&fdf_data, g_img);
