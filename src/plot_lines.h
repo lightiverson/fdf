@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   plot_lines.h                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/28 13:48:24 by kgajadie      #+#    #+#                 */
+/*   Updated: 2022/03/28 13:58:05 by kgajadie      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PLOT_LINES_H
 # define PLOT_LINES_H
 
@@ -14,7 +26,7 @@ typedef struct s_high_data
 	int	dx;
 	int	dy;
 	int	xi;
-	int	D;
+	int	d;
 	int	x;
 	int	y0_dup;
 }	t_high_data;
@@ -24,7 +36,7 @@ typedef struct s_low_data
 	int	dx;
 	int	dy;
 	int	yi;
-	int	D;
+	int	d;
 	int	y;
 	int	x0_dup;
 }	t_low_data;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   nodes.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/28 13:46:10 by kgajadie      #+#    #+#                 */
+/*   Updated: 2022/03/28 13:47:39 by kgajadie      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef NODES_H
 # define NODES_H
 
@@ -13,9 +25,9 @@
 # include "gets.h"
 
 typedef struct s_iterators {
-	unsigned int row;
-	unsigned int column;
-	unsigned int i;
+	unsigned int	row;
+	unsigned int	column;
+	unsigned int	i;
 }	t_iterators;
 
 t_node	*calloc_nodes(unsigned int number_of_nodes);

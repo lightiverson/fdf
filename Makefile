@@ -4,7 +4,6 @@ NAME = fdf
 VPATH =	./:\
 		src:\
 		src/get_next_line:\
-		src/my_mlx
 CFLAGS = -Wall -Wextra # -Werror
 LIBMLX = src/MLX42
 LIBFT = src/libft

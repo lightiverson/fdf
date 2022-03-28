@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   plot_lines.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/03/28 13:48:11 by kgajadie      #+#    #+#                 */
+/*   Updated: 2022/03/28 13:57:48 by kgajadie      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "plot_lines.h"
 
 void	plot_line_low(t_node *origin, t_node *destination, mlx_image_t *g_img)
@@ -12,19 +24,19 @@ void	plot_line_low(t_node *origin, t_node *destination, mlx_image_t *g_img)
 		low_data.yi = -1;
 		low_data.dy = low_data.dy * -1;
 	}
-	low_data.D = (2 * low_data.dy) - low_data.dx;
+	low_data.d = (2 * low_data.dy) - low_data.dx;
 	low_data.y = origin->y;
 	low_data.x0_dup = origin->x;
 	while (low_data.x0_dup < destination->x)
 	{
 		mlx_put_pixel(g_img, low_data.x0_dup, low_data.y, 0xFFFFFFFF);
-		if (low_data.D > 0)
+		if (low_data.d > 0)
 		{
 			low_data.y = low_data.y + low_data.yi;
-			low_data.D = low_data.D + (2 * (low_data.dy - low_data.dx));
+			low_data.d = low_data.d + (2 * (low_data.dy - low_data.dx));
 		}
 		else
-			low_data.D = low_data.D + 2 * low_data.dy;
+			low_data.d = low_data.d + 2 * low_data.dy;
 		low_data.x0_dup++;
 	}
 }
@@ -41,19 +53,19 @@ void	plot_line_high(t_node *origin, t_node *destination, mlx_image_t *g_img)
 		high_data.xi = -1;
 		high_data.dx = high_data.dx * -1;
 	}
-	high_data.D = (2 * high_data.dx) - high_data.dy;
+	high_data.d = (2 * high_data.dx) - high_data.dy;
 	high_data.x = origin->x;
 	high_data.y0_dup = origin->y;
 	while (high_data.y0_dup < destination->y)
 	{
 		mlx_put_pixel(g_img, high_data.x, high_data.y0_dup, 0xFFFFFFFF);
-		if (high_data.D > 0)
+		if (high_data.d > 0)
 		{
 			high_data.x = high_data.x + high_data.xi;
-			high_data.D = high_data.D + (2 * (high_data.dx - high_data.dy));
+			high_data.d = high_data.d + (2 * (high_data.dx - high_data.dy));
 		}
 		else
-			high_data.D = high_data.D + (2 * high_data.dx);
+			high_data.d = high_data.d + (2 * high_data.dx);
 		high_data.y0_dup++;
 	}
 }
