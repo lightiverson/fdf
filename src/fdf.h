@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 12:07:35 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/03/28 12:07:36 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/04/01 15:04:21 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@
 # include "plot_lines.h"
 # include "parser.h"
 # include "MLX42/include/MLX42/MLX42.h"
+# include "degrees_to_radians.h"
 
 #endif /* FDF_H */

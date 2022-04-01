@@ -53,6 +53,8 @@ int main(int argc, char *argv[])
 	printf("fdf_data.number_of_nodes = %d\n\n", fdf_data.number_of_nodes);
 	print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
 
+	// rotate_nodes_z_axis(&fdf_data);
+
 	// Setup MLX42
 	mlx_t	*mlx;
 

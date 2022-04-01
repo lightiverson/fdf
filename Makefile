@@ -17,7 +17,8 @@ OBJS =	fdf.o \
 		get_next_line.o \
 		get_next_line_utils.o \
 		parser.o \
-		plot_lines.o
+		plot_lines.o \
+		degrees_to_radians.o 
 
 #  Recipes
 
