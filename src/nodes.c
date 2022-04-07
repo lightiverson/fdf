@@ -6,11 +6,15 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:45:44 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/03/28 13:45:45 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/04/07 17:37:38 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "nodes.h"
+# define SCREEN_W 1000
+# define SCREEN_H 1000
+# define RASTER_W 800
+# define RASTER_H 800
 
 t_node	*calloc_nodes(unsigned int number_of_nodes)
 {
@@ -120,6 +124,8 @@ void	transform_nodes(t_fdf_data *fdf_data)
 	{
 		fdf_data->nodes[i].x = fdf_data->nodes[i].x * distance_between_columns;
 		fdf_data->nodes[i].y = fdf_data->nodes[i].y * distance_between_rows;
+		// fdf_data->nodes[i].x = fdf_data->nodes[i].x * distance_between_columns + ((SCREEN_W - (distance_between_columns * fdf_data->columns - 1)) / 2);
+		// fdf_data->nodes[i].y = fdf_data->nodes[i].y * distance_between_rows + ((SCREEN_H - (distance_between_rows * fdf_data->rows - 1)) / 2);
 		i++;
 	}
 }

@@ -1,4 +1,8 @@
 #include "fdf.h"
+# define SCREEN_W 1000
+# define SCREEN_H 1000
+# define RASTER_W 800
+# define RASTER_H 800
 
 mlx_image_t *g_img;
 
@@ -36,6 +40,22 @@ void	plot_nodes(t_fdf_data *fdf_data, mlx_image_t *g_img)
 	}
 }
 
+unsigned int	raster_width(t_fdf_data *fdf_data)
+{
+	int	left_border;
+	int	right_border;
+	int	raster_width;
+
+	left_border = fdf_data->nodes[fdf_data->number_of_nodes - fdf_data->columns].x;
+	printf("left_border = %i\n", left_border);
+
+	right_border = fdf_data->nodes[fdf_data->columns - 1].x;
+	printf("right_border = %i\n", right_border);
+
+	raster_width = right_border - left_border;
+	return (raster_width);
+}
+
 int main(int argc, char *argv[])
 {
 	// Setup programma
@@ -47,17 +67,20 @@ int main(int argc, char *argv[])
 	printf("fdf_data.rows = %d\n", fdf_data.rows);
 	printf("fdf_data.columns = %d\n", fdf_data.columns);
 	printf("fdf_data.number_of_nodes = %d\n\n", fdf_data.number_of_nodes);
+	print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
 
 	rotate_nodes_z_axis(&fdf_data);
 	print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
 
+	printf("raster_width = %i\n", raster_width(&fdf_data));
+
 	// Setup MLX42
 	mlx_t	*mlx;
 
-	mlx = mlx_init(1000, 1000, "FDF", false);
+	mlx = mlx_init(SCREEN_W, SCREEN_H, "FDF", false);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, 800, 800); // Creates a new image.
+	g_img = mlx_new_image(mlx, RASTER_W, RASTER_H); // Creates a new image.
 	mlx_image_to_window(mlx, g_img, 0, 0); // Adds an image to the render queue.
 
 	plot_lines_horizontally(&fdf_data, g_img);
