@@ -28,7 +28,7 @@
 int				get_map_fd(const char *map_name);
 unsigned int	count_columns(const char *map_name);
 unsigned int	count_rows(const char *map_name);
-unsigned int	calc_distance_columns(unsigned int columns);
-unsigned int	calc_distance_rows(unsigned int rows);
+unsigned int	calc_distance_nodes_x(unsigned int columns);
+unsigned int	calc_distance_nodes_y(unsigned int rows);
 
 #endif /* GETS_H */

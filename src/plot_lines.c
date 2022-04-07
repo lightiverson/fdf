@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "plot_lines.h"
-#define MAP_WIDTH 800
-#define MAP_HEIGHT 800
 
 void	plot_line_low(t_node *origin, t_node *destination, mlx_image_t *g_img)
 {
@@ -31,11 +29,7 @@ void	plot_line_low(t_node *origin, t_node *destination, mlx_image_t *g_img)
 	low_data.x0_dup = origin->x;
 	while (low_data.x0_dup < destination->x)
 	{
-		mlx_put_pixel(
-			g_img,
-			low_data.x0_dup + (1000 - (20 * 18)) / 2,
-			low_data.y + (1000 - (20 * 10)) / 2,
-			0xFFFFFFFF);
+		mlx_put_pixel(g_img, low_data.x0_dup, low_data.y, 0xFFFFFFFF);
 		if (low_data.d > 0)
 		{
 			low_data.y = low_data.y + low_data.yi;
@@ -64,11 +58,7 @@ void	plot_line_high(t_node *origin, t_node *destination, mlx_image_t *g_img)
 	high_data.y0_dup = origin->y;
 	while (high_data.y0_dup < destination->y)
 	{
-		mlx_put_pixel(
-			g_img,
-			high_data.x + (1000 - (20 * 18)) / 2,
-			high_data.y0_dup + (1000 - (20 * 10)) / 2,
-			0xFFFFFFFF);
+		mlx_put_pixel(g_img, high_data.x, high_data.y0_dup, 0xFFFFFFFF);
 		if (high_data.d > 0)
 		{
 			high_data.x = high_data.x + high_data.xi;

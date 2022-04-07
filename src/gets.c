@@ -80,26 +80,26 @@ unsigned int	count_columns(const char *map_name)
 	return (columns);
 }
 
-unsigned int	calc_distance_columns(unsigned int columns)
+unsigned int	calc_distance_nodes_x(unsigned int columns)
 {
 	unsigned int	max_distance;
 	unsigned int	distance_between_columns;
 
-	max_distance = 20;
+	max_distance = 25;
 	distance_between_columns = MAP_WIDTH / columns;
-	if (distance_between_columns > max_distance)
-		distance_between_columns = max_distance;
-	return (distance_between_columns);
+	while (distance_between_columns < max_distance && max_distance > 1)
+		max_distance--;
+	return (max_distance);
 }
 
-unsigned int	calc_distance_rows(unsigned int rows)
+unsigned int	calc_distance_nodes_y(unsigned int rows)
 {
 	unsigned int	max_distance;
 	unsigned int	distance_between_rows;
 
-	max_distance = 20;
+	max_distance = 25;
 	distance_between_rows = MAP_HEIGHT / rows;
-	if (distance_between_rows > max_distance)
-		distance_between_rows = max_distance;
-	return (distance_between_rows);
+	while (distance_between_rows < max_distance && max_distance > 1)
+		max_distance--;
+	return (max_distance);
 }

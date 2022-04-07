@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "nodes.h"
+#define WIDTH 1000
+#define HEIGHT 1000
 
 t_node	*calloc_nodes(unsigned int number_of_nodes)
 {
@@ -110,16 +112,16 @@ void	populate_nodes(const char *map_name, t_node *nodes)
 void	transform_nodes(t_fdf_data *fdf_data)
 {
 	unsigned int	i;
-	unsigned int	distance_between_columns;
-	unsigned int	distance_between_rows;
+	unsigned int	distance_nodes_x;
+	unsigned int	distance_nodes_y;
 
-	distance_between_columns = calc_distance_columns(fdf_data->columns);
-	distance_between_rows = calc_distance_rows(fdf_data->rows);
+	distance_nodes_x = calc_distance_nodes_x(fdf_data->columns);
+	distance_nodes_y = calc_distance_nodes_y(fdf_data->rows);
 	i = 0;
 	while (i < fdf_data->number_of_nodes)
 	{
-		fdf_data->nodes[i].x = fdf_data->nodes[i].x * distance_between_columns;
-		fdf_data->nodes[i].y = fdf_data->nodes[i].y * distance_between_rows;
+		fdf_data->nodes[i].x = fdf_data->nodes[i].x * distance_nodes_x + ((WIDTH - (distance_nodes_x * fdf_data->columns - 1)) / 2);
+		fdf_data->nodes[i].y = fdf_data->nodes[i].y * distance_nodes_y + ((HEIGHT - (distance_nodes_y * fdf_data->rows - 1)) / 2);
 		i++;
 	}
 }
