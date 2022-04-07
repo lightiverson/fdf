@@ -3,8 +3,8 @@
 NAME = fdf
 VPATH =	./:\
 		src:\
-		src/get_next_line:\
-CFLAGS = -Wall -Wextra # -Werror
+		src/get_next_line:
+CFLAGS = -g -fsanitize=address -Wall -Wextra # -Werror
 LIBMLX = src/MLX42
 LIBFT = src/libft
 
@@ -17,7 +17,8 @@ OBJS =	fdf.o \
 		get_next_line.o \
 		get_next_line_utils.o \
 		parser.o \
-		plot_lines.o
+		plot_lines.o \
+		degrees_to_radians.o
 
 #  Recipes
 
@@ -33,7 +34,7 @@ libmlx:
 	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(NAME): $(OBJS)
-	$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
 clean:
 	rm -f $(OBJS)

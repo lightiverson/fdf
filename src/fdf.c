@@ -31,7 +31,6 @@ void	plot_nodes(t_fdf_data *fdf_data, mlx_image_t *g_img)
 	i = 0;
 	while (i < fdf_data->number_of_nodes)
 	{
-		// mlx_put_pixel(g_img, fdf_data->nodes[i].x, fdf_data->nodes[i].y, 0xFF0000FF);
 		wrapper_mlx_put_pixel(g_img, fdf_data->nodes[i].x, fdf_data->nodes[i].y, 0xFF0000FF);
 		i++;
 	}
@@ -48,6 +47,9 @@ int main(int argc, char *argv[])
 	printf("fdf_data.rows = %d\n", fdf_data.rows);
 	printf("fdf_data.columns = %d\n", fdf_data.columns);
 	printf("fdf_data.number_of_nodes = %d\n\n", fdf_data.number_of_nodes);
+
+	rotate_nodes_z_axis(&fdf_data);
+	print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
 
 	// Setup MLX42
 	mlx_t	*mlx;

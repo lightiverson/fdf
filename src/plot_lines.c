@@ -6,15 +6,16 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:48:11 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/07 14:38:51 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/04/07 15:22:21 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "plot_lines.h"
 
-void	wrapper_mlx_put_pixel(mlx_image_t* image, int32_t x, int32_t y, uint32_t color)
+void	wrapper_mlx_put_pixel(mlx_image_t *image,
+	int32_t x, int32_t y, uint32_t color)
 {
-	if ((x < 0 && x > 800) && (y < 0 && y > 800))
+	if ((x < 0 || x > 800) || (y < 0 || y > 800))
 		return ;
 	mlx_put_pixel(image, x, y, color);
 }
@@ -36,7 +37,6 @@ void	plot_line_low(t_node *origin, t_node *destination, mlx_image_t *g_img)
 	low_data.x0_dup = origin->x;
 	while (low_data.x0_dup < destination->x)
 	{
-		// mlx_put_pixel(g_img, low_data.x0_dup, low_data.y, 0xFFFFFFFF);
 		wrapper_mlx_put_pixel(g_img, low_data.x0_dup, low_data.y, 0xFFFFFFFF);
 		if (low_data.d > 0)
 		{
@@ -66,7 +66,6 @@ void	plot_line_high(t_node *origin, t_node *destination, mlx_image_t *g_img)
 	high_data.y0_dup = origin->y;
 	while (high_data.y0_dup < destination->y)
 	{
-		// mlx_put_pixel(g_img, high_data.x, high_data.y0_dup, 0xFFFFFFFF);
 		wrapper_mlx_put_pixel(g_img, high_data.x, high_data.y0_dup, 0xFFFFFFFF);
 		if (high_data.d > 0)
 		{

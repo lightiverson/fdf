@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:48:24 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/07 14:38:18 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/04/07 15:24:29 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,11 @@ typedef struct s_low_data
 	int	x0_dup;
 }	t_low_data;
 
+void	wrapper_mlx_put_pixel(mlx_image_t* image, int32_t x, int32_t y, uint32_t color);
 void	plot_line_low(t_node *origin, t_node *destination, mlx_image_t *g_img);
 void	plot_line_high(t_node *origin, t_node *destination, mlx_image_t *g_img);
 void	plot_line(t_node *origin, t_node *destination, mlx_image_t *g_img);
-void	test_bresenham(t_fdf_data *fdf_data, mlx_image_t *g_img);
 void	plot_lines_horizontally(t_fdf_data *fdf_data, mlx_image_t *g_img);
 void	plot_lines_vertically(t_fdf_data *fdf_data, mlx_image_t *g_img);
-void	wrapper_mlx_put_pixel(mlx_image_t* image, int32_t x, int32_t y, uint32_t color);
 
 #endif /* PLOT_LINES_H */
