@@ -31,7 +31,8 @@ void	plot_nodes(t_fdf_data *fdf_data, mlx_image_t *g_img)
 	i = 0;
 	while (i < fdf_data->number_of_nodes)
 	{
-		mlx_put_pixel(g_img, fdf_data->nodes[i].x, fdf_data->nodes[i].y, 0xFF0000FF);
+		// mlx_put_pixel(g_img, fdf_data->nodes[i].x, fdf_data->nodes[i].y, 0xFF0000FF);
+		wrapper_mlx_put_pixel(g_img, fdf_data->nodes[i].x, fdf_data->nodes[i].y, 0xFF0000FF);
 		i++;
 	}
 }
