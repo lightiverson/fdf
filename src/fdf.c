@@ -1,8 +1,4 @@
 #include "fdf.h"
-# define SCREEN_W 1000
-# define SCREEN_H 1000
-# define RASTER_W 800
-# define RASTER_H 800
 
 mlx_image_t *g_img;
 
@@ -28,19 +24,7 @@ void	is_argc_two(int argc)
 	}
 }
 
-void	plot_nodes(t_fdf_data *fdf_data, mlx_image_t *g_img)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < fdf_data->number_of_nodes)
-	{
-		wrapper_mlx_put_pixel(g_img, fdf_data->nodes[i].x, fdf_data->nodes[i].y, 0xFF0000FF);
-		i++;
-	}
-}
-
-unsigned int	raster_width(t_fdf_data *fdf_data)
+unsigned int	calc_raster_width(t_fdf_data *fdf_data)
 {
 	int	left_border;
 	int	right_border;
@@ -53,7 +37,29 @@ unsigned int	raster_width(t_fdf_data *fdf_data)
 	printf("right_border = %i\n", right_border);
 
 	raster_width = right_border - left_border;
+	printf("raster_width = %i\n", raster_width);
+
 	return (raster_width);
+}
+
+// unsigned int	calc_raster_height(t_fdf_data *fdf_data)
+
+void	translate_raster(t_fdf_data *fdf_data)
+{
+	unsigned int	raster_width;
+	unsigned int	i;
+
+	raster_width = calc_raster_width(fdf_data);
+	// raster_height = calc_raster_height(fdf_data);
+	i = 0;
+	while (i < fdf_data->number_of_nodes)
+	{
+		fdf_data->nodes[i].x = fdf_data->nodes[i].x;
+		// fdf_data->nodes[i].x = fdf_data->nodes[i].x + ((SCREEN_W - raster_width) / 1.5);
+		fdf_data->nodes[i].y = fdf_data->nodes[i].y;
+		// fdf_data->nodes[i].y = fdf_data->nodes[i].y + ((SCREEN_H - raster_height) / 1.5);
+		i++;
+	}
 }
 
 int main(int argc, char *argv[])
@@ -69,10 +75,12 @@ int main(int argc, char *argv[])
 	printf("fdf_data.number_of_nodes = %d\n\n", fdf_data.number_of_nodes);
 	print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
 
+	translate_nodes(&fdf_data);
 	rotate_nodes_z_axis(&fdf_data);
+
 	print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
 
-	printf("raster_width = %i\n", raster_width(&fdf_data));
+	translate_raster(&fdf_data);
 
 	// Setup MLX42
 	mlx_t	*mlx;
@@ -80,7 +88,7 @@ int main(int argc, char *argv[])
 	mlx = mlx_init(SCREEN_W, SCREEN_H, "FDF", false);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, RASTER_W, RASTER_H); // Creates a new image.
+	g_img = mlx_new_image(mlx, SCREEN_W, SCREEN_H); // Creates a new image.
 	mlx_image_to_window(mlx, g_img, 0, 0); // Adds an image to the render queue.
 
 	plot_lines_horizontally(&fdf_data, g_img);

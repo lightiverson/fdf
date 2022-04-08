@@ -6,19 +6,11 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:48:11 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/07 15:22:21 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/04/08 15:11:51 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "plot_lines.h"
-
-void	wrapper_mlx_put_pixel(mlx_image_t *image,
-	int32_t x, int32_t y, uint32_t color)
-{
-	if ((x < 0 || x > 800) || (y < 0 || y > 800))
-		return ;
-	mlx_put_pixel(image, x, y, color);
-}
 
 void	plot_line_low(t_node *origin, t_node *destination, mlx_image_t *g_img)
 {

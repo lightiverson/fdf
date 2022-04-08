@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:48:24 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/07 15:24:29 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/04/08 10:46:12 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 /* Private libraries */
 # include "structs.h"
 # include "MLX42/include/MLX42/MLX42.h"
+# include "screen_raster_sizes.h"
 
 typedef struct s_high_data
 {

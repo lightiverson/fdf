@@ -6,13 +6,11 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:44:41 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/03/28 13:44:42 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/04/08 15:11:44 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gets.h"
-#define MAP_WIDTH 800
-#define MAP_HEIGHT 800
 
 int	get_map_fd(const char *map_name)
 {
@@ -80,26 +78,10 @@ unsigned int	count_columns(const char *map_name)
 	return (columns);
 }
 
-unsigned int	calc_distance_columns(unsigned int columns)
+void	wrapper_mlx_put_pixel(mlx_image_t *image,
+	int32_t x, int32_t y, uint32_t color)
 {
-	unsigned int	max_distance;
-	unsigned int	distance_between_columns;
-
-	max_distance = 20;
-	distance_between_columns = MAP_WIDTH / columns;
-	if (distance_between_columns > max_distance)
-		distance_between_columns = max_distance;
-	return (distance_between_columns);
-}
-
-unsigned int	calc_distance_rows(unsigned int rows)
-{
-	unsigned int	max_distance;
-	unsigned int	distance_between_rows;
-
-	max_distance = 20;
-	distance_between_rows = MAP_HEIGHT / rows;
-	if (distance_between_rows > max_distance)
-		distance_between_rows = max_distance;
-	return (distance_between_rows);
+	if ((x < 0 || x > SCREEN_W) || (y < 0 || y > SCREEN_H))
+		return ;
+	mlx_put_pixel(image, x, y, color);
 }

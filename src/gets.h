@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:45:23 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/03/28 13:45:24 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/04/08 15:19:26 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,13 @@
 /* Private libraries */
 # include "get_next_line/get_next_line.h"
 # include "free_breezy.h"
+# include "MLX42/include/MLX42/MLX42.h"
+# include "screen_raster_sizes.h"
 
 int				get_map_fd(const char *map_name);
 unsigned int	count_columns(const char *map_name);
 unsigned int	count_rows(const char *map_name);
-unsigned int	calc_distance_columns(unsigned int columns);
-unsigned int	calc_distance_rows(unsigned int rows);
+void	wrapper_mlx_put_pixel(mlx_image_t *image,
+	int32_t x, int32_t y, uint32_t color);
 
 #endif /* GETS_H */
