@@ -44,3 +44,25 @@ void	rotate_nodes_z_axis(t_fdf_data *fdf_data)
 		i++;
 	}
 }
+
+void	rotate_node_x_axis(t_node *node)
+{
+	int		y_2;
+	double	radians;
+
+	radians = degrees_to_radians(45);
+	y_2 = (node->y * cos(radians)) - (node->z * sin(radians));
+	node->y = y_2;
+}
+
+void	rotate_nodes_x_axis(t_fdf_data *fdf_data)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < fdf_data->number_of_nodes)
+	{
+		rotate_node_x_axis(fdf_data->nodes + i);
+		i++;
+	}
+}
