@@ -1,4 +1,16 @@
-# include "translate_nodes.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   translate_nodes.c                                  :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: kawish <kawish@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/04/09 14:17:39 by kawish        #+#    #+#                 */
+/*   Updated: 2022/04/09 14:17:40 by kawish        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "translate_nodes.h"
 
 unsigned int	calc_distance_columns(unsigned int columns)
 {
