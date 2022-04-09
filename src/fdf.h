@@ -33,5 +33,6 @@
 # include "screen_raster_sizes.h"
 # include "plot_nodes.h"
 # include "plot_lines.h"
+# include "translate_raster.h"
 
 #endif /* FDF_H */

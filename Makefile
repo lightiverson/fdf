@@ -19,7 +19,8 @@ OBJS =	fdf.o \
 		plot_lines.o \
 		rotate.o \
 		plot_nodes.o \
-		translate_nodes.o
+		translate_nodes.o \
+		translate_raster.o
 
 #  Recipes
 
