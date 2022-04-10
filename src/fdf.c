@@ -25,7 +25,6 @@ void	is_argc_two(int argc)
 	}
 }
 
-
 int main(int argc, char *argv[])
 {
 	// Setup programma
@@ -37,15 +36,13 @@ int main(int argc, char *argv[])
 	printf("fdf_data.rows = %d\n", fdf_data.rows);
 	printf("fdf_data.columns = %d\n", fdf_data.columns);
 	printf("fdf_data.number_of_nodes = %d\n\n", fdf_data.number_of_nodes);
-	// print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
+	print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
 
 	translate_nodes(&fdf_data);
 
 	rotate_nodes_z_axis(&fdf_data);
-	// print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
 
 	rotate_nodes_x_axis(&fdf_data);
-	// print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
 
 	translate_raster(&fdf_data);
 
