@@ -20,7 +20,8 @@ OBJS =	fdf.o \
 		rotate.o \
 		plot_nodes.o \
 		translate_nodes.o \
-		translate_raster.o
+		translate_raster.o \
+		utilities.o
 
 #  Recipes
 

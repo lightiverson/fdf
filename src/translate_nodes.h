@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/08 14:54:21 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/09 14:15:12 by kawish        ########   odam.nl         */
+/*   Updated: 2022/04/19 17:36:18 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include "structs.h"
 # include "screen_raster_sizes.h"
 
-unsigned int	calc_distance_columns(unsigned int columns);
-unsigned int	calc_distance_rows(unsigned int rows);
-void			translate_nodes(t_fdf_data *fdf_data);
+void	translate_nodes(t_fdf_data *fdf_data);
 
 #endif /* TRANSLATE_NODES_H */

@@ -6,13 +6,13 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/09 14:17:39 by kawish        #+#    #+#                 */
-/*   Updated: 2022/04/09 14:17:40 by kawish        ########   odam.nl         */
+/*   Updated: 2022/04/19 17:58:56 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "translate_nodes.h"
 
-unsigned int	calc_distance_columns(unsigned int columns)
+static unsigned int	calc_distance_columns(unsigned int columns)
 {
 	unsigned int	max_distance;
 	unsigned int	distance_between_columns;
@@ -24,7 +24,7 @@ unsigned int	calc_distance_columns(unsigned int columns)
 	return (distance_between_columns);
 }
 
-unsigned int	calc_distance_rows(unsigned int rows)
+static unsigned int	calc_distance_rows(unsigned int rows)
 {
 	unsigned int	max_distance;
 	unsigned int	distance_between_rows;

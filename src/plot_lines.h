@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:48:24 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/09 14:12:12 by kawish        ########   odam.nl         */
+/*   Updated: 2022/04/19 18:19:30 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "MLX42/include/MLX42/MLX42.h"
 # include "screen_raster_sizes.h"
 # include "structs.h"
+# include "utilities.h"
 
 typedef struct s_high_data
 {
@@ -42,11 +43,6 @@ typedef struct s_low_data
 	int	x0_dup;
 }	t_low_data;
 
-void	wrapper_mlx_put_pixel(mlx_image_t *image,
-			int32_t x, int32_t y, uint32_t color);
-void	plot_line_low(t_node *origin, t_node *destination, mlx_image_t *g_img);
-void	plot_line_high(t_node *origin, t_node *destination, mlx_image_t *g_img);
-void	plot_line(t_node *origin, t_node *destination, mlx_image_t *g_img);
 void	plot_lines_horizontally(t_fdf_data *fdf_data, mlx_image_t *g_img);
 void	plot_lines_vertically(t_fdf_data *fdf_data, mlx_image_t *g_img);
 

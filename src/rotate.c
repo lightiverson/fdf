@@ -6,13 +6,13 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/07 15:20:09 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/10 11:58:21 by kawish        ########   odam.nl         */
+/*   Updated: 2022/04/19 18:01:15 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rotate.h"
 
-double	degrees_to_radians(double degrees)
+static double	degrees_to_radians(double degrees)
 {
 	double	radians;
 
@@ -20,7 +20,7 @@ double	degrees_to_radians(double degrees)
 	return (radians);
 }
 
-void	rotate_node_z_axis(t_node *node)
+static void	rotate_node_z_axis(t_node *node)
 {
 	int		x_1;
 	int		y_1;
@@ -33,6 +33,16 @@ void	rotate_node_z_axis(t_node *node)
 	node->y = y_1;
 }
 
+static void	rotate_node_x_axis(t_node *node)
+{
+	int		y_2;
+	double	radians;
+
+	radians = degrees_to_radians(45);
+	y_2 = (node->y * cos(radians)) - (node->z * sin(radians));
+	node->y = y_2;
+}
+
 void	rotate_nodes_z_axis(t_fdf_data *fdf_data)
 {
 	unsigned int	i;
@@ -43,16 +53,6 @@ void	rotate_nodes_z_axis(t_fdf_data *fdf_data)
 		rotate_node_z_axis(fdf_data->nodes + i);
 		i++;
 	}
-}
-
-void	rotate_node_x_axis(t_node *node)
-{
-	int		y_2;
-	double	radians;
-
-	radians = degrees_to_radians(45);
-	y_2 = (node->y * cos(radians)) - (node->z * sin(radians));
-	node->y = y_2;
 }
 
 void	rotate_nodes_x_axis(t_fdf_data *fdf_data)

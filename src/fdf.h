@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 12:07:35 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/08 15:17:44 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/04/19 18:41:21 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <assert.h>
+# include <sys/syscall.h>
 
 /* Private libraries */
 # include "structs.h"

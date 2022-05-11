@@ -6,77 +6,13 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/09 14:20:42 by kawish        #+#    #+#                 */
-/*   Updated: 2022/04/10 17:01:28 by kawish        ########   odam.nl         */
+/*   Updated: 2022/04/19 17:58:08 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "translate_raster.h"
 
-int	get_smallest_x(t_fdf_data *fdf_data)
-{
-	unsigned int	i;
-	int				smallest_x;
-
-	i = 1;
-	smallest_x = fdf_data->nodes[0].x;
-	while (i < fdf_data->number_of_nodes)
-	{
-		if (fdf_data->nodes[i].x < smallest_x)
-			smallest_x = fdf_data->nodes[i].x;
-		i++;
-	}
-	return (smallest_x);
-}
-
-int	get_largest_x(t_fdf_data *fdf_data)
-{
-	unsigned int	i;
-	int				largest_x;
-
-	i = 1;
-	largest_x = fdf_data->nodes[0].x;
-	while (i < fdf_data->number_of_nodes)
-	{
-		if (fdf_data->nodes[i].x > largest_x)
-			largest_x = fdf_data->nodes[i].x;
-		i++;
-	}
-	return (largest_x);
-}
-
-int	get_smallest_y(t_fdf_data *fdf_data)
-{
-	unsigned int	i;
-	int				smallest_y;
-
-	i = 1;
-	smallest_y = fdf_data->nodes[0].y;
-	while (i < fdf_data->number_of_nodes)
-	{
-		if (fdf_data->nodes[i].y < smallest_y)
-			smallest_y = fdf_data->nodes[i].y;
-		i++;
-	}
-	return (smallest_y);
-}
-
-int	get_largest_y(t_fdf_data *fdf_data)
-{
-	unsigned int	i;
-	int				largest_y;
-
-	i = 1;
-	largest_y = fdf_data->nodes[0].y;
-	while (i < fdf_data->number_of_nodes)
-	{
-		if (fdf_data->nodes[i].y > largest_y)
-			largest_y = fdf_data->nodes[i].y;
-		i++;
-	}
-	return (largest_y);
-}
-
-unsigned int	calc_raster_width(t_fdf_data *fdf_data)
+static unsigned int	calc_raster_width(t_fdf_data *fdf_data)
 {
 	int	left_border;
 	int	right_border;
@@ -88,7 +24,7 @@ unsigned int	calc_raster_width(t_fdf_data *fdf_data)
 	return (raster_width);
 }
 
-unsigned int	calc_raster_height(t_fdf_data *fdf_data)
+static unsigned int	calc_raster_height(t_fdf_data *fdf_data)
 {
 	int	top_border;
 	int	bottom_border;

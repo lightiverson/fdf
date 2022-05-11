@@ -6,13 +6,14 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:48:11 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/08 15:11:51 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/04/19 18:06:22 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "plot_lines.h"
 
-void	plot_line_low(t_node *origin, t_node *destination, mlx_image_t *g_img)
+static void	plot_line_low(t_node *origin,
+	t_node *destination, mlx_image_t *g_img)
 {
 	t_low_data	low_data;
 
@@ -41,7 +42,8 @@ void	plot_line_low(t_node *origin, t_node *destination, mlx_image_t *g_img)
 	}
 }
 
-void	plot_line_high(t_node *origin, t_node *destination, mlx_image_t *g_img)
+static void	plot_line_high(t_node *origin,
+	t_node *destination, mlx_image_t *g_img)
 {
 	t_high_data	high_data;
 
@@ -70,7 +72,7 @@ void	plot_line_high(t_node *origin, t_node *destination, mlx_image_t *g_img)
 	}
 }
 
-void	plot_line(t_node *origin, t_node *destination, mlx_image_t *g_img)
+static void	plot_line(t_node *origin, t_node *destination, mlx_image_t *g_img)
 {
 	if (abs(destination->y - origin->y) < abs(destination->x - origin->x))
 	{

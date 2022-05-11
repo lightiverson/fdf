@@ -25,26 +25,63 @@ void	is_argc_two(int argc)
 	}
 }
 
+// int main(int argc, char *argv[])
+// {
+// 	// Setup programma
+// 	t_fdf_data	fdf_data;
+
+// 	is_argc_two(argc);
+// 	parser(&fdf_data, argv[1]);
+
+// 	printf("fdf_data.rows = %d\n", fdf_data.rows);
+// 	printf("fdf_data.columns = %d\n", fdf_data.columns);
+// 	printf("fdf_data.number_of_nodes = %d\n\n", fdf_data.number_of_nodes);
+// 	print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
+
+// 	translate_nodes(&fdf_data);
+
+// 	rotate_nodes_z_axis(&fdf_data);
+
+// 	rotate_nodes_x_axis(&fdf_data);
+
+// 	translate_raster(&fdf_data);
+
+// 	// Setup MLX42
+// 	mlx_t	*mlx;
+
+// 	mlx = mlx_init(SCREEN_W, SCREEN_H, "FDF", false);
+// 	if (!mlx)
+// 		exit(EXIT_FAILURE);
+// 	g_img = mlx_new_image(mlx, SCREEN_W, SCREEN_H); // Creates a new image.
+// 	mlx_image_to_window(mlx, g_img, 0, 0); // Adds an image to the render queue.
+
+// 	plot_lines_horizontally(&fdf_data, g_img);
+// 	plot_lines_vertically(&fdf_data, g_img);
+// 	plot_nodes(&fdf_data, g_img);
+
+// 	mlx_loop(mlx);
+// 	mlx_delete_image(mlx, g_img); // Once the application request an exit, cleanup.
+// 	mlx_terminate(mlx);
+
+// 	return (EXIT_SUCCESS);
+// }
+
 int main(int argc, char *argv[])
 {
-	// Setup programma
-	t_fdf_data	fdf_data;
+	const char *map_name;
+	int map_fd;
+	
+	map_name = "./test_maps/julia.fdf";
+	map_fd = get_map_fd(map_name);
 
-	is_argc_two(argc);
-	parser(&fdf_data, argv[1]);
+	char buf[1073741824];
+	int n;
 
-	printf("fdf_data.rows = %d\n", fdf_data.rows);
-	printf("fdf_data.columns = %d\n", fdf_data.columns);
-	printf("fdf_data.number_of_nodes = %d\n\n", fdf_data.number_of_nodes);
-	print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
-
-	translate_nodes(&fdf_data);
-
-	rotate_nodes_z_axis(&fdf_data);
-
-	rotate_nodes_x_axis(&fdf_data);
-
-	translate_raster(&fdf_data);
+	while ((n = read(map_fd, buf, 1073741824)) > 0)
+	{
+		// write(1, buf, n);
+		write(1, "vaak\n", 5);
+	}
 
 	// Setup MLX42
 	mlx_t	*mlx;
@@ -52,16 +89,6 @@ int main(int argc, char *argv[])
 	mlx = mlx_init(SCREEN_W, SCREEN_H, "FDF", false);
 	if (!mlx)
 		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, SCREEN_W, SCREEN_H); // Creates a new image.
-	mlx_image_to_window(mlx, g_img, 0, 0); // Adds an image to the render queue.
-
-	plot_lines_horizontally(&fdf_data, g_img);
-	plot_lines_vertically(&fdf_data, g_img);
-	plot_nodes(&fdf_data, g_img);
-
-	mlx_loop(mlx);
-	mlx_delete_image(mlx, g_img); // Once the application request an exit, cleanup.
-	mlx_terminate(mlx);
 
 	return (EXIT_SUCCESS);
 }

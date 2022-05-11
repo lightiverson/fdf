@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   nodes.h                                            :+:    :+:            */
+/*   parser.h                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:46:10 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/08 15:07:55 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/04/19 18:17:48 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # include "libft/libft.h"
 # include "gets.h"
 # include "screen_raster_sizes.h"
+# include "free_breezy.h"
+# include "utilities.h"
+# include "get_next_line/get_next_line.h"
 
 typedef struct s_iterators {
 	unsigned int	row;
