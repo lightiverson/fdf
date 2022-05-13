@@ -4,6 +4,10 @@ schrijf een bash script dat over elke map in de directory maps looped
 -> voor elke map opent die een terminal window en voert ./fdf uit met de naam van de map als argument
 
 ## Todo
+zorg eerst dat je gnl elke map kan lezen met elke buffsize -> test dit in nieuwe main
+
+4. Make moet remaken als header files veranderd worden
+5. Als buffersize veranderd in getnextline crashed programma -> dit moet gefixed worden
 3. ~~Fix segfault op pyramide map~~
 1. ~~Refactor mlx functies (misschien moet dit later)~~
 2. ~~Maak fill matrix functie~~

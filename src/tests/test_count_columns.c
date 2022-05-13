@@ -1,5 +1,5 @@
 #include "./Unity-master/src/unity.h"
-#include "../gets.h"
+#include "../utilities.h"
 
 void setUp(void) {
     // set stuff up here
@@ -159,10 +159,10 @@ void test_count_columns_t2(void)
 int main(void)
 {
     UNITY_BEGIN();
+    RUN_TEST(test_count_columns_42);
     RUN_TEST(test_count_columns_10_2);
     RUN_TEST(test_count_columns_10_70);
     RUN_TEST(test_count_columns_20_60);
-    RUN_TEST(test_count_columns_42);
     RUN_TEST(test_count_columns_50_4);
     RUN_TEST(test_count_columns_100_6);
     RUN_TEST(test_count_columns_basictest);
@@ -188,6 +188,7 @@ gcc \
 -D UNITY_OUTPUT_COLOR \
 -D UNITY_FIXTURE_NO_EXTRAS \
 test_count_columns.c \
+../utilities.c \
 ../gets.c \
 ./Unity-master/src/unity.c \
 ../free_breezy.c \

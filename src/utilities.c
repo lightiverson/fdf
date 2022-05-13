@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/19 18:25:14 by kawish        #+#    #+#                 */
-/*   Updated: 2022/04/19 18:25:15 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/13 17:19:48 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,40 @@ unsigned int	count_rows(const char *map_name)
 	return (number_of_rows);
 }
 
+void	helper_count_columns(char *line)
+{
+	free(line);
+	perror("Error: read()");
+	exit(EXIT_FAILURE);
+}
+
 unsigned int	count_columns(const char *map_name)
 {
 	int				map_fd;
-	int				return_get_next_line;
+	int				n;
+	char			c[2];
 	char			*line;
-	unsigned int	columns;
 	char			**vertex;
 
 	map_fd = get_map_fd(map_name);
-	columns = 0;
-	return_get_next_line = get_next_line(map_fd, &line);
-	if (return_get_next_line == -1)
+	c[1] = '\0';
+	n = read(map_fd, &c, 1);
+	line = NULL;
+	while (n > 0 && *c != '\n')
 	{
-		free(line);
-		printf("Error: get_next_line returned -1\n");
-		exit(EXIT_FAILURE);
+		line = ft_strjoin(line, c);
+		n = read(map_fd, c, 1);
 	}
+	if (n == -1)
+		helper_count_columns(line);
+	n = 0;
 	vertex = ft_split(line, ' ');
 	free(line);
-	while (vertex[columns] != NULL)
-		columns++;
+	while (vertex[n] != NULL)
+		n++;
 	free_splitted_array(vertex);
 	close(map_fd);
-	return (columns);
+	return (n);
 }
 
 void	wrapper_mlx_put_pixel(mlx_image_t *image,
