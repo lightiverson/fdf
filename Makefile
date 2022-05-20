@@ -21,7 +21,8 @@ OBJS =	fdf.o \
 		plot_nodes.o \
 		translate_nodes.o \
 		translate_raster.o \
-		utilities.o
+		utilities.o \
+		file_to_str.o
 
 #  Recipes
 

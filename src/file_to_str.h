@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   structs.h                                          :+:    :+:            */
+/*   file_to_str.h                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/03/28 14:01:27 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/20 12:07:19 by kgajadie      ########   odam.nl         */
+/*   Created: 2022/05/20 11:59:21 by kgajadie      #+#    #+#                 */
+/*   Updated: 2022/05/20 12:02:08 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
+#ifndef FILE_TO_STR_H
+# define FILE_TO_STR_H
 
-typedef struct s_node {
-	int		x;
-	int		y;
-	int		z;
-}	t_node;
+/* Public libraries */
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
 
-typedef struct s_fdf_data {
-	char*			file_str;
-	unsigned int	rows;
-	unsigned int	columns;
-	unsigned int	number_of_nodes;
-	t_node			*nodes;
-}	t_fdf_data;
+/* Private libraries */
+#include "gets.h"
 
-#endif /* STRUCTS_H */
+int	file_to_str(int fd, char **file_str);
+
+#endif /* FILE_TO_STR_H */

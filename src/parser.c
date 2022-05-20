@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:45:44 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/12 15:08:26 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/20 18:06:25 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,13 @@ void	populate_nodes(const char *map_name, t_node *nodes)
 
 void	parser(t_fdf_data *fdf_data, const char *map_name)
 {
-	fdf_data->rows = count_rows(map_name);
-	fdf_data->columns = count_columns(map_name);
+	int	map_fd;
+
+	map_fd = get_map_fd(map_name);
+	file_to_str(map_fd, &fdf_data->file_str);
+	close(map_fd);
+	fdf_data->rows = count_rows(fdf_data->file_str);
+	fdf_data->columns = count_columns(fdf_data->file_str);
 	fdf_data->number_of_nodes = fdf_data->rows * fdf_data->columns;
 	fdf_data->nodes = calloc_nodes(fdf_data->number_of_nodes);
 	populate_nodes(map_name, fdf_data->nodes);

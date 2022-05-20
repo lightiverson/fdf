@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 12:07:35 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/19 18:41:21 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/20 12:31:21 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@
 # include "plot_nodes.h"
 # include "plot_lines.h"
 # include "translate_raster.h"
+# include "file_to_str.h"
 
 #endif /* FDF_H */

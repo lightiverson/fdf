@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/19 17:42:17 by kawish        #+#    #+#                 */
-/*   Updated: 2022/04/19 18:25:05 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/20 18:06:47 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
 
-unsigned int	count_rows(const char *map_name);
-unsigned int	count_columns(const char *map_name);
+unsigned int	count_rows(char *file_str);
+unsigned int	count_columns(char *file_str);
 void			wrapper_mlx_put_pixel(mlx_image_t *image,
 					int32_t x, int32_t y, uint32_t color);
 

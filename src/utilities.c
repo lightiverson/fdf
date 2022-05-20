@@ -6,73 +6,77 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/19 18:25:14 by kawish        #+#    #+#                 */
-/*   Updated: 2022/05/13 17:19:48 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/20 18:08:31 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utilities.h"
 
-unsigned int	count_rows(const char *map_name)
+static char	*get_first_line(char *file_str)
 {
-	int				map_fd;
+	char			*first_line;
+	unsigned int	len_first_line;
+	size_t			i;
+
+	len_first_line = 0;
+	i = 0;
+	while (file_str[i] != '\n')
+	{
+		len_first_line++;
+		i++;
+	}
+	first_line = malloc((len_first_line + 1) * sizeof(*first_line));
+	if (first_line == NULL)
+	{
+		printf("Malloc failed. Exiting...");
+		exit(1);
+	}
+	ft_strlcpy(first_line, file_str, len_first_line + 1);
+	return (first_line);
+}
+
+unsigned int	count_columns(char *file_str)
+{
+	size_t			i;
+	unsigned int	number_of_columns;
+	char			*first_line;
+	char			**splitted_strings;
+
+	i = 0;
+	number_of_columns = 0;
+	first_line = get_first_line(file_str);
+	splitted_strings = ft_split(first_line, ' ');
+	if (splitted_strings == NULL)
+	{
+		printf("Split() failed. Exiting...");
+		exit(1);
+	}
+	while (splitted_strings[i] != NULL)
+	{
+		number_of_columns++;
+		i++;
+	}
+	free_splitted_array(splitted_strings);
+	free(first_line);
+	return (number_of_columns);
+}
+
+unsigned int	count_rows(char *file_str)
+{
+	size_t			i;
 	unsigned int	number_of_rows;
-	int				n;
-	char			c;
 
-	map_fd = get_map_fd(map_name);
 	number_of_rows = 1;
-	n = read(map_fd, &c, 1);
-	while (n > 0)
+	i = 0;
+	while (file_str[i] != '\0')
 	{
-		if (c == '\n')
+		if (file_str[i] == '\n')
 			number_of_rows++;
-		n = read(map_fd, &c, 1);
+		i++;
 	}
-	if (n == -1)
-	{
-		perror("Error: read()");
-		exit(EXIT_FAILURE);
-	}
-	if (n == 0 && c == '\n')
+	if (file_str[i - 1] == '\n')
 		number_of_rows--;
-	close(map_fd);
 	return (number_of_rows);
-}
-
-void	helper_count_columns(char *line)
-{
-	free(line);
-	perror("Error: read()");
-	exit(EXIT_FAILURE);
-}
-
-unsigned int	count_columns(const char *map_name)
-{
-	int				map_fd;
-	int				n;
-	char			c[2];
-	char			*line;
-	char			**vertex;
-
-	map_fd = get_map_fd(map_name);
-	c[1] = '\0';
-	n = read(map_fd, &c, 1);
-	line = NULL;
-	while (n > 0 && *c != '\n')
-	{
-		line = ft_strjoin(line, c);
-		n = read(map_fd, c, 1);
-	}
-	if (n == -1)
-		helper_count_columns(line);
-	n = 0;
-	vertex = ft_split(line, ' ');
-	free(line);
-	while (vertex[n] != NULL)
-		n++;
-	free_splitted_array(vertex);
-	close(map_fd);
-	return (n);
 }
 
 void	wrapper_mlx_put_pixel(mlx_image_t *image,
@@ -80,5 +84,5 @@ void	wrapper_mlx_put_pixel(mlx_image_t *image,
 {
 	if ((x < 0 || x > SCREEN_W) || (y < 0 || y > SCREEN_H))
 		return ;
-	mlx_put_pixel(image, x, y, color);
+	// mlx_put_pixel(image, x, y, color);
 }

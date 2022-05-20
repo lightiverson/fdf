@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:46:10 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/19 18:17:48 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/20 18:01:07 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "free_breezy.h"
 # include "utilities.h"
 # include "get_next_line/get_next_line.h"
+# include "file_to_str.h"
 
 typedef struct s_iterators {
 	unsigned int	row;

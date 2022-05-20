@@ -33,10 +33,10 @@ int main(int argc, char *argv[])
 	is_argc_two(argc);
 	parser(&fdf_data, argv[1]);
 
-	printf("fdf_data.rows = %d\n", fdf_data.rows);
-	printf("fdf_data.columns = %d\n", fdf_data.columns);
-	printf("fdf_data.number_of_nodes = %d\n\n", fdf_data.number_of_nodes);
-	print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
+	// printf("fdf_data.rows = %d\n", fdf_data.rows);
+	// printf("fdf_data.columns = %d\n", fdf_data.columns);
+	// printf("fdf_data.number_of_nodes = %d\n\n", fdf_data.number_of_nodes);
+	// print_nodes(fdf_data.nodes, fdf_data.number_of_nodes);
 
 	translate_nodes(&fdf_data);
 
@@ -65,3 +65,22 @@ int main(int argc, char *argv[])
 
 	return (EXIT_SUCCESS);
 }
+
+// int main (int argc, char *argv[])
+// {
+// 	t_fdf_data fdf_data;
+
+// 	int map_fd = get_map_fd("test_maps/basictest.fdf");
+// 	printf("map_fd = %i\n", map_fd);
+
+// 	file_to_str(map_fd, &fdf_data.file_str);
+// 	printf("fdf_data.file_str = \n|%s|\n", fdf_data.file_str);
+
+// 	// char* first_line = get_first_line(&fdf_data);
+// 	// printf("first_line = |%s|\n", first_line);
+
+// 	unsigned int number_of_columns = count_columns_twee(&fdf_data);
+// 	printf("number_of_columns = %u\n", number_of_columns);
+
+// 	close(map_fd);
+// }
