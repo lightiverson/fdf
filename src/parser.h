@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:46:10 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/20 18:01:07 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/23 10:56:43 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef struct s_iterators {
 }	t_iterators;
 
 t_node	*calloc_nodes(unsigned int number_of_nodes);
-void	populate_nodes(const char *map_name, t_node *nodes);
+// void	populate_nodes(const char *map_name, t_node *nodes);
+void	populate_nodes(t_fdf_data *fdf_data);
 void	translate_nodes(t_fdf_data *fdf_data);
 void	parser(t_fdf_data *fdf_data, const char *map_name);
 

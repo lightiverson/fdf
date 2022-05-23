@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/20 11:58:22 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/20 12:01:53 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/23 09:49:29 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-static char	*strjoin_twee(char *s1, char *s2)
+static char	*helper_file_to_str(char *s1, char *s2)
 {
 	char	*joined_str;
 	size_t	len_s1;
@@ -61,7 +61,7 @@ int	file_to_str(int fd, char **file_str)
 	n = 1;
 	while (n > 0)
 	{
-		*file_str = strjoin_twee(*file_str, buf);
+		*file_str = helper_file_to_str(*file_str, buf);
 		if (*file_str == NULL)
 			return (-1);
 		n = read(fd, buf, BUFSIZ);

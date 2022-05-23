@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	rotate_nodes_x_axis(&fdf_data);
 
 	translate_raster(&fdf_data);
-
+	
 	// Setup MLX42
 	mlx_t	*mlx;
 

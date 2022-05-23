@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/19 18:25:14 by kawish        #+#    #+#                 */
-/*   Updated: 2022/05/20 18:08:31 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/23 13:19:09 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,5 @@ void	wrapper_mlx_put_pixel(mlx_image_t *image,
 {
 	if ((x < 0 || x > SCREEN_W) || (y < 0 || y > SCREEN_H))
 		return ;
-	// mlx_put_pixel(image, x, y, color);
+	mlx_put_pixel(image, x, y, color);
 }
