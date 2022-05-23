@@ -6,13 +6,13 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/20 11:58:22 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/23 09:49:29 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/23 13:28:32 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_to_str.h"
 
-static char	*ft_strcpy(char *dest, char *src)
+static char	*ft_strcpy(char *dest, const char *src)
 {
 	size_t	i;
 
@@ -28,7 +28,7 @@ static char	*ft_strcpy(char *dest, char *src)
 	return (dest);
 }
 
-static char	*helper_file_to_str(char *s1, char *s2)
+static char	*helper_file_to_str(char *s1, const char *s2)
 {
 	char	*joined_str;
 	size_t	len_s1;
@@ -39,8 +39,8 @@ static char	*helper_file_to_str(char *s1, char *s2)
 	if (s1 == NULL)
 		len_s1 = 0;
 	else
-		len_s1 = strlen(s1);
-	len_s2 = strlen(s2);
+		len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
 	joined_str = malloc((len_s1 + len_s2 + 1 * sizeof(char)));
 	if (joined_str == NULL)
 		return (NULL);
