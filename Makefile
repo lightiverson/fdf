@@ -3,7 +3,6 @@
 NAME = fdf
 VPATH =	./:\
 		src:\
-		src/get_next_line:
 CFLAGS = -Wall -Wextra # -Werror
 LIBMLX = src/MLX42
 LIBFT = src/libft
@@ -13,8 +12,6 @@ LIBS = -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/ $(LIBMLX)/libmlx42.a $(LIBFT
 OBJS =	fdf.o \
 		free_breezy.o \
 		gets.o \
-		get_next_line.o \
-		get_next_line_utils.o \
 		parser.o \
 		plot_lines.o \
 		rotate.o \

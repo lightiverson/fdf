@@ -62,7 +62,5 @@ test_get_distance_between_columns.c \
 ./Unity-master/src/unity.c \
 ../free_breezy.c \
 ../libft/libft.a \
-../get_next_line/get_next_line.c \
-../get_next_line/get_next_line_utils.c \
 && ./a.out
 */

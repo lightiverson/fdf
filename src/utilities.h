@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/19 17:42:17 by kawish        #+#    #+#                 */
-/*   Updated: 2022/05/20 18:06:47 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/24 10:57:46 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include "screen_raster_sizes.h"
 # include "free_breezy.h"
 # include "gets.h"
-# include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
 
 unsigned int	count_rows(char *file_str);
