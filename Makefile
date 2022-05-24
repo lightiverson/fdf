@@ -10,8 +10,6 @@ LIBFT = src/libft
 HEADERS = -I ./src -I $(LIBMLX)/include -I $(LIBFT)
 LIBS = -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/ $(LIBMLX)/libmlx42.a $(LIBFT)/libft.a
 OBJS =	fdf.o \
-		free_breezy.o \
-		gets.o \
 		parser.o \
 		plot_lines.o \
 		rotate.o \
@@ -19,7 +17,9 @@ OBJS =	fdf.o \
 		translate_nodes.o \
 		translate_raster.o \
 		utilities.o \
-		file_to_str.o
+		file_to_str.o \
+		parser_cont.o \
+		translate_raster_cont.o
 
 #  Recipes
 

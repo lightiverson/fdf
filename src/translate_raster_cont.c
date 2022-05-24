@@ -1,48 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   gets.c                                             :+:    :+:            */
+/*   translate_raster_cont.c                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:44:41 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/23 13:54:11 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/24 15:28:09 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "gets.h"
-
-int	get_smallest_x(t_fdf_data *fdf_data)
-{
-	size_t	i;
-	int		smallest_x;
-
-	i = 1;
-	smallest_x = fdf_data->nodes[0].x;
-	while (i < fdf_data->number_of_nodes)
-	{
-		if (fdf_data->nodes[i].x < smallest_x)
-			smallest_x = fdf_data->nodes[i].x;
-		i++;
-	}
-	return (smallest_x);
-}
-
-int	get_largest_x(t_fdf_data *fdf_data)
-{
-	size_t	i;
-	int		largest_x;
-
-	i = 1;
-	largest_x = fdf_data->nodes[0].x;
-	while (i < fdf_data->number_of_nodes)
-	{
-		if (fdf_data->nodes[i].x > largest_x)
-			largest_x = fdf_data->nodes[i].x;
-		i++;
-	}
-	return (largest_x);
-}
+#include "translate_raster.h"
 
 int	get_smallest_y(t_fdf_data *fdf_data)
 {

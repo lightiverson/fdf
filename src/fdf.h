@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 12:07:35 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/24 10:57:19 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/24 15:23:17 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 /* Private libraries */
 # include "structs.h"
 # include "libft/libft.h"
-# include "free_breezy.h"
 # include "plot_lines.h"
 # include "parser.h"
 # include "MLX42/include/MLX42/MLX42.h"

@@ -1,9 +1,7 @@
 #include "./Unity-master/src/unity.h"
 #include "../structs.h"
-#include "../gets.h"
 #include "../file_to_str.h"
 #include "../utilities.h"
-#include "../free_breezy.h"
 
 void setUp(void) {
     // set stuff up here
@@ -280,7 +278,6 @@ test_count_columns.c \
 ../file_to_str.c \
 ../utilities.c \
 ./Unity-master/src/unity.c \
-../free_breezy.c \
 ../libft/libft.a \
 && ./a.out
 */

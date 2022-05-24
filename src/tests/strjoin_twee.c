@@ -6,14 +6,13 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/20 10:15:35 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/20 10:19:30 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/24 15:35:37 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "../gets.h"
 #include <unistd.h>
 
 char	*ft_strcpy(char *dest, char *src)

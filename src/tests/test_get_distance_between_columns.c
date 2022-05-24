@@ -1,6 +1,5 @@
 #include "./Unity-master/src/unity.h"
 #include "../fdf.h"
-#include "../gets.h"
 
 void setUp(void) {
     // set stuff up here
@@ -60,7 +59,6 @@ test_get_distance_between_columns.c \
 ../gets.c \
 ../fdf.c \
 ./Unity-master/src/unity.c \
-../free_breezy.c \
 ../libft/libft.a \
 && ./a.out
 */
