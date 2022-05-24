@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/09 14:17:39 by kawish        #+#    #+#                 */
-/*   Updated: 2022/05/24 12:25:48 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/24 14:31:23 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static unsigned int	calc_distance_columns(unsigned int columns)
 	unsigned int	max_distance;
 	unsigned int	distance_between_columns;
 
-	max_distance = 20;
+	max_distance = 25;
 	distance_between_columns = RASTER_W / columns;
 	if (distance_between_columns > max_distance)
 		distance_between_columns = max_distance;
@@ -29,7 +29,7 @@ static unsigned int	calc_distance_rows(unsigned int rows)
 	unsigned int	max_distance;
 	unsigned int	distance_between_rows;
 
-	max_distance = 20;
+	max_distance = 25;
 	distance_between_rows = RASTER_H / rows;
 	if (distance_between_rows > max_distance)
 		distance_between_rows = max_distance;
