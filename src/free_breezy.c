@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 12:07:53 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/23 13:34:47 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/24 11:56:06 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,4 @@ void	free_splitted_str(char **splitted_str)
 		i++;
 	}
 	free(splitted_str);
-}
-
-void	free_nodes(t_node *nodes)
-{
-	return ;
 }

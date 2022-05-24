@@ -1,7 +1,5 @@
 #include "fdf.h"
 
-mlx_image_t *g_img;
-
 void	print_nodes(t_node *nodes, unsigned int number_of_nodes)
 {
 	unsigned int	i;
@@ -44,9 +42,10 @@ int main(int argc, char *argv[])
 
 	rotate_nodes_x_axis(&fdf_data);
 
-	translate_raster(&fdf_data);
+	// translate_raster(&fdf_data);
 	
 	// Setup MLX42
+	mlx_image_t *g_img;
 	mlx_t	*mlx;
 
 	mlx = mlx_init(SCREEN_W, SCREEN_H, argv[1], false);
@@ -63,24 +62,7 @@ int main(int argc, char *argv[])
 	mlx_delete_image(mlx, g_img); // Once the application request an exit, cleanup.
 	mlx_terminate(mlx);
 
+	free(fdf_data.nodes);
+
 	return (EXIT_SUCCESS);
 }
-
-// int main (int argc, char *argv[])
-// {
-// 	t_fdf_data fdf_data;
-
-// 	int map_fd = get_map_fd("test_maps/basictest.fdf");
-// 	printf("map_fd = %i\n", map_fd);
-
-// 	file_to_str(map_fd, &fdf_data.file_str);
-// 	printf("fdf_data.file_str = \n|%s|\n", fdf_data.file_str);
-
-// 	// char* first_line = get_first_line(&fdf_data);
-// 	// printf("first_line = |%s|\n", first_line);
-
-// 	unsigned int number_of_columns = count_columns_twee(&fdf_data);
-// 	printf("number_of_columns = %u\n", number_of_columns);
-
-// 	close(map_fd);
-// }

@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:45:44 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/23 13:54:08 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/24 11:54:43 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,5 @@ void	parser(t_fdf_data *fdf_data, const char *map_name)
 	fdf_data->number_of_nodes = fdf_data->rows * fdf_data->columns;
 	fdf_data->nodes = malloc_nodes(fdf_data->number_of_nodes);
 	populate_nodes(fdf_data);
+	free(fdf_data->file_str);
 }

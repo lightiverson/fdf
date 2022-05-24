@@ -2,8 +2,8 @@
 
 NAME = fdf
 VPATH =	./:\
-		src:\
-CFLAGS = -Wall -Wextra # -Werror
+		src:
+CFLAGS = -Wall -Wextra# -Werror
 LIBMLX = src/MLX42
 LIBFT = src/libft
 
