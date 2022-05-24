@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/07 15:20:09 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/19 18:01:15 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/24 10:39:07 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	rotate_node_x_axis(t_node *node)
 
 void	rotate_nodes_z_axis(t_fdf_data *fdf_data)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < fdf_data->number_of_nodes)
@@ -57,7 +57,7 @@ void	rotate_nodes_z_axis(t_fdf_data *fdf_data)
 
 void	rotate_nodes_x_axis(t_fdf_data *fdf_data)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < fdf_data->number_of_nodes)

@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:45:23 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/19 17:51:02 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/23 13:54:14 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ int	get_smallest_x(t_fdf_data *fdf_data);
 int	get_largest_x(t_fdf_data *fdf_data);
 int	get_smallest_y(t_fdf_data *fdf_data);
 int	get_largest_y(t_fdf_data *fdf_data);
-int	get_map_fd(const char *map_name);
 
 #endif /* GETS_H */

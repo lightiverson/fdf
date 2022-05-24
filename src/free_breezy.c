@@ -6,23 +6,23 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 12:07:53 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/09 14:10:52 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/23 13:34:47 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "free_breezy.h"
 
-void	free_splitted_array(char **splitted_array)
+void	free_splitted_str(char **splitted_str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (splitted_array[i] != NULL)
+	while (splitted_str[i] != NULL)
 	{
-		free(splitted_array[i]);
+		free(splitted_str[i]);
 		i++;
 	}
-	free(splitted_array);
+	free(splitted_str);
 }
 
 void	free_nodes(t_node *nodes)

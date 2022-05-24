@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/19 18:25:14 by kawish        #+#    #+#                 */
-/*   Updated: 2022/05/23 13:19:09 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/23 13:35:40 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ unsigned int	count_columns(char *file_str)
 		number_of_columns++;
 		i++;
 	}
-	free_splitted_array(splitted_strings);
+	free_splitted_str(splitted_strings);
 	free(first_line);
 	return (number_of_columns);
 }

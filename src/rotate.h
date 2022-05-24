@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/09 14:17:51 by kawish        #+#    #+#                 */
-/*   Updated: 2022/04/09 14:17:52 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/24 10:40:45 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 # define ROTATE_H
 
 /* Public libraries */
-# include <stdio.h>
 # include <math.h>
+# include <stdlib.h>
 
 /* Private libraries */
 # include "structs.h"
-# include "screen_raster_sizes.h"
 
 void	rotate_nodes_z_axis(t_fdf_data *fdf_data);
 void	rotate_nodes_x_axis(t_fdf_data *fdf_data);

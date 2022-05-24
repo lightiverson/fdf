@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/09 14:18:03 by kawish        #+#    #+#                 */
-/*   Updated: 2022/04/09 14:18:03 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/23 13:56:46 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	plot_nodes(t_fdf_data *fdf_data, mlx_image_t *g_img)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < fdf_data->number_of_nodes)

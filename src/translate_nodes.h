@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/08 14:54:21 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/19 17:36:18 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/24 10:42:15 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TRANSLATE_NODES_H
 
 /* Public libraries */
+# include <stdlib.h>
 
 /* Private libraries */
 # include "structs.h"

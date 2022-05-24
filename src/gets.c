@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:44:41 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/04/19 17:44:25 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/23 13:54:11 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	get_smallest_x(t_fdf_data *fdf_data)
 {
-	unsigned int	i;
-	int				smallest_x;
+	size_t	i;
+	int		smallest_x;
 
 	i = 1;
 	smallest_x = fdf_data->nodes[0].x;
@@ -30,8 +30,8 @@ int	get_smallest_x(t_fdf_data *fdf_data)
 
 int	get_largest_x(t_fdf_data *fdf_data)
 {
-	unsigned int	i;
-	int				largest_x;
+	size_t	i;
+	int		largest_x;
 
 	i = 1;
 	largest_x = fdf_data->nodes[0].x;
@@ -46,8 +46,8 @@ int	get_largest_x(t_fdf_data *fdf_data)
 
 int	get_smallest_y(t_fdf_data *fdf_data)
 {
-	unsigned int	i;
-	int				smallest_y;
+	size_t	i;
+	int		smallest_y;
 
 	i = 1;
 	smallest_y = fdf_data->nodes[0].y;
@@ -62,8 +62,8 @@ int	get_smallest_y(t_fdf_data *fdf_data)
 
 int	get_largest_y(t_fdf_data *fdf_data)
 {
-	unsigned int	i;
-	int				largest_y;
+	size_t	i;
+	int		largest_y;
 
 	i = 1;
 	largest_y = fdf_data->nodes[0].y;
@@ -74,17 +74,4 @@ int	get_largest_y(t_fdf_data *fdf_data)
 		i++;
 	}
 	return (largest_y);
-}
-
-int	get_map_fd(const char *map_name)
-{
-	int	map_fd;
-
-	map_fd = open(map_name, O_RDONLY);
-	if (map_fd == -1)
-	{
-		perror("Error: open()");
-		exit(EXIT_FAILURE);
-	}
-	return (map_fd);
 }

@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 12:08:01 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/12 13:39:19 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/23 13:34:56 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 /* Private libraries */
 # include "structs.h"
 
-void	free_splitted_array(char **splitted_array);
+void	free_splitted_str(char **splitted_str);
 
 #endif /* FREE_BREEZY_H */
