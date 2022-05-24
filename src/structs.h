@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 14:01:27 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/20 12:07:19 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/24 12:25:28 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_node {
 }	t_node;
 
 typedef struct s_fdf_data {
-	char*			file_str;
+	char			*file_str;
 	unsigned int	rows;
 	unsigned int	columns;
 	unsigned int	number_of_nodes;

@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:45:44 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/24 11:54:43 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/24 12:24:33 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ static t_node	*malloc_nodes(unsigned int number_of_nodes)
 	return (nodes);
 }
 
-static void	assign_nodes(const char *line, t_node *nodes, t_iterators *iterators)
+static void	assign_nodes(const char *line, t_node *nodes,
+	t_iterators *iterators)
 {
 	char	**words;
 
