@@ -1,52 +1,44 @@
-# Variables
+NAME := fdf
+HEADERS :=	src/fdf.h \
+			src/file_to_str.h \
+			src/parser.h \
+			src/plot_lines.h \
+			src/plot_nodes.h \
+			src/rotate.h \
+			src/screen_raster_sizes.h \
+			src/structs.h \
+			src/translate_nodes.h \
+			src/translate_raster.h \
+			src/utilities.h
+OBJECTS :=	obj/fdf.o \
+			obj/file_to_str.o \
+			obj/parser.o \
+			obj/parser_cont.o \
+			obj/plot_lines.o \
+			obj/plot_nodes.o \
+			obj/rotate.o \
+			obj/translate_nodes.o \
+			obj/translate_raster.o \
+			obj/translate_raster_cont.o \
+			obj/utilities.o
+CFLAGS ?= -Wall -Wextra -Werror # CFLAGS = compiler flags
+LDFLAGS ?= # LDFLAGS = linker flags
 
-NAME = fdf
-VPATH =	./:\
-		src:
-CFLAGS = -Wall -Wextra# -Werror
-LIBMLX = src/MLX42
-LIBFT = src/libft
+all : $(NAME)
 
-HEADERS = -I ./src -I $(LIBMLX)/include -I $(LIBFT)
-LIBS = -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/ $(LIBMLX)/libmlx42.a $(LIBFT)/libft.a
-OBJS =	fdf.o \
-		parser.o \
-		plot_lines.o \
-		rotate.o \
-		plot_nodes.o \
-		translate_nodes.o \
-		translate_raster.o \
-		utilities.o \
-		file_to_str.o \
-		parser_cont.o \
-		translate_raster_cont.o
+$(NAME) : $(OBJECTS)
+	cc $(LDFLAGS) -o $(NAME) $(OBJECTS)
 
-#  Recipes
+obj/%.o : src/%.c $(HEADERS)
+	@mkdir -p $(dir $@)
+	cc -c $(CFLAGS) -o $@ $<
 
-all: libft libmlx $(NAME)
+clean :
+	rm -f $(OBJECTS)
 
-libft:
-	$(MAKE) -C $(LIBFT)
-
-libmlx:
-	$(MAKE) -C $(LIBMLX)
-
-%.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
-
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
-
-clean:
-	rm -f $(OBJS)
-	$(MAKE) -C $(LIBFT) clean
-	$(MAKE) -C $(LIBMLX) clean
-
-fclean: clean
+fclean : clean
 	rm -f $(NAME)
-	rm -f $(LIBFT)/libft.a
-	rm -f $(LIBMLX)/libmlx42.a
 
-re: clean all
+re : fclean all
 
-.PHONY: all, clean, fclean, re, libmlx, libft
+.PHONY: all clean fclean re

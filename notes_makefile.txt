@@ -1,0 +1,9 @@
+If the subject requires it, you must submit a Makefile which will compile your
+source files to the required output with the flags -Wall, -Wextra and -Werror, 
+
+use cc, and your Makefile must not relink.
+
+Your Makefile must at least contain the rules $(NAME), all, clean, fclean and
+re.
+
+the executable file is updated from object files, which are in turn made by compiling source files. 
