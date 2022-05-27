@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 12:07:35 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/24 15:23:17 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/27 15:38:29 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include <assert.h>
 # include <sys/syscall.h>
 

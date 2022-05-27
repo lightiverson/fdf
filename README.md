@@ -1,24 +1,13 @@
 # fdf
 
-schrijf een bash script dat over elke map in de directory maps looped
--> voor elke map opent die een terminal window en voert ./fdf uit met de naam van de map als argument
 
 ## Todo
-zorg eerst dat je gnl elke map kan lezen met elke buffsize -> test dit in nieuwe main
-
-4. Make moet remaken als header files veranderd worden
-5. Als buffersize veranderd in getnextline crashed programma -> dit moet gefixed worden
-3. ~~Fix segfault op pyramide map~~
-1. ~~Refactor mlx functies (misschien moet dit later)~~
-2. ~~Maak fill matrix functie~~
-
+1. Pressing ESC must close the window and quit the program in a clean way.
+2. Clicking on the cross on the window’s frame must close the window and quit the
+program in a clean way.
 
 ## Terms
 Node: a point represented by three coordinates, x, y and z (can also be called a vertex).
 Edge: a line connecting two points.
 Face: a surface defined by at least three points.
 Wireframe: a shape consisting of just nodes and edges.
-
-matrix_data.matrix is een 2d array waarbij elk element een node is. De eerste node is dus [0, 0] en als het getal waar dat naar wijst 8 is. Dan is x=0, y=0, z=8
-
-t1, t2, pylone

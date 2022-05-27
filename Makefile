@@ -21,24 +21,37 @@ OBJECTS :=	obj/fdf.o \
 			obj/translate_raster.o \
 			obj/translate_raster_cont.o \
 			obj/utilities.o
-CFLAGS ?= -Wall -Wextra -Werror # CFLAGS = compiler flags
-LDFLAGS ?= # LDFLAGS = linker flags
+CFLAGS ?= -Wall -Wextra -Werror
+LDFLAGS ?=
+LIBFT := src/libft
+LIBMLX := src/MLX42
+LIBGLFW := -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/
 
-all : $(NAME)
+all : libft libmlx $(NAME)
+
+libft:
+	make -C $(LIBFT)
+
+libmlx:
+	make -C $(LIBMLX)
 
 $(NAME) : $(OBJECTS)
-	cc $(LDFLAGS) -o $(NAME) $(OBJECTS)
+	cc $(LDFLAGS) -o $(NAME) $(OBJECTS) $(LIBFT)/libft.a $(LIBMLX)/libmlx42.a $(LIBGLFW)
 
 obj/%.o : src/%.c $(HEADERS)
 	@mkdir -p $(dir $@)
 	cc -c $(CFLAGS) -o $@ $<
 
 clean :
+	make clean -C $(LIBFT)
+	make clean -C $(LIBMLX)
 	rm -f $(OBJECTS)
 
 fclean : clean
+	make fclean -C $(LIBFT)
+	make fclean -C $(LIBMLX)
 	rm -f $(NAME)
 
 re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re libft libmlx
