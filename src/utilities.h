@@ -6,7 +6,7 @@
 /*   By: kawish <kawish@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/04/19 17:42:17 by kawish        #+#    #+#                 */
-/*   Updated: 2022/05/24 15:35:46 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/27 15:47:26 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include "structs.h"
 
 void	wrapper_mlx_put_pixel(mlx_image_t *image,
-					int32_t x, int32_t y, uint32_t color);
+			int32_t x, int32_t y, uint32_t color);
 void	free_splitted_str(char **splitted_str);
 
 #endif /* UTILITIES_H */
