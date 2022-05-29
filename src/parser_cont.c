@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/24 15:13:07 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/27 15:40:34 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/29 16:28:17 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char	*get_first_line(char *file_str)
 	first_line = malloc((len_first_line + 1) * sizeof(*first_line));
 	if (first_line == NULL)
 	{
-		perror("Error: malloc() ");
+		perror("Error: malloc()\n");
 		exit(EXIT_FAILURE);
 	}
 	ft_strlcpy(first_line, file_str, len_first_line + 1);
@@ -48,7 +48,7 @@ unsigned int	count_columns(char *file_str)
 	splitted_strings = ft_split(first_line, ' ');
 	if (splitted_strings == NULL)
 	{
-		perror("Error: ft_split() ");
+		perror("Error: ft_split()\n");
 		exit(EXIT_FAILURE);
 	}
 	while (splitted_strings[i] != NULL)

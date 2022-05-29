@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/24 15:02:13 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/27 15:38:18 by kawish        ########   odam.nl         */
+/*   Updated: 2022/05/29 15:21:13 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,17 @@ void	is_argc_two(int argc)
 	}
 }
 
+void	hook(void *param)
+{
+	if (mlx_is_key_down(param, MLX_KEY_ESCAPE))
+		mlx_close_window(param);
+}
+
 int	main(int argc, char *argv[])
 {
 	t_fdf_data	fdf_data;
-	mlx_image_t	*g_img;
 	mlx_t		*mlx;
+	mlx_image_t	*g_img;
 
 	is_argc_two(argc);
 	parser(&fdf_data, argv[1]);
@@ -41,6 +47,7 @@ int	main(int argc, char *argv[])
 	plot_lines_horizontally(&fdf_data, g_img);
 	plot_lines_vertically(&fdf_data, g_img);
 	plot_nodes(&fdf_data, g_img);
+	mlx_loop_hook(mlx, &hook, mlx);
 	mlx_loop(mlx);
 	mlx_delete_image(mlx, g_img);
 	mlx_terminate(mlx);

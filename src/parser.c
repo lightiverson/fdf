@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:45:44 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/24 12:24:33 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/05/29 16:28:15 by kawish        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	get_map_fd(const char *map_name)
 	map_fd = open(map_name, O_RDONLY);
 	if (map_fd == -1)
 	{
-		perror("Error: open()");
+		perror("Error: open()\n");
 		exit(EXIT_FAILURE);
 	}
 	return (map_fd);
@@ -32,7 +32,7 @@ static t_node	*malloc_nodes(unsigned int number_of_nodes)
 	nodes = malloc(number_of_nodes * sizeof(*nodes));
 	if (nodes == NULL)
 	{
-		perror("Error: malloc() ");
+		perror("Error: malloc()\n");
 		exit(EXIT_FAILURE);
 	}
 	return (nodes);
@@ -47,7 +47,7 @@ static void	assign_nodes(const char *line, t_node *nodes,
 	words = ft_split(line, ' ');
 	if (words == NULL)
 	{
-		perror("Error: ft_split() ");
+		perror("Error: ft_split()\n");
 		exit(EXIT_FAILURE);
 	}
 	while (words[iterators->column] != NULL)
@@ -71,7 +71,7 @@ static void	populate_nodes(t_fdf_data *fdf_data)
 	lines = ft_split(fdf_data->file_str, '\n');
 	if (lines == NULL)
 	{
-		perror("Error: ft_split() ");
+		perror("Error: ft_split()\n");
 		exit(EXIT_FAILURE);
 	}
 	while (lines[iterators.row] != NULL)
@@ -91,7 +91,7 @@ void	parser(t_fdf_data *fdf_data, const char *map_name)
 	r_file_to_str = file_to_str(map_fd, &fdf_data->file_str);
 	if (r_file_to_str == -1)
 	{
-		perror("Error: file_to_str() ");
+		perror("Error: file_to_str()\n");
 		exit(EXIT_FAILURE);
 	}
 	close(map_fd);
