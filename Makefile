@@ -25,7 +25,7 @@ CFLAGS ?= -Wall -Wextra -Werror
 LDFLAGS ?=
 LIBFT := src/libft
 LIBMLX := src/MLX42
-LIBGLFW := -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/
+LIBGLFW := -ldl -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib/
 
 all : libft libmlx $(NAME)
 
@@ -36,11 +36,11 @@ libmlx:
 	make -C $(LIBMLX)
 
 $(NAME) : $(OBJECTS)
-	cc $(LDFLAGS) -o $(NAME) $(OBJECTS) $(LIBFT)/libft.a $(LIBMLX)/libmlx42.a $(LIBGLFW)
+	$(CC) $(LDFLAGS) -o $(NAME) $(OBJECTS) $(LIBFT)/libft.a $(LIBMLX)/libmlx42.a $(LIBGLFW) -lm
 
 obj/%.o : src/%.c $(HEADERS)
 	@mkdir -p $(dir $@)
-	cc -c $(CFLAGS) -o $@ $<
+	$(CC) -c $(CFLAGS) -o $@ $<
 
 clean :
 	make clean -C $(LIBFT)

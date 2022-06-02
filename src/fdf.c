@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/05/24 15:02:13 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/29 15:21:13 by kawish        ########   odam.nl         */
+/*   Updated: 2022/06/02 15:48:41 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	is_argc_two(int argc)
 {
 	if (argc != 2)
 	{
-		perror("Error: Incorrect amount of arguments\n");
+		write(1, "Error: Incorrect amount of arguments\n", 37);
 		exit(EXIT_FAILURE);
 	}
 }
