@@ -6,7 +6,7 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/28 00:24:30 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/03/09 13:44:58 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2022/05/10 10:23:55 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static bool mlx_create_buffers(mlx_t* mlx)
 
 	// NOTE: Call manually once to calculate View Projection Matrix
 	glfwSetWindowSizeCallback(mlx->window, &mlx_on_resize);
-	mlx_on_resize(mlx->window, mlx->width, mlx->height);
+	mlx_update_matrix(mlx, mlx->width, mlx->height);
 	return (true);
 }
 
@@ -147,17 +147,20 @@ static bool mlx_init_render(mlx_t* mlx)
 
 //= Public =//
 
-bool sort_queue;
-mlx_errno_t mlx_errno;
+bool sort_queue = false;
+mlx_errno_t mlx_errno = MLX_SUCCESS;
+
+// Default settings
+int32_t mlx_settings[MLX_SETTINGS_MAX] = {false, false, false, true};
 
 mlx_t* mlx_init(int32_t width, int32_t height, const char* title, bool resize)
 {
+	MLX_ASSERT(width <= 0);
+	MLX_ASSERT(height <= 0);
+	MLX_ASSERT(!title);
+
 	bool init;
 	mlx_t* mlx;
-	mlx_errno = 0;
-	sort_queue = false;
-	if (width <= 0 || height <= 0 || !title)
-		return ((void*)mlx_error(MLX_NULLARG));
 	if (!(init = glfwInit()))
 		return ((void*)mlx_error(MLX_GLFWFAIL));
 	if (!(mlx = calloc(1, sizeof(mlx_t))))
@@ -167,7 +170,8 @@ mlx_t* mlx_init(int32_t width, int32_t height, const char* title, bool resize)
 
 	mlx->width = width;
 	mlx->height = height;
-	glfwWindowHint(GLFW_DECORATED, GL_TRUE);
+	glfwWindowHint(GLFW_MAXIMIZED, mlx_settings[MLX_MAXIMIZED]);
+	glfwWindowHint(GLFW_DECORATED, mlx_settings[MLX_DECORATED]);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -175,9 +179,16 @@ mlx_t* mlx_init(int32_t width, int32_t height, const char* title, bool resize)
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 	glfwWindowHint(GLFW_RESIZABLE, resize);
-	if (!(mlx->window = glfwCreateWindow(width, height, title, NULL, NULL)))
+	if (!(mlx->window = glfwCreateWindow(width, height, title, mlx_settings[MLX_FULLSCREEN] ? glfwGetPrimaryMonitor() : NULL, NULL)))
 		return (mlx_terminate(mlx), (void*)mlx_error(MLX_WINFAIL));
 	if (!mlx_init_render(mlx) || !mlx_create_buffers(mlx))
 		return (mlx_terminate(mlx), NULL);
 	return (mlx);
+}
+
+void mlx_set_setting(mlx_settings_t setting, int32_t value)
+{
+	MLX_ASSERT(setting >= MLX_SETTINGS_MAX);
+	MLX_ASSERT(setting < 0);
+	mlx_settings[setting] = value;
 }

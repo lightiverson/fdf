@@ -6,16 +6,16 @@
   <sub>Written by <a href="https://w2wizard.github.io/">W2.Wizard</a> for the 42 Network</sub>
     <div align="center">
 	</br>
-	<img src="https://img.shields.io/github/license/W2Codam/MLX42" alt="License GPL2.0"> 
+	<img src="https://img.shields.io/github/license/codam-coding-college/MLX42" alt="License GPL2.0"> 
 	<img src="https://svgshare.com/i/Zhy.svg" alt="Linux">
 	<img src="https://svgshare.com/i/ZjP.svg" alt="MacOS">
 	<img src="https://svgshare.com/i/ZhY.sv" alt="Windows">
-	<img src="https://github.com/W2Codam/MLX42/actions/workflows/ci.yml/badge.svg" alt="Build">
-	<img src="https://img.shields.io/github/forks/W2Codam/MLX42" alt="Forks">
+	<img src="https://github.com/codam-coding-college/MLX42/actions/workflows/ci.yml/badge.svg" alt="Build">
+	<img src="https://img.shields.io/github/forks/codam-coding-college/MLX42" alt="Forks">
     </div>
 </div>
 
-My own recreation of the MiniLibX library used by 42, using GLFW &amp; glad, running on OpenGL.
+A recreation of the MiniLibX library used by 42, using GLFW &amp; glad, running on OpenGL.
 The goal of MLX42 is to replace the outdated and stale MiniLibX library.
 
 For information and documentation about MLX42 check the wiki.
@@ -44,16 +44,20 @@ In the very end a library is generated, compile your program with this library!
 
 1. Download MLX42
 ```bash 
-➜  ~ git clone https://github.com/W2Codam/MLX42.git
+➜  ~ git clone https://github.com/codam-coding-college/MLX42.git
 ```
 
 ### Via [Homebrew](https://brew.sh/) / [Homebrew42](https://github.com/kube/42homebrew) by building from source.
 
 2. Install GLFW
+
+Through brew:
 ```bash
 ➜  ~ brew update
 ➜  ~ brew install glfw
 ```
+
+Or, if studying at Codam, you can find GLFW in the [Managed Software Center](munki://detail-GLFW).
 
 3. Compile MLX42
 ```bash 
@@ -62,6 +66,7 @@ In the very end a library is generated, compile your program with this library!
 ```
 
 4. Compile Program
+
 With the normal brew version you can now simply compile the program with:
 ```bash
 ➜  ~ gcc main.c libmlx42.a -lglfw ...
@@ -77,15 +82,22 @@ However, with 42Homebrew you have additionally specify the location of the libra
 ➜  ~ gcc main.c libmlx42.a -I include -lglfw -L "/Users/$USER/.brew/opt/glfw/lib/"
 ```
 
+Or, if studying at Codam, compile using the following flags:
+```bash
+➜  ~ gcc main.c libmlx42.a -I include -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+```
+
+5. Run!
+
 ### Pre-compiled libraries
 
-1. Download the binaries directly [here.](https://www.glfw.org/download.html)
+2. Download the binaries directly [here.](https://www.glfw.org/download.html)
 
-2. If possible move the contents of `lib` and `include` of GLFW to `/usr/local/lib` and `/usr/local/include` respectively.
+3. If possible move the contents of `lib` and `include` of GLFW to `/usr/local/lib` and `/usr/local/include` respectively.
    If not possible, move the lib file to the root of MLX42 and move the GLFW directory in include to the include of MLX42.
    NOTE: For the lib choose the appropriate `.a` & `.dylib` file depending on your architecture.
 
-3. Compile MLX42
+4. Compile MLX42
 ```bash 
 ➜  ~ cd MLX42
 ➜  ~ make
@@ -100,7 +112,7 @@ Else, simply compile like this:
 ➜  ~ gcc main.c libmlx42.a -lglfw ...
 ```
 
-4. Run
+5. Run
 
 In case of any security warnings or MacOS telling you it can't verify the author/developer, go to ```Settings > Security & Privacy```.
 There will be a pop-up at the bottom telling you that an application tried to run, click the option to let it run.
@@ -119,7 +131,7 @@ NOTE: For arch-linux you might also have to do ```sudo apt install glfw-x11``` i
 
 2. Download MLX42 & Build
 ```bash 
-➜  ~ git clone https://github.com/W2Codam/MLX42.git
+➜  ~ git clone https://github.com/codam-coding-college/MLX42.git
 ➜  ~ cd MLX42
 ➜  ~ make
 ```

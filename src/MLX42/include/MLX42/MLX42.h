@@ -6,7 +6,7 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/28 00:33:01 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/03/23 14:12:56 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2022/05/10 10:23:50 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@
 # define MLX42_H
 # include <stdint.h>
 # include <stdbool.h>
-# include "MLX42_Keys.h"
+# include "MLX42_Input.h"
+# ifdef __cplusplus
+extern "C" {
+# endif
 
 /**
  * Base object for disk loaded textures.
@@ -32,15 +35,15 @@
  * 
  * @param width The width of the texture.
  * @param height The height of the texture.
- * @param bytes_per_pixel The amount of bytes in a pixel, always 4.
+ * @param bytes_per_pixel The amounst of bytes in a pixel, always 4.
  * @param pixels The literal pixel data.
  */
 typedef struct mlx_texture
 {
 	uint32_t	width;
 	uint32_t	height;
-	uint8_t*	pixels;
 	uint8_t		bytes_per_pixel;
+	uint8_t*	pixels;
 }	mlx_texture_t;
 
 /**
@@ -142,26 +145,36 @@ typedef struct mlx
 // The error codes used to idenfity the correct error message.
 typedef enum mlx_errno
 {
-	MLX_SUCCESS = 0,
-	MLX_INVEXT,
-	MLX_INVFILE,
-	MLX_INVPNG,
-	MLX_INVXPM,
-	MLX_INVFONT,
-	MLX_INVAREA,
-	MLX_NULLARG,
-	MLX_SHDRFAIL,
-	MLX_MEMFAIL,
-	MLX_GLADFAIL,
-	MLX_GLFWFAIL,
-	MLX_WINFAIL,
-	MLX_IMGTOBIG,
-	MLX_IMGTOSML,
-	MLX_TEXTOBIG,
+	MLX_SUCCESS = 0,	// No Errors
+	MLX_INVEXT,			// File has an invalid extension
+	MLX_INVFILE,		// File was invalid / does not exist.
+	MLX_INVPNG,			// Something is wrong the given PNG file.
+	MLX_INVXPM,			// Something is wrong the given XPM file.
+	MLX_INVPOS,			// The specified X/Y positions are out of bounds.
+	MLX_INVDIM,			// The specified W/H dimensions are out of bounds.
+	MLX_SHDRFAIL,		// Failed to compile a shader.
+	MLX_MEMFAIL,		// Dynamic memory allocation has failed.
+	MLX_GLADFAIL,		// OpenGL loader has failed.
+	MLX_GLFWFAIL,		// GLFW failed to initialize.
+	MLX_WINFAIL,		// Failed to create a window.
+	MLX_STRTOBIG,		// The string is too big to be drawn.
+	MLX_ERRMAX,			// Error count
 }	mlx_errno_t;
 
 // Global error code from the MLX42 library, 0 on no error.
 extern mlx_errno_t mlx_errno;
+
+//= Global Settings =//
+
+// Set these values, if necessary, before calling `mlx_init` as they define the behaviour of MLX42.
+typedef enum mlx_settings
+{
+	MLX_STRETCH_IMAGE = 0,	// Should images resize with the window as its being resized or not. Default: false
+	MLX_FULLSCREEN,			// Should the window be in Fullscreen, note it will fullscreen at the given resolution. Default: false
+	MLX_MAXIMIZED,			// Start the window in a maximized state, overwrites the fullscreen state if this is true. Default: false
+	MLX_DECORATED,			// Have the window be decorated with a window bar. Default: true
+	MLX_SETTINGS_MAX,		// Setting count.
+}	mlx_settings_t;
 
 /**
  * Callback function used to handle scrolling.
@@ -171,6 +184,25 @@ extern mlx_errno_t mlx_errno;
  * @param[in] param Additional parameter to pass onto the function.
  */
 typedef void (*mlx_scrollfunc)(double xdelta, double ydelta, void* param);
+
+/**
+ * Callback function used to handle mouse actions.
+ * 
+ * @param[in] button The mouse button/key pressed.
+ * @param[in] action The mouse action that took place.
+ * @param[in] mods The modifier keys pressed during the mouse key.
+ * @param[in] param Additional parameter to pass onto the function.
+ */
+typedef void (*mlx_mousefunc)(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
+
+/**
+ * Callback function used to handle raw mouse movement.
+ * 
+ * @param[in] xdelta The mouse x position.
+ * @param[in] ydelta The mouse y position.
+ * @param[in] param Additional parameter to pass onto the function.
+ */
+typedef void (*mlx_cursorfunc)(double xpos, double ypos, void* param);
 
 /**
  * Callback function used to handle key presses.
@@ -206,7 +238,7 @@ typedef void (*mlx_closefunc)(void* param);
 /**
  * Gets the english description of the error code.
  * 
- * @param val The error code.
+ * @param[in] val The error code.
  * @return The error string that describes the error code.
  */
 const char* mlx_strerror(mlx_errno_t val);
@@ -223,6 +255,15 @@ const char* mlx_strerror(mlx_errno_t val);
  * @returns Ptr to the MLX handle or null on failure.
  */
 mlx_t* mlx_init(int32_t width, int32_t height, const char* title, bool resize);
+
+/**
+ * Set a setting for MLX42.
+ * Settings can manipulate the core behaviour of the engine.
+ * 
+ * @param[in] setting The settings value, See mlx_settings_t type.
+ * @param[in] value Settings value to determine the state of the setting. Can be a boolean or a enum / macro.
+ */
+void mlx_set_setting(mlx_settings_t setting, int32_t value);
 
 /**
  * Notifies MLX that it should stop rendering and exit the main loop.
@@ -245,7 +286,8 @@ void mlx_loop(mlx_t* mlx);
  * Lets you set a custom image as the program icon.
  * 
  * NOTE: In MacOS this function does nothing, you should use the bundles icon to set the dock bar icon.
- * @link: https://9to5mac.com/2021/11/08/change-mac-icons/
+ * @see: https://9to5mac.com/2021/11/08/change-mac-icons/
+ * @see: https://github.com/glfw/glfw/issues/2041
  *
  * @param[in] mlx The MLX instance handle.
  * @param[in] image The image to use as icon.
@@ -417,6 +459,26 @@ void mlx_set_cursor(mlx_t* mlx, void* cursor);
 void mlx_scroll_hook(mlx_t* mlx, mlx_scrollfunc func, void* param);
 
 /**
+ * This function sets the mouse callback, which is called when a mouse
+ * does any sort of action such as pressing a key.
+ * 
+ * @param[in] mlx The MLX instance handle.
+ * @param[in] func The mouse callback function.
+ * @param[in] param An additional optional parameter.
+ */
+void mlx_mouse_hook(mlx_t* mlx, mlx_mousefunc func, void* param);
+
+/**
+ * This function sets the cursor callback, which is called when a the
+ * mouse position changes. Position is relative to the window.
+ * 
+ * @param[in] mlx The MLX instance handle.
+ * @param[in] func The cursor callback function.
+ * @param[in] param An additional optional parameter.
+ */
+void mlx_cursor_hook(mlx_t* mlx, mlx_cursorfunc func, void* param);
+
+/**
  * This function sets the key callback, which is called when a key is pressed
  * on the keyboard. Useful for single key press detection.
  * 
@@ -461,9 +523,6 @@ bool mlx_loop_hook(mlx_t* mlx, void (*f)(void*), void* param);
 
 /**
  * Decode/load a PNG file onto a buffer. BPP will always be 4.
- * 
- * NOTE: The output type is just a t_mlx_texture *, it only has this typedef
- * because of norme.
  * 
  * @param[in] path Path to the PNG file.
  * @return If successful the texture data is returned, else NULL.
@@ -527,7 +586,7 @@ mlx_image_t* mlx_texture_area_to_image(mlx_t* mlx, mlx_texture_t* texture, uint3
  * @param[in] y Y position relative to the image.
  * @return In-case of any issues, false else true.
  */
-bool mlx_draw_texture(mlx_image_t* image, mlx_texture_t* texture, int32_t x, int32_t y);
+bool mlx_draw_texture(mlx_image_t* image, mlx_texture_t* texture, uint32_t x, uint32_t y);
 
 //= Image Functions =//
 
@@ -542,7 +601,7 @@ bool mlx_draw_texture(mlx_image_t* image, mlx_texture_t* texture, int32_t x, int
  * @param[in] y The Y coordinate position.
  * @param[in] color The color value to put.
  */
-void mlx_put_pixel(mlx_image_t* image, int32_t x, int32_t y, uint32_t color);
+void mlx_put_pixel(mlx_image_t* image, uint32_t x, uint32_t y, uint32_t color);
 
 /**
  * Creates and allocates a new image buffer.
@@ -604,8 +663,8 @@ bool mlx_resize_image(mlx_image_t* img, uint32_t nwidth, uint32_t nheight);
  * so if you don't see your image anymore make sure its not conflicting by being on
  * the same layer as another image.
  * 
- * @param instance The instane on which to change the depth.
- * @param zdepth The new depth value.
+ * @param[in] instance The instane on which to change the depth.
+ * @param[in] zdepth The new depth value.
  */
 void mlx_set_instance_depth(mlx_instance_t* instance, int32_t zdepth);
 
@@ -622,4 +681,25 @@ void mlx_set_instance_depth(mlx_instance_t* instance, int32_t zdepth);
  */
 mlx_image_t* mlx_put_string(mlx_t* mlx, const char* str, int32_t x, int32_t y);
 
+/**
+ * Retrieve the texture data for the built-in font.
+ * 
+ * @return Pointer to the built-in font texture.
+ */
+const mlx_texture_t* mlx_get_font(void);
+
+/**
+ * This function lets you retrieve the X offset 
+ * of the given char in the font texture.
+ * 
+ * NOTE: A single character is 10 * 20 in pixels!
+ * 
+ * @param[in] c The character to get the offset from.
+ * @return Non-negative if found or -1 if not found.
+ */
+int32_t mlx_get_texoffset(char c);
+
+# ifdef __cplusplus
+}
+# endif
 #endif

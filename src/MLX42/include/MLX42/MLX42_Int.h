@@ -6,7 +6,7 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/27 23:55:34 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/03/11 15:13:40 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2022/05/10 10:24:39 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include <ctype.h> /* isspace, isprint, ... */
 # include <string.h> /* strlen, memmove, ... */
 # include <stdarg.h> /* va_arg, va_end, ... */
+# include <assert.h> /* assert, static_assert, ... */
 # ifndef MLX_SWAP_INTERVAL
 #  define MLX_SWAP_INTERVAL 1
 # endif
@@ -42,6 +43,9 @@
 #  define MLX_BATCH_SIZE 12000
 # endif
 # define BPP sizeof(int32_t) /* Only support RGBA */
+# define MLX_ASSERT(cond) assert(!(cond));
+# define GETLINE_BUFF 1280
+# define MLX_MAX_STRING 512 /* Arbitrary string limit */
 
 /**
  * The shader code is extracted from the shader files
@@ -62,6 +66,9 @@ extern const char* frag_shader;
 
 // Flag to indicate if the render queue has to be sorted.
 extern bool sort_queue;
+
+// Settings array, use the enum 'key' to get the value.
+extern int32_t mlx_settings[MLX_SETTINGS_MAX];
 
 //= Types =//
 
@@ -112,7 +119,19 @@ typedef struct mlx_srcoll
 	mlx_scrollfunc	func;
 }	mlx_scroll_t;
 
-typedef struct s_mlx_close
+typedef struct mlx_mouse
+{
+	void*			param;
+	mlx_mousefunc	func;
+}	mlx_mouse_t;
+
+typedef struct mlx_cursor
+{
+	void*			param;
+	mlx_cursorfunc	func;
+}	mlx_cursor_t;
+
+typedef struct mlx_close
 {
 	void*			param;
 	mlx_closefunc	func;
@@ -149,7 +168,7 @@ typedef struct mlx_hook
  * 
  * Texture contexts are kept in a struct purely for convience of
  * expanding the variables in potential later updates. As well as
- * having had more variables before now just one.
+ * having had more variables before, now just one.
  */
 
 // MLX instance context.
@@ -158,15 +177,20 @@ typedef struct mlx_ctx
 	GLuint			vao;
 	GLuint			vbo;
 	GLuint			shaderprogram;
+
 	mlx_list_t*		hooks;
 	mlx_list_t*		images;
 	mlx_list_t*		render_queue;
+
 	mlx_scroll_t	scroll_hook;
+	mlx_mouse_t		mouse_hook;
+	mlx_cursor_t	cursor_hook;
 	mlx_key_t		key_hook;
 	mlx_resize_t	resize_hook;
 	mlx_close_t		close_hook;
+
 	int32_t			zdepth;
-	GLint			bound_textures[16];
+	int32_t			bound_textures[16];
 	int32_t			batch_size;
 	vertex_t		batch_vertices[MLX_BATCH_SIZE];
 }	mlx_ctx_t;
@@ -215,11 +239,13 @@ bool mlx_freen(int32_t count, ...);
 //= OpenGL Functions =//
 
 void mlx_on_resize(GLFWwindow* window, int32_t width, int32_t height);
+void mlx_update_matrix(const mlx_t* mlx, int32_t width, int32_t height);
 void mlx_draw_instance(mlx_ctx_t* mlx, mlx_image_t* img, mlx_instance_t* instance);
 void mlx_flush_batch(mlx_ctx_t* mlx);
 
 // Utils Functions =//
 
+bool mlx_getline(char** out, size_t* out_size, FILE* file);
 uint32_t mlx_rgba_to_mono(uint32_t color);
 int32_t mlx_atoi_base(const char* str, int32_t base);
 uint64_t mlx_fnv_hash(char* str, size_t len);

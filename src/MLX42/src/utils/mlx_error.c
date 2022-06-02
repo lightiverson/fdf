@@ -6,7 +6,7 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/28 02:51:54 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/03/02 06:07:41 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2022/04/28 14:57:00 by lde-la-h      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,16 @@ static const char* mlx_errors[] = {
 	"Failed to open the file",
 	"PNG file is invalid or corrupted",
 	"XPM42 file is invalid or corrupted",
-	"Font atlas data is invalid",
-	"Texture area out of range",
-	"Parameter passed was NULL",
+	"The specified X or Y positions are out of bounds",
+	"The specified Width or Height dimensions are out of bounds",
 	"Failed to compile shader",
 	"Failed to allocate memory",
 	"Failed to initialize GLAD",
 	"Failed to initialize GLFW",
 	"Failed to create window",
-	"Image size is too big",
-	"Image size is too small",
-	"Texture is larger than image",
+	"String is to big to be drawn",
 };
 
-//= Public =//
 
 /**
  * Functions to set the error number, simply for convenience.
@@ -48,7 +44,12 @@ bool mlx_error(mlx_errno_t val)
 	return (false);
 }
 
+//= Public =//
+
 const char* mlx_strerror(mlx_errno_t val)
 {
+	MLX_ASSERT(val < 0);
+	MLX_ASSERT(val >= MLX_ERRMAX);
+
 	return (mlx_errors[val]);
 }

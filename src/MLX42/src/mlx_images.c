@@ -6,7 +6,7 @@
 /*   By: W2Wizard <w2.wizzard@gmail.com>              +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/01/21 15:34:45 by W2Wizard      #+#    #+#                 */
-/*   Updated: 2022/03/23 17:02:13 by lde-la-h      ########   odam.nl         */
+/*   Updated: 2022/05/15 20:57:16 by jsimonis      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void mlx_draw_instance(mlx_ctx_t* mlx, mlx_image_t* img, mlx_instance_t* instanc
 	int8_t tex = mlx_bind_texture(mlx, img);
 
 	// NOTE: This is faster than uploading before hand!
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img->width, img->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, img->pixels);
+	// glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img->width, img->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, img->pixels);
 
 	vertex_t vertices[6] = {
 			(vertex_t){x, y, z, 0.f, 0.f, tex},
@@ -91,16 +91,13 @@ void mlx_draw_instance(mlx_ctx_t* mlx, mlx_image_t* img, mlx_instance_t* instanc
 
 void mlx_set_instance_depth(mlx_instance_t* instance, int32_t zdepth)
 {
-	if (!instance)
-	{
-		mlx_error(MLX_NULLARG);
-		return;
-	}
+	MLX_ASSERT(!instance);
+
 	if (instance->z == zdepth)
 		return;
 	instance->z = zdepth;
 
-	/** 
+	/**
 	 * NOTE: The reason why we don't sort directly is that
 	 * the user might call this function multiple times in a row and we don't
 	 * want to sort for every change. Pre-loop wise that is.
@@ -110,9 +107,9 @@ void mlx_set_instance_depth(mlx_instance_t* instance, int32_t zdepth)
 
 int32_t mlx_image_to_window(mlx_t* mlx, mlx_image_t* img, int32_t x, int32_t y)
 {
-	if (!mlx || !img)
-		return (mlx_error(MLX_NULLARG), -1);
-	
+	MLX_ASSERT(!mlx);
+	MLX_ASSERT(!img);
+
 	// Allocate buffers...
 	mlx_instance_t* temp = realloc(img->instances, (++img->count) * sizeof(mlx_instance_t));
 	draw_queue_t* queue = calloc(1, sizeof(draw_queue_t));
@@ -126,7 +123,7 @@ int32_t mlx_image_to_window(mlx_t* mlx, mlx_image_t* img, int32_t x, int32_t y)
 	img->instances[index].x = x;
 	img->instances[index].y = y;
 
-	// NOTE: We keep updating the Z for the convenience of the user. 
+	// NOTE: We keep updating the Z for the convenience of the user.
 	// Always update Z depth to prevent overlapping images by default.
 	img->instances[index].z = ((mlx_ctx_t*)mlx->context)->zdepth++;
 
@@ -142,12 +139,10 @@ int32_t mlx_image_to_window(mlx_t* mlx, mlx_image_t* img, int32_t x, int32_t y)
 
 mlx_image_t* mlx_new_image(mlx_t* mlx, uint32_t width, uint32_t height)
 {
-	if (!mlx)
-		return ((void*)mlx_error(MLX_NULLARG));
-	if (width > INT16_MAX || height > INT16_MAX)
-		return ((void*)mlx_error(MLX_IMGTOBIG));
-	if (!width || !height)
-		return ((void*)mlx_error(MLX_IMGTOSML));
+	MLX_ASSERT(!mlx);
+
+	if (!width || !height || width > INT16_MAX || height > INT16_MAX)
+		return ((void*)mlx_error(MLX_INVDIM));
 
 	const mlx_ctx_t* mlxctx = mlx->context;
 	mlx_image_t* newimg = calloc(1, sizeof(mlx_image_t));
@@ -187,17 +182,18 @@ mlx_image_t* mlx_new_image(mlx_t* mlx, uint32_t width, uint32_t height)
 
 void mlx_delete_image(mlx_t* mlx, mlx_image_t* image)
 {
-	if (!mlx || !image)
-	{
-		mlx_error(MLX_NULLARG);
-		return;
-	}
+	MLX_ASSERT(!mlx);
+	MLX_ASSERT(!image);
+
 	mlx_ctx_t* mlxctx = mlx->context;
-	mlx_list_t* imglst = mlx_lstremove(&mlxctx->images, image, &mlx_equal_image);
-	mlx_list_t* quelst = mlx_lstremove(&mlxctx->render_queue, image, &mlx_equal_inst);
-	if (quelst)
+
+	// Delete all instances in the render queue
+	mlx_list_t* quelst;
+	while ((quelst = mlx_lstremove(&mlxctx->render_queue, image, &mlx_equal_inst)))
 		mlx_freen(2, quelst->content, quelst);
-	if (imglst)
+
+	mlx_list_t* imglst;
+	if ((imglst = mlx_lstremove(&mlxctx->images, image, &mlx_equal_image)))
 	{
 		glDeleteTextures(1, &((mlx_image_ctx_t*)image->context)->texture);
 		mlx_freen(5, image->pixels, image->instances, image->context, imglst, image);
@@ -206,12 +202,10 @@ void mlx_delete_image(mlx_t* mlx, mlx_image_t* image)
 
 bool mlx_resize_image(mlx_image_t* img, uint32_t nwidth, uint32_t nheight)
 {
-	if (!img)
-		return (mlx_error(MLX_NULLARG));
-	if (nwidth > INT16_MAX || nheight > INT16_MAX)
-		return (mlx_error(MLX_IMGTOBIG));
-	if (!nwidth || !nheight)
-		return ((void*)mlx_error(MLX_IMGTOSML));
+	MLX_ASSERT(!img);
+
+	if (!nwidth || !nheight || nwidth > INT16_MAX || nheight > INT16_MAX)
+		return (mlx_error(MLX_INVDIM));
 	if (nwidth != img->width || nheight != img->height)
 	{
 		uint8_t* tempbuff = realloc(img->pixels, (nwidth * nheight) * BPP);
