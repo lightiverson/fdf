@@ -1,6 +1,7 @@
 #include "./Unity-master/src/unity.h"
 #include "../structs.h"
 #include "../file_to_str.h"
+#include "../parser.h"
 #include "../utilities.h"
 
 void setUp(void) {
@@ -274,10 +275,12 @@ gcc \
 -D UNITY_OUTPUT_COLOR \
 -D UNITY_FIXTURE_NO_EXTRAS \
 test_count_columns.c \
-../gets.c \
-../file_to_str.c \
-../utilities.c \
 ./Unity-master/src/unity.c \
 ../libft/libft.a \
+../MLX42/libmlx42.a \
+../file_to_str.c \
+../parser.c \
+../parser_cont.c \
+../utilities.c \
 && ./a.out
 */

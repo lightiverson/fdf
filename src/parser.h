@@ -6,7 +6,7 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:46:10 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/24 15:42:02 by kgajadie      ########   odam.nl         */
+/*   Updated: 2022/08/18 10:12:38 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_iterators {
 	size_t	i;
 }	t_iterators;
 
+int				get_map_fd(const char *map_name);
 unsigned int	count_rows(char *file_str);
 unsigned int	count_columns(char *file_str);
 void			parser(t_fdf_data *fdf_data, const char *map_name);

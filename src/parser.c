@@ -6,13 +6,13 @@
 /*   By: kgajadie <kgajadie@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/03/28 13:45:44 by kgajadie      #+#    #+#                 */
-/*   Updated: 2022/05/29 16:28:15 by kawish        ########   odam.nl         */
+/*   Updated: 2022/08/18 10:13:18 by kgajadie      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static int	get_map_fd(const char *map_name)
+int	get_map_fd(const char *map_name)
 {
 	int	map_fd;
 
